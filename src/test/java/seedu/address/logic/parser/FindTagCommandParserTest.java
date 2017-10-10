@@ -5,9 +5,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import seedu.address.logic.commands.FindTagCommand;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 public class FindTagCommandParserTest {
     private FindTagCommandParser parser = new FindTagCommandParser();
@@ -20,11 +23,11 @@ public class FindTagCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindTagCommand expectedFindCommand =
-                new FindTagCommand(new String[]{"friend","family"});
-        assertParseSuccess(parser, "friend family", expectedFindCommand);
+        FindTagCommand expectedFindTagCommand =
+                new FindTagCommand(new TagContainsKeywordsPredicate(Arrays.asList("friend", "family")));
+        assertParseSuccess(parser, "friend family", expectedFindTagCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n friend \n \t family  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n friend \n \t family  \t", expectedFindTagCommand);
     }
 }
