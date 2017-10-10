@@ -86,9 +86,11 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_findtag() throws Exception {
-        FindTagCommand command = (FindTagCommand) parser.parseCommand(FindTagCommand.COMMAND_WORD);
-        assertTrue(command instanceof FindTagCommand);
+    public void parseCommand_findTag() throws Exception {
+        final String[] tags = new String[]{"some","tag"};
+        FindTagCommand command = (FindTagCommand) parser.parseCommand(FindTagCommand.COMMAND_WORD + " "
+                        + "some" + " " + "tag");
+        assertEquals(new FindTagCommand(tags), command);
     }
 
     @Test
