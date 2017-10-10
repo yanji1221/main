@@ -18,9 +18,9 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
     private static String[] colors = { "red", "yellow", "blue", "orange", "brown", "green", "pink", "black",
-            "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue",
-            "darkGreen", "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen",
-            "midnightBlue", "forestGreen", "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
+        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+        "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label birthday;
+    @FXML
     private FlowPane tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
@@ -58,6 +60,9 @@ public class PersonCard extends UiPart<Region> {
         bindListeners(person);
     }
 
+    /**
+     * Get a color for a tag
+     */
     private static String colorGetterForTag(String tagValue) {
         int colorCode;
         boolean usedUpAllColors = true;
@@ -91,6 +96,7 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
         person.tagProperty().addListener((observable, oldValue, newValue) -> {

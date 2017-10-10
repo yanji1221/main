@@ -729,9 +729,22 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |avoid adding duplicate contacts |manage my contact list efficiently
+
+|`* * *` |user |edit contact information |make changes if needed
+
+|`* * *` |user |add birthday information |remember and keep track of my family members/friends birthday
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
+|`* *` |user |add profile photo |can double check the identity if there are persons with the same name
+
+|`* *` |user |add multiple phone number to one person |store different contact number as one person may have more than one phone number
+
+|`* *` |user |have some important contacts |reach to my close friends easily at a click
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
 |=======================================================================
 
 {More to be added}
@@ -766,6 +779,50 @@ Use case ends.
 ** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
+
+[discrete]
+=== Use case: Edit person
+
+*MSS*
+
+1.  User request to edit contact information
+2.  AddressBook shows old and new information stored
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. No such person.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2a. Incorrect format of new information.
++
+[none]
+** 2a1. AddressBook shows an error message and request for new information again.
++
+Use case resumes at step 5.
+
+[discrete]
+=== Use case: List all persons
+
+*MSS*
+
+1.  User request to have a list of all persons
+2.  AddressBook shows a list of all persons in the contact list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
 
 {More to be added}
 
