@@ -92,6 +92,23 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+=== Update a tag name on all contacts: 'updateTag'
+
+Update a specified tag name with a new tag name on all contacts in addressbook. +
+Format: 'updateTag [t/oldTAG] [t/newTAG]'
+
+****
+* 'oldTag' must already exist in address book.
+* 'newTag' can be a tag that already exists in address book.
+* Updates the tag 'oldTAG' with the new tag 'newTAG'.
+* After this command is executed, 'oldTAG' no longer exists and the tag 'oldTAG' in any contact will be updated with 'newTAG'.
+****
+
+Examples:
+
+* 'updateTAG friend highschool_friend'+
+Any contact with tag 'friend' now has tag 'highschool_friend' and no longer has tag 'friend'
+
 === Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords. +
@@ -112,6 +129,24 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
+=== Locating persons by phone number: 'phone'
+
+Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person
+Format: 'phone NUMBER [MORE_NUMBERS]'
+
+****
+* The order of phone numbers being queried does not matter.
+* Only the phone number is searched.
+* Only full numbers will be matched e.b. '12345' will not match '123456' // can be modifed latter to match a chain of partial number
+****
+
+Examples:
+
+* 'phone 123456'+
+Returns person with phone number 123456
+* 'phone 123456 654321'
+Returns persons with phone numbers matching with '123456' or '654321'.
+
 === Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
@@ -131,6 +166,22 @@ Deletes the 2nd person in the address book.
 * `find Betsy` +
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
+
+=== Deleting all contacts edded before a specific date 'deleteBefore'
+
+Deletes all persons added before the date specified from the address book. +
+Format: 'deleteBefore [DATE] [MONTH] [YEAR]'
+
+****
+* Deletes all persons added before date 'DATE', month 'MONTH' and year 'YEAR'
+* This command is undoable.
+* 'DATE', 'MONTH' and 'YEAR' must be respectively valid date, month and year.
+****
+
+Examples:
+
+* 'deleteBefore 10/01/2014' +
+Deletes all persons add before 10/01/2014 from the address book. 
 
 === Selecting a person : `select`
 
