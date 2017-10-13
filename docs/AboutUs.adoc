@@ -19,7 +19,6 @@ Role: Project Advisor
 
 '''
 
-
 === Dao Quoc Cuong (Erik)
 image::erik0704.png[width="150", align="left"]
 {empty}[http://github.com/erik0704[github]] [<<erik#, portfolio>>]
