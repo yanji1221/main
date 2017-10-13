@@ -54,3 +54,12 @@ Role: Developer +
 Responsibilities: UI
 
 '''
+
+=== Yan Ji
+image::yanji.jpg[width="150", align="left"]
+{empty}[http://github.com/yanji1221[github]] [<<johndoe#, portfolio>>]
+
+Role: Developer +
+Responsibility: UI
+
+,,,
