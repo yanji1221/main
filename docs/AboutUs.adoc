@@ -19,12 +19,6 @@ Role: Project Advisor
 
 '''
 
-=== Huang Xiangyuan (David)
-image::David_Huang.jpg[width="150", align="left"]
-{empty}[http://github.com/hxy0229[github]] [<<hxy#, portfolio>>]
-
-Role: Team Lead +
-Responsibilities: Logic
 
 === Dao Quoc Cuong (Erik)
 image::erik0704.png[width="150", align="left"]
@@ -34,6 +28,15 @@ Role: Team Lead +
 Responsibilities: Logic
 
 '''
+
+
+=== Huang Xiangyuan (David)
+image::David_Huang.jpg[width="150", align="left"]
+{empty}[http://github.com/hxy0229[github]] [<<hxy#, portfolio>>]
+
+Role: Developer +
+Responsibilities: Storage
+,,,
 
 === Johnny Doe
 image::yijinl.jpg[width="150", align="left"]
