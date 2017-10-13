@@ -94,15 +94,15 @@ Edits the name of the 2nd person to be `Betsy Crower` and clears all existing ta
 
 === Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords. +
+Finds persons whose names contain fully or partially any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Partial words will be matched e.g. `Han` will match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hansell Gruber`, `Robert Lee`
 ****
 
 Examples:
@@ -111,6 +111,44 @@ Examples:
 Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
+
+=== Locating persons by tags: `findTag`
+
+Finds persons whose tags include all of the given keywords. +
+Format: `findTag KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `cs2103t` will match `CS2103T`
+* The order of the keywords does not matter.
+* Only the tag is searched.
+* Only full words will be matched e.g. `cs210` will not match `cs2101`
+* Only persons matching at all keywords will be returned (i.e. `AND` search). e.g. e.g. `friend cs2103t` will match all
+contacts that have both `friend` and `cs2103t` tags
+****
+
+Examples:
+
+* `findTag friend` +
+Returns any person with a `friend` tag
+* `findTag CS2103T friend` +
+Returns all persons with both `friend` and `CS2103T` tag.
+
+=== Locating persons by phone number: `findNumber`
+
+Finds persons whose phone numbers include the numbers. +
+Format: `findNumber NUMBERS`
+
+****
+* Only the phone number is searched.
+* Partial phone number sequences will be matched e.g. `876534` will match `87654321`
+****
+
+Examples:
+
+* `findNumber 87654321` +
+Returns persons with the phone number `87654321` (can return multiple persons if it is a land line).
+* `findNumber 876543` +
+Returns any person whose phone number contains the sequence `876543`.
 
 === Deleting a person : `delete`
 
@@ -151,6 +189,23 @@ Selects the 2nd person in the address book.
 * `find Betsy` +
 `select 1` +
 Selects the 1st person in the results of the `find` command.
+
+=== Adding an event: `addEvent`
+
+Adds a person to the address book +
+Format: `addEvent INDEX n/EVENT_NAME d/DD-MM-YY [e/EXTRA]`
+
+[TIP]
+The event extra description is optional, can use as a to-do list. +
+The event date is `dd-mm-yy` format in which `yy` is the last 2 digits of the year.
+
+
+Examples:
+
+* `addEvent 1 n/Return 5$ d/09-08-17 e/lunch money` +
+Add a new event associate with the 1st person in the list.
+* `addEvent 2 n/Project Meeting d/25-11-17 e/IS1103, read up on last week lecture` +
+Add a new event associate with the 2nd person in the list.
 
 === Listing entered commands : `history`
 
