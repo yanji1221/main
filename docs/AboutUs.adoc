@@ -20,7 +20,7 @@ Role: Project Advisor
 '''
 
 === Huang Xiangyuan (David)
-image::David_Huang.jpeg[width="150", align="left"]
+image::David_Huang.jpg[width="150", align="left"]
 {empty}[http://github.com/hxy0229[github]] [<<hxy#, portfolio>>]
 
 Role: Team Lead +
