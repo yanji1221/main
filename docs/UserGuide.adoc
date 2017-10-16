@@ -188,10 +188,10 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
-=== Deleting all contacts edded before a specific date 'deleteBefore'
+=== Deleting all contacts edded before a specific date: `deleteBefore`
 
 Deletes all persons added before the date specified from the address book. +
-Format: 'deleteBefore [DATE] [MONTH] [YEAR]'
+Format: `deleteBefore [DATE]/[MONTH]/[YEAR]`
 
 ****
 * Deletes all persons added before date 'DATE', month 'MONTH' and year 'YEAR'
@@ -201,8 +201,8 @@ Format: 'deleteBefore [DATE] [MONTH] [YEAR]'
 
 Examples:
 
-* 'deleteBefore 10/01/2014' +
-Deletes all persons add before 10/01/2014 from the address book. 
+* `deleteBefore 10/01/2014` +
+Deletes all persons add before 10/01/2014 from the address book.
 
 === Selecting a person : `select`
 
