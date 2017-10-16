@@ -19,12 +19,12 @@ Role: Project Advisor
 
 '''
 
-=== John Roe
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
+=== Dao Quoc Cuong (Erik)
+image::erik0704.png[width="150", align="left"]
+{empty}[http://github.com/erik0704[github]] [<<erik#, portfolio>>]
 
 Role: Team Lead +
-Responsibilities: UI
+Responsibilities: Logic
 
 '''
 
