@@ -28,12 +28,12 @@ Responsibilities: Logic
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== Nguyen Minh Quang
+image::quangtdn.jpg[width="150", align="left"]
+{empty}[http://github.com/quangtdn[github]] [<<quang#, portfolio>>]
 
-Role: Developer +
-Responsibilities: Data
+Role: Code quality, Deliverables and deadlines +
+Responsibilities: Model
 
 '''
 
