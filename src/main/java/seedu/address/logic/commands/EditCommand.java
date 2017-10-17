@@ -17,8 +17,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -153,7 +153,8 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.birthday, this.address, this.tags);
+            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email,
+                    this.birthday, this.address, this.tags);
         }
 
         public void setName(Name name) {
@@ -180,9 +181,13 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(email);
         }
 
-        public void setBirthday(Birthday birthday) { this.birthday = birthday; }
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
 
-        public Optional<Birthday> getBirthday() { return Optional.ofNullable(birthday); }
+        public Optional<Birthday> getBirthday() {
+            return Optional.ofNullable(birthday);
+        }
 
         public void setAddress(Address address) {
             this.address = address;
