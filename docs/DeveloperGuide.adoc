@@ -738,6 +738,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |add birthday information |remember and keep track of my family members/friends birthday
 
+|`* * *` |user |find persons whose names contain a partial string |locate person whose name I forgot how to spell
+
+|`* * *` |user |find persons by tags |identify a group of people with common attributes
+
+|`* * *` |undergraduate student user |add events related to one or multiple contacts such as birthday or meetings |keep track tasks I need to do
+
+|`* *` |user |add or remove some tags of a contact |quickly update contact information
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |add profile photo |can double check the identity if there are persons with the same name
@@ -746,19 +754,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |have some important contacts |reach to my close friends easily at a click
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
-
-|`* * *` |user |find persons by tags |identify a group of people with common attributes
-
-|`* *` |user |add or remove some tags of a contact |quickly update contact information
-
-|`* * *` |user |find persons whose names contain a partial string |locate person whose name I forgot how to spell
-
 |`* *` |undergraduate student user |find persons by their address |identify which friends stay in the same campus
 
-|`* * *` |undergraduate student user |add events related to one or multiple contacts such as birthday or meetings |keep track tasks I need to do
-
 |`* *` |undergraduate student user |have a reminder pop up when an event is coming up |remember to prepare and fulfill my responsibility
+
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
 |=======================================================================
 
