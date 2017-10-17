@@ -132,7 +132,6 @@ public class ModelManager extends ComponentManager implements Model {
                 finalPerson.setTags(PersonTags);
             }
             addressBook.updatePerson(tempPerson, finalPerson);
-            
         }
     }
 
