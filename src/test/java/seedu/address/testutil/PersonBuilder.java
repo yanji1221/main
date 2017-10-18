@@ -35,7 +35,8 @@ public class PersonBuilder {
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultBirthday, defaultAddress, defaultTags);
+            this.person = new Person(defaultName, defaultPhone,
+                    defaultEmail, defaultBirthday, defaultAddress, defaultTags);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }
