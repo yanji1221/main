@@ -92,7 +92,7 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 91212332 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-=== Update a tag name on all contacts: 'updateTag'
+=== Update a tag name on all contacts: `updateTag`
 
 Update a specified tag name with a new tag name on all contacts in addressbook. +
 Format: 'updateTag [t/oldTAG] [t/newTAG]'
@@ -129,7 +129,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
-=== Locating persons by phone number: 'phone'
+=== Locating persons by phone number: `phone`
 
 Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person
 Format: 'phone NUMBER [MORE_NUMBERS]'
