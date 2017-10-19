@@ -22,9 +22,6 @@ public class XmlAddressBookStorage implements AddressBookStorage {
 
     private String filePath;
 
-    public void backupAddressBook(ReadOnlyAddressBook addressBook) throws IOException{
-    }
-
     public XmlAddressBookStorage(String filePath) {
         this.filePath = filePath;
     }
