@@ -29,7 +29,7 @@ Responsibilities: Logic
 '''
 
 === Huang Xiangyuan (David)
-image::David_Huang.jpg[width="150", align="left"]
+image::hxy0229.png[width="150", align="left"]
 {empty}[http://github.com/hxy0229[github]] [<david#, portfolio>>]
 
 Role: Developer +
@@ -38,7 +38,7 @@ Responsibilities: Storage
 '''
 
 === Nguyen Minh Quang
-image::quangtdn.jpg[width="150", align="left"]
+image::quangtdn.png[width="150", align="left"]
 {empty}[http://github.com/quangtdn[github]] [<<quang#, portfolio>>]
 
 Role: Code quality, Deliverables and deadlines +
@@ -47,7 +47,7 @@ Responsibilities: Model
 '''
 
 === Yan Ji
-image::yanji.jpg[width="150", align="left"]
+image::yanji1221.png[width="150", align="left"]
 {empty}[http://github.com/yanji1221[github]] [<<yanji#, portfolio>>]
 
 Role: Developer +
