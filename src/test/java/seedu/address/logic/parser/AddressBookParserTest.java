@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -53,8 +56,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addevent() throws Exception {
-        AddEventCommand command = (AddEventCommand) parser.parseCommand(AddEventCommand.COMMAND_WORD);
-        assertTrue(command instanceof AddEventCommand);
+        final String name = "Some name.";
+        final String date = "Some date.";
+        final String description = "Some text.";
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(AddEventCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + name + " " + PREFIX_DATE + date + " " + PREFIX_DESCRIPTION + description);
+        assertEquals(new AddEventCommand(name, date, description), command);
     }
 
     @Test
