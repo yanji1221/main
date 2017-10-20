@@ -345,6 +345,30 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+=== Adding a Parameter in Add Command
+To add a new parameter in AddCommand, UI, Logic, Model and Storage components are to be modified accordingly. +
+Be aware of the inheritance between each component when implementing.
+Refer to Section 2.1 to observe the relationship between those components.
+
+* `UI Component:` +
+PersonCard should be modified to include the new parameter so that it can be shown in the information of person.
+
+* `Logic Component:` +
+AddCommand and EditCommand are the two commands that should be modified to include new parameter.
+Parser should be modified accordingly to parse the new parameter information. It is also to make sure that information is present before add command
+is executed. Information being added should be parse to model to create persons if command format is correct.
+
+* `Model Component:` +
+Create a new class for new parameter so that it can be used under Person class. Person class uses ReadOnlyPerson interface.
+Person Class is to collect and set all information about a particular person. If all parameters is parsed correctly, a person with
+collected information will be created. +
+The following diagram shows the relationship of different classes in model component:
+
+image::ModelDiagramOf AddParameter.png[width="200"]
+
+* `Storage Component:` +
+To make sure that new parameter can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
