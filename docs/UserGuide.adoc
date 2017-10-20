@@ -188,6 +188,27 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
+=== Deletes a list of persons with specified indices: 'deleteList'
+
+Deletes all persons with the specified indices from the address book. +
+Format: 'deleteList INDEX [MORE_INDICES]'
+
+****
+* The order of indices being queried does not matter.
+* The index refers to the index number shown in the most recent listing.
+* All persons at the specified 'INDEX' 's are deleted from address book.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `list` +
+`deleteList 4 6` +
+Deletes the 4th and 6th person in the address book.
+* `find Betsy` +
+`delete 1 2` +
+Deletes the 1st and 2nd person in the results of the `find` command.
+
 === Deleting all contacts edded before a specific date: `deleteBefore`
 
 Deletes all persons added before the date specified from the address book. +
