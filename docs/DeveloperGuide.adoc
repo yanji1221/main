@@ -394,11 +394,23 @@ public class DeleteListCommand extends UndoableCommand {
 
 Then its parser 'DeleteListCommandParser' is added to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
 
- The parser is implemented  this way:
- [source, java]
- ----
- 
- ----
+The parser is implemented  this way:
+[source, java]
+----
+public class DeleteListCommandParser implements Parser<DeleteListCommand> {
+    public DeleteListCommand parse(String args) throws ParseException {
+        try {
+            List<Index> input= new ArrayList<Index>();
+            // ... Parser logic ...
+            return new DeleteListCommand(input);
+        } catch (IllegalValueException ive) {
+            // throw exception here
+        }
+    }
+}
+----
+
+
 
 === Configuration
 
