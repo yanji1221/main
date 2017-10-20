@@ -360,6 +360,78 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
+=== deleteList: deletes a list of persons with specified indices
+
+'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
+
+The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
+
+In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
+
+This 'DeleteListCommand' is implemented this way:
+[source, java]
+----
+public class DeleteListCommand extends UndoableCommand {
+
+   // ...
+
+    private final List<Index> listTargetIndices;
+
+    public DeleteListCommand(List<Index> listTargetIndices) {
+        this.listTargetIndices = listTargetIndices;
+    }
+
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        // ...
+        List<ReadOnlyPerson> listPersonsToDelete= new ArrayList<ReadOnlyPerson>();
+        for(Index targetIndex: listTargetIndices) {
+            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            listPersonsToDelete.add(personToDelete);
+        }
+        // ... deleteList logic ...
+     }
+}
+----
+
+Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
+
+The parser is implemented  this way:
+[source, java]
+----
+public class DeleteListCommandParser implements Parser<DeleteListCommand> {
+    public DeleteListCommand parse(String args) throws ParseException {
+        try {
+            List<Index> input= new ArrayList<Index>();
+            // ... Parser logic ...
+            return new DeleteListCommand(input);
+        } catch (IllegalValueException ive) {
+            // throw exception here
+        }
+    }
+}
+----
+
+And finally, we teach the 'AddressBookParser' to read this new command:
+----
+[source, java]
+public class AddressBookParser {
+    // ...
+    public Command parseCommand(String userInput) throws ParseException {
+        // ... AddressBookParser logic ...
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+        switch (commandWord) {
+        // ... other commands ...
+        case DeleteListCommand.COMMAND_WORD:
+            return new DeleteListCommandParser().parse(arguments);
+        // ... other commands ...
+    }
+}
+----
+
+Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution. 
+
 === Configuration
 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
