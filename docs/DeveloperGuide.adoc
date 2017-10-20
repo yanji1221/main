@@ -364,9 +364,11 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
 
-'deleteList' stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
+The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
 
-This command is implemented this way:
+In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
+
+This 'DeleteListCommand' is implemented this way:
 [source, java]
 ----
 public class DeleteListCommand extends UndoableCommand {
@@ -392,7 +394,7 @@ public class DeleteListCommand extends UndoableCommand {
 }
 ----
 
-Then its parser 'DeleteListCommandParser' is added to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
+Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
 
 The parser is implemented  this way:
 [source, java]
@@ -410,7 +412,25 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
 }
 ----
 
+And finally, we teach the 'AddressBookParser' to read this new command:
+----
+[source, java]
+public class AddressBookParser {
+    // ...
+    public Command parseCommand(String userInput) throws ParseException {
+        // ... AddressBookParser logic ...
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+        switch (commandWord) {
+        // ... other commands ...
+        case DeleteListCommand.COMMAND_WORD:
+            return new DeleteListCommandParser().parse(arguments);
+        // ... other commands ...
+    }
+}
+----
 
+Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution. 
 
 === Configuration
 
