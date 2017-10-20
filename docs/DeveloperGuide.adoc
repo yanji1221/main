@@ -369,8 +369,36 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 This command is implemented this way:
 [source, java]
 ----
+public class DeleteListCommand extends UndoableCommand {
 
+   // ...
+
+    private final List<Index> listTargetIndices;
+
+    public DeleteListCommand(List<Index> listTargetIndices) {
+        this.listTargetIndices = listTargetIndices;
+    }
+
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        // ...
+        List<ReadOnlyPerson> listPersonsToDelete= new ArrayList<ReadOnlyPerson>();
+        for(Index targetIndex: listTargetIndices) {
+            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            listPersonsToDelete.add(personToDelete);
+        }
+        // ... deleteList logic ...
+     }
+}
 ----
+
+Then its parser 'DeleteListCommandParser' is added to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
+
+ The parser is implemented  this way:
+ [source, java]
+ ----
+ 
+ ----
 
 === Configuration
 
