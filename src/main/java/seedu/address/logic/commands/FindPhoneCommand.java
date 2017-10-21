@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
-
+import seedu.address.model.*;
 import seedu.address.model.person.NameContainsPhonePredicate;
+
+import static seedu.address.logic.commands.Command.getMessageForPersonListShownSummary;
 
 
 /**

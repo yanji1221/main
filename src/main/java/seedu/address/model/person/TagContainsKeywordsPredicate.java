@@ -1,9 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.function.Predicate;
-
 import seedu.address.model.tag.Tag;
 
 
@@ -22,11 +21,11 @@ public class TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson> {
         if (keywords.isEmpty()) {
             return false;
         }
-        List<String> tagsAsString = new ArrayList<>();
+        List<String> TagsAsString = new ArrayList<>();
         for (Tag tag : person.getTags()) {
-            tagsAsString.add(tag.tagName);
+            TagsAsString.add(tag.tagName);
         }
-        return tagsAsString.containsAll(keywords);
+        return TagsAsString.containsAll(keywords);
     }
 
     @Override
