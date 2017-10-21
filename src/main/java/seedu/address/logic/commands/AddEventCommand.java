@@ -51,4 +51,5 @@ public class AddEventCommand extends UndoableCommand {
                 || (other instanceof AddEventCommand // instanceof handles nulls
                 && toAdd.equals(((AddEventCommand) other).toAdd));
     }
+
 }
