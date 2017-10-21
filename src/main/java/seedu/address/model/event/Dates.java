@@ -1,18 +1,13 @@
 package seedu.address.model.event;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.text.DateFormat;
 import java.util.Date;
-
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
-/**
- * Main class of Dates
- */
 public class Dates {
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Event date should be 3 number of 2 digit each, separated by '-'";
