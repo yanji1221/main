@@ -18,8 +18,6 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     ObjectProperty<Email> emailProperty();
     Email getEmail();
-    ObjectProperty<Birthday> birthdayProperty();
-    Birthday getBirthday();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
     ObjectProperty<UniqueTagList> tagProperty();
@@ -34,7 +32,6 @@ public interface ReadOnlyPerson {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
-                && other.getBirthday().equals(this.getBirthday())
                 && other.getAddress().equals(this.getAddress()));
     }
 
@@ -48,8 +45,6 @@ public interface ReadOnlyPerson {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Birthday ")
-                .append(getBirthday())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");
