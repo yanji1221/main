@@ -10,6 +10,9 @@ import seedu.address.model.person.Name;
 public class Event {
     /**
      * Reuse name class of person cause they have the exact behavior for now
+     * TO DO: create a UniquePersonList and associate it with an event attribute
+     * i.e. an event can associate with none or many persons
+     *
      */
     private ObjectProperty<Name> name;
     private ObjectProperty<Dates> date;
@@ -21,6 +24,10 @@ public class Event {
         this.date = new SimpleObjectProperty<>(date);
         this.description = description;
 
+    }
+
+    public Event(Event source) {
+        this(source.getName(), source.getDate(), source.getDescription());
     }
 
     public void setName(Name name) {
@@ -45,6 +52,14 @@ public class Event {
         return date.get();
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -60,5 +75,16 @@ public class Event {
         // state check
         Event e = (Event) other;
         return name.equals(e.name) && date.equals(e.date) && description.equals(e.description);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Date: ")
+                .append(getDate())
+                .append(" Description: ")
+                .append(getDescription());
+        return builder.toString();
     }
 }

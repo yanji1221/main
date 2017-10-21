@@ -37,6 +37,10 @@ public class Dates {
         }
     }
 
+    public Dates(Dates dates) {
+        this.date = dates.getDate();
+    }
+
     /**
      * Returns if a given string is in the valid date format. Check the value to be a real date.
      */
@@ -44,6 +48,9 @@ public class Dates {
         return test.matches(DATE_VALIDATION_REGEX);
     }
 
+    public Date getDate() {
+        return date;
+    }
 
     @Override
     public String toString() {

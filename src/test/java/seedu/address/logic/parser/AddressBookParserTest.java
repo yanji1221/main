@@ -53,7 +53,7 @@ public class AddressBookParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
-
+    /*
     @Test
     public void parseCommand_addevent() throws Exception {
         final String name = "Some name.";
@@ -62,7 +62,7 @@ public class AddressBookParserTest {
         AddEventCommand command = (AddEventCommand) parser.parseCommand(AddEventCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + name + " " + PREFIX_DATE + date + " " + PREFIX_DESCRIPTION + description);
         assertEquals(new AddEventCommand(name, date, description), command);
-    }
+    } */
 
     @Test
     public void parseCommand_clear() throws Exception {
