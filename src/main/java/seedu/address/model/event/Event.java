@@ -7,6 +7,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.model.person.Name;
 
+/**
+ * Main class of Event
+ */
 public class Event {
     /**
      * Reuse name class of person cause they have the exact behavior for now
@@ -46,7 +49,9 @@ public class Event {
         this.date.set(requireNonNull(date));
     }
 
-    public ObjectProperty<Dates> dateProperty() { return date; }
+    public ObjectProperty<Dates> dateProperty() {
+        return date;
+    }
 
     public Dates getDate() {
         return date.get();
