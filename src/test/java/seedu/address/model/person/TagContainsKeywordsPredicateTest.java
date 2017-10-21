@@ -69,7 +69,8 @@ public class TagContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("foe", "family").build()));
 
         // Keywords match phone, email, address, name, but does not match tag
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street", "Alice"));
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("12345",
+                "alice@email.com", "Main", "Street", "Alice"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("foe").build()));
     }

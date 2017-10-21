@@ -6,11 +6,15 @@ import java.util.Arrays;
 import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsPhonePredicate;
+
 /**
  * Created by nguyenminhquang on 10/10/17.
  */
 public class FindPhoneCommandParser {
 
+    /**
+     * Created by nguyenminhquang on 10/10/17.
+     */
     public FindPhoneCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
