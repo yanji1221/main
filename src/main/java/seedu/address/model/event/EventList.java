@@ -36,8 +36,8 @@ public class EventList implements Iterable<Event> {
 
     /**
      * Adds a person to the list.
-     *
-     * TO DECIDE: whether to @throws DuplicateEventException if the person to add is a duplicate of an existing person in the list.
+     * TO DECIDE: whether to @throws DuplicateEventException
+     * if the person to add is a duplicate of an existing person in the list.
      */
     public void add(Event toAdd) throws DuplicateEventException {
         requireNonNull(toAdd);
@@ -51,7 +51,7 @@ public class EventList implements Iterable<Event> {
      * Replaces the event {@code target} in the list with {@code editedPerson}.
      *
      * @throws DuplicateEventException if the replacement is equivalent to another existing person in the list.
-     * TO DO: @throws EventNotFoundException if {@code target} could not be found in the list.
+     * TODO: @throws EventNotFoundException if {@code target} could not be found in the list.
      */
     public void setPerson(Event target, Event editedEvent)
             throws DuplicateEventException {
@@ -73,7 +73,7 @@ public class EventList implements Iterable<Event> {
     /**
      * Removes the equivalent person from the list.
      *
-     * TO DO : @throws PersonNotFoundException if no such event could be found in the list.
+     * TODO : @throws PersonNotFoundException if no such event could be found in the list.
      */
     public boolean remove(Event toRemove)  { // throws PersonNotFoundException
         requireNonNull(toRemove);
