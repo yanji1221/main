@@ -24,7 +24,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -103,6 +104,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addEvent(Event event) throws DuplicateEventException {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void resetData(ReadOnlyAddressBook newData) {
             fail("This method should not be called.");
         }
@@ -132,12 +138,6 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate) {
-            fail("This method should not be called.");
-        }
-
-        @Override
-        public void updateTag(Tag oldTag, Tag newTag)
-                throws PersonNotFoundException, DuplicatePersonException {
             fail("This method should not be called.");
         }
     }
