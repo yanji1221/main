@@ -1,16 +1,11 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
-import seedu.address.model.event.Event;
 import seedu.address.model.event.Dates;
+import seedu.address.model.event.Event;
+import seedu.address.model.person.Name;
 
 /**
  * JAXB-friendly version of the Event.
