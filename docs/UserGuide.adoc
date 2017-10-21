@@ -188,7 +188,7 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
-=== Deletes a list of persons with specified indices: 'deleteList'
+=== Deletes a list of persons with specified indices: `deleteList`
 
 Deletes all persons with the specified indices from the address book. +
 Format: 'deleteList INDEX [MORE_INDICES]'
