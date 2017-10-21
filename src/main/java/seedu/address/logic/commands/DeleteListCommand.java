@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -34,20 +33,20 @@ public class DeleteListCommand extends UndoableCommand {
     public CommandResult executeUndoableCommand() throws CommandException {
 
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
-        for (Index targetIndex: listTargetIndices) {
+        for(Index targetIndex: listTargetIndices) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
 
-        List<ReadOnlyPerson> listPersonsToDelete = new ArrayList<ReadOnlyPerson>();
-        for (Index targetIndex: listTargetIndices) {
+        List<ReadOnlyPerson> listPersonsToDelete= new ArrayList<ReadOnlyPerson>();
+        for(Index targetIndex: listTargetIndices) {
             ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
             listPersonsToDelete.add(personToDelete);
         }
 
         try {
-            for (ReadOnlyPerson personToDelete: listPersonsToDelete) {
+            for(ReadOnlyPerson personToDelete: listPersonsToDelete) {
                 model.deletePerson(personToDelete);
             }
         } catch (PersonNotFoundException pnfe) {
@@ -62,7 +61,6 @@ public class DeleteListCommand extends UndoableCommand {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && (this.listTargetIndices.containsAll(((DeleteListCommand) other).listTargetIndices)
-                    && ((DeleteListCommand)other).listTargetIndices
-                    .containsAll(this.listTargetIndices))); // state check
+                    && ((DeleteListCommand) other).listTargetIndices.containsAll(this.listTargetIndices) )); // state check
     }
 }
