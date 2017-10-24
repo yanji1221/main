@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team W10-B4`      Since: `Jun 2016`      Licence: `MIT`
 
 == Quick Start
 
@@ -92,7 +92,7 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 91212332 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-=== Update a tag name on all contacts: `updateTag`
+=== Update a tag name on all contacts: `updateTag` (coming in v2.0)
 
 Update a specified tag name with a new tag name on all contacts in addressbook. +
 Format: 'updateTag [t/oldTAG] [t/newTAG]'
@@ -129,7 +129,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
-=== Locating persons by phone number: `phone`
+=== Locating persons by phone number: `phone` (since v1.1)
 
 Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person
 Format: 'phone NUMBER [MORE_NUMBERS]'
@@ -147,7 +147,7 @@ Returns person with phone number 123456
 * 'phone 123456 654321'
 Returns persons with phone numbers matching with '123456' or '654321'.
 
-=== Locating persons by tags: `findTag`
+=== Locating persons by tags: `findTag` (since v1.1)
 
 Finds persons whose tags include all of the given keywords. +
 Format: `findTag KEYWORD [MORE_KEYWORDS]`
@@ -188,7 +188,7 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
-=== Deletes a list of persons with specified indices: `deleteList`
+=== Deletes a list of persons with specified indices: `deleteList` (since v1.2)
 
 Deletes all persons with the specified indices from the address book. +
 Format: 'deleteList INDEX [MORE_INDICES]'
@@ -209,7 +209,7 @@ Deletes the 4th and 6th person in the address book.
 `delete 1 2` +
 Deletes the 1st and 2nd person in the results of the `find` command.
 
-=== Deleting all contacts edded before a specific date: `deleteBefore`
+=== Deleting all contacts added before a specific date: `deleteBefore` (coming in v2.0)
 
 Deletes all persons added before the date specified from the address book. +
 Format: `deleteBefore [DATE]/[MONTH]/[YEAR]`
@@ -245,7 +245,27 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
-=== Adding an event: `addEvent`
+=== Locating a person's address : `locate` (since v1.3)
+
+Locate the person's address identified by the index number used in the last person listing. +
+Format: `locate INDEX`
+
+****
+* Loads the Google map page of the person's address at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+
+Examples:
+
+* `list` +
+`locate 2` +
+Locates the 2nd person's address in the address book.
+* `find Betsy` +
+`locate 1` +
+Locates the 1st person in the results of the `find` command.
+
+=== Adding an event: `addEvent` (since v1.2)
 
 Adds a person to the address book +
 Format: `addEvent INDEX n/EVENT_NAME d/DD-MM-YY [e/EXTRA]`
