@@ -33,6 +33,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setBirthday(person.getBirthday());
         descriptor.setAddress(person.getAddress());
+        descriptor.setProfilePage(person.getProfilePage());
         descriptor.setTags(person.getTags());
     }
 
@@ -92,6 +93,18 @@ public class EditPersonDescriptorBuilder {
             ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setAddress);
         } catch (IllegalValueException ive) {
             throw new IllegalArgumentException("address is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code ProfilePage} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withProfilePage(String profile) {
+        try {
+            ParserUtil.parseProfilePage(Optional.of(profile)).ifPresent(descriptor::setProfilePage);
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("Profile Page is expected to be unique.");
         }
         return this;
     }
