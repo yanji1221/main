@@ -120,6 +120,9 @@ public class Person implements ReadOnlyPerson {
         return address.get();
     }
 
+
+    public void setProfilePage(ProfilePage profile) { this.profile.set(requireNonNull(profile));}
+
     @Override
     public ObjectProperty<ProfilePage> profilepageProperty() { return profile; }
 
