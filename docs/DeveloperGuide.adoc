@@ -384,7 +384,7 @@ Person Class is to collect and set all information about a particular person. If
 collected information will be created. +
 The following diagram shows the relationship of different classes in model component:
 
-image::ModelDiagramOf AddParameter.png[width="200"]
+image::ModelDiagramOfAddParameter.png[width="200"]
 
 * `Storage Component:` +
 To make sure that new parameter can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.
