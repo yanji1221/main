@@ -14,6 +14,26 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 
 By: `Team W10-B4`      Since: `Jun 2016`      Licence: `MIT`
 
+== Introduction
+
+=== Software Information
+NeoXPro is a command line interface(CLI) address book. NeoXPro not only allows users to keep track of the personal
+information of their friends and acquaintances, it helps users to manage their everyday tasks too. The software consists
+of four components: UI, Logic, Model, Storage. The language used in implementing this software is JAVA.
+
+=== Purpose of Developer Guide
+Do not worry if you have no idea about how to start. This developer guide will help new team members like you to understand
+how NeoXPro works. You will definitely find clues about how to contribute to NeoXPro after thorough reading of this document.
+You can always refer to this document if you have any doubts when implementing new features to NeoXPro.
+
+=== Content Preview
+This developer guide will first bring you through the design and internal structure of NeoXPro. You will be able to understand
+the how four components are linked and inter-related. There will be explanation on the enhancements implemented too. You can
+study on those implemented features and at the same time, try to understand the logic behind every implementation. This will
+help when you are implementing your own new features. After implementing, you will need to update relevant documentations and
+running various tests to check that your codes work fine. The documentation and testing section will guide you through those
+processes. Read this document now to understand the best address book, NeoXPro.
+
 == Setting up
 
 === Prerequisites
