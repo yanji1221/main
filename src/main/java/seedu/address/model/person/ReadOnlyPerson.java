@@ -22,6 +22,8 @@ public interface ReadOnlyPerson {
     Birthday getBirthday();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
+    ObjectProperty<ProfilePage> profilepageProperty();
+    ProfilePage getProfilePage();
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
 
@@ -35,7 +37,8 @@ public interface ReadOnlyPerson {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getEmail().equals(this.getEmail())
                 && other.getBirthday().equals(this.getBirthday())
-                && other.getAddress().equals(this.getAddress()));
+                && other.getAddress().equals(this.getAddress()))
+                && other.getProfilePage().equals(this.getProfilePage());
     }
 
     /**
@@ -52,6 +55,8 @@ public interface ReadOnlyPerson {
                 .append(getBirthday())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Profile Page: ")
+                .append(getProfilePage())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
