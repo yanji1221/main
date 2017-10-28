@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -42,6 +43,8 @@ public class StatusBarFooter extends UiPart<Region> {
     private StatusBar totalPersons;
     @FXML
     private StatusBar saveLocationStatus;
+    @FXML
+    private StatusBar currentDate;
 
 
     public StatusBarFooter(String saveLocation, int totalPersons) {
@@ -49,6 +52,7 @@ public class StatusBarFooter extends UiPart<Region> {
         setSyncStatus(SYNC_STATUS_INITIAL);
         setSaveLocation("./" + saveLocation);
         setTotalPersons(totalPersons);
+        setCurrentDate();
         registerAsAnEventHandler(this);
     }
 
@@ -76,6 +80,12 @@ public class StatusBarFooter extends UiPart<Region> {
 
     private void setTotalPersons(int totalPersons) {
         this.totalPersons.setText(totalPersons + " person(s) total");
+    }
+
+    private void setCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        this.currentDate.setText(" " + dateFormat.format(date) + "\n");
     }
 
     @Subscribe
