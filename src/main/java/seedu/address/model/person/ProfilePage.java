@@ -26,7 +26,7 @@ public class ProfilePage {
         if (!isValidProfilePage(profile)) {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }
-        this.value = profile;
+        this.value = profile.replace("https://", "");
     }
 
     /**
@@ -40,9 +40,9 @@ public class ProfilePage {
     }
 
     /**
-     * Returns true if this person has a profile page. 
+     * Returns true if this person has a profile page.
      */
-    public static boolean hasProfilePage(){
+    public boolean hasProfilePage(){
         return (this.value.equals("") || this.value == null) ? false: true;
     }
 
