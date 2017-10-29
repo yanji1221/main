@@ -30,13 +30,20 @@ public class ProfilePage {
     }
 
     /**
-     * Returns if a given string is a valid person birthday.
+     * Returns if a given string is a valid person profile page.
      */
     public static boolean isValidProfilePage(String test) {
         if(test.equals("")) {
             return true;
         }
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if this person has a profile page. 
+     */
+    public static boolean hasProfilePage(){
+        return (this.value.equals("") || this.value == null) ? false: true;
     }
 
     @Override
