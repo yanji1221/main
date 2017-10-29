@@ -33,6 +33,9 @@ public class ProfilePage {
      * Returns if a given string is a valid person birthday.
      */
     public static boolean isValidProfilePage(String test) {
+        if(test.equals("")) {
+            return true;
+        }
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
     }
 
