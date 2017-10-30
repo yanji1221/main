@@ -14,6 +14,8 @@ public class ProfilePage {
             "Person Profile page should be a valid URL pointing to that person's profile";
     public static final String PROFILEPAGE_VALIDATION_REGEX = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
 
+    //public static final String PROFILEPAGE_VALIDATION_REGEX = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
+
     public final String value;
 
     /**
@@ -27,7 +29,7 @@ public class ProfilePage {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }
         String profileLink = profile.replace("https://", "");
-        if(!profileLink.endsWith("/")) {
+        if(!profileLink.equals("") && !profileLink.endsWith("/")) {
             this.value = profileLink +"/";
         } else {
             this.value = profileLink;
@@ -41,6 +43,7 @@ public class ProfilePage {
         if(test.equals("")) {
             return true;
         }
+
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
     }
 
