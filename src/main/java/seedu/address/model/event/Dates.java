@@ -1,3 +1,4 @@
+//@@author erik0704
 package seedu.address.model.event;
 
 import java.text.DateFormat;

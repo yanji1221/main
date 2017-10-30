@@ -64,9 +64,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tags.setTags(tags);
     }
 
+    //@@author erik0704
     public void setEvents(List<? extends Event> events) throws DuplicateEventException {
         this.events.setEvents(events);
     }
+    //@@author
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -177,7 +179,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// event-level operations
-
+    //@@author erik0704
     /**
      * Adds an event to the address book.
      * Also checks the new person's tags and updates {@link #tags} with any new tags found,
@@ -189,6 +191,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         Event newEvent = new Event(e);
         events.add(newEvent);
     }
+    //@@author
 
     //// util methods
 
@@ -203,10 +206,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asObservableList();
     }
 
+    //@@author erik0704
     @Override
     public ObservableList<Event> getEventList() {
         return events.asObservableList();
     }
+    //@@author
 
     @Override
     public ObservableList<Tag> getTagList() {
