@@ -101,10 +101,13 @@ public class PersonCard extends UiPart<Region> {
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
 
-        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+
 
         if(!person.profilepageProperty().toString().equals("")) {
+            profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
             profile.setVisible(true);
+        } else {
+            profile.setVisible(false);
         }
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));

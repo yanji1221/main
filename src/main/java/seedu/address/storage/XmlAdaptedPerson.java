@@ -26,7 +26,7 @@ public class XmlAdaptedPerson {
     private String birthday;
     @XmlElement(required = true)
     private String address;
-    @XmlElement
+    @XmlElement(required = false)
     private String profile="";
 
     @XmlElement
