@@ -26,7 +26,12 @@ public class ProfilePage {
         if (!isValidProfilePage(profile)) {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }
-        this.value = profile.replace("https://", "");
+        String profileLink = profile.replace("https://", "");
+        if(!profileLink.endsWith("/")) {
+            this.value = profileLink +"/";
+        } else {
+            this.value = profileLink;
+        }
     }
 
     /**

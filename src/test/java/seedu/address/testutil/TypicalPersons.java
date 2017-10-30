@@ -30,7 +30,7 @@ public class TypicalPersons {
 
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withBirthday("1988/08/18").withPhone("85355255")
+            .withBirthday("1988/08/18").withPhone("85355255").withProfilePage("www.facebook.com")
             .withTags("friends").build();
     public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
