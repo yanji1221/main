@@ -100,6 +100,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPersonMultipleTags));
     }
 
+    //@@author erik0704
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
@@ -108,6 +109,11 @@ public class AddCommandParserTest {
                 .withProfilePage(VALID_PROFILE_AMY).withTags().build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY, new AddCommand(expectedPerson));
+<<<<<<< HEAD
+=======
+    }
+    //@@author
+>>>>>>> 0b9c4c21aed51c88f4148c46ee3fcc531c904d33
 
     }
     //@@author erik0704

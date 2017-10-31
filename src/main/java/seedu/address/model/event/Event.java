@@ -1,3 +1,4 @@
+//@@author erik0704
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
@@ -19,13 +20,13 @@ public class Event {
      */
     private ObjectProperty<Name> name;
     private ObjectProperty<Dates> date;
-    private String description;
+    private ObjectProperty<String> description;
 
     public Event(Name name, Dates date, String description) {
         requireAllNonNull(name, date, description);
         this.name = new SimpleObjectProperty<>(name);
         this.date = new SimpleObjectProperty<>(date);
-        this.description = description;
+        this.description = new SimpleObjectProperty<>(description);
 
     }
 
@@ -58,11 +59,15 @@ public class Event {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description.set(description);
+    }
+
+    public ObjectProperty<String> descriptionProperty() {
+        return description;
     }
 
     public String getDescription() {
-        return description;
+        return description.get();
     }
 
     @Override
