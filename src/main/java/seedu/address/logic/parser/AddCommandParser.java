@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static com.sun.xml.internal.fastinfoset.vocab.Vocabulary.ELEMENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -59,9 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             ProfilePage profile;
             Set<Tag> tagList;
 
-            if(arePrefixesPresent(argMultimap, PREFIX_NAME))
-                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
-            else {name=new Name();}
+
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
 
             if(arePrefixesPresent(argMultimap, PREFIX_PHONE))
                 phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();

@@ -24,15 +24,15 @@ public class Phone {
     public Phone(String phone) throws IllegalValueException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        /*if (!isValidPhone(trimmedPhone)) {
+        if (!isValidPhone(trimmedPhone)) {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
-        }*/
+        }
         this.value = trimmedPhone;
     }
 
     public Phone() throws IllegalValueException {
         //requireNonNull(phone);
-        String trimmedPhone = "unknown_phone";
+        String trimmedPhone = "000";
         /*if (!isValidPhone(trimmedPhone)) {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
         }*/

@@ -21,6 +21,8 @@ public class Name {
 
     public final String fullName;
 
+    public int UNKNWON_NAME_COUNT=0;
+
     /**
      * Validates given name.
      *
@@ -32,14 +34,6 @@ public class Name {
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
-        this.fullName = trimmedName;
-    }
-
-    public Name() throws IllegalValueException {
-        String trimmedName = "unknown_name";
-        /*if (!isValidName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
-        }*/
         this.fullName = trimmedName;
     }
 

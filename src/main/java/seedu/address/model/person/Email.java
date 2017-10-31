@@ -32,7 +32,7 @@ public class Email {
 
     public Email() throws IllegalValueException {
         //requireNonNull(email);
-        String trimmedEmail = "unknown_email";
+        String trimmedEmail = "unknown@email";
         /*if (!isValidEmail(trimmedEmail)) {
             throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
         }*/

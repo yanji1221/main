@@ -32,7 +32,7 @@ public class Birthday {
 
     public Birthday() throws IllegalValueException {
        // requireNonNull(birthday);
-        String trimmedBirthday = "unknown_birthday";
+        String trimmedBirthday = "00/00/00";
         /*if (!isValidBirthday(trimmedBirthday)) {
             throw new IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
         }*/

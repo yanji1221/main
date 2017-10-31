@@ -31,7 +31,7 @@ public class ProfilePage {
 
     public ProfilePage() throws IllegalValueException {
         //requireNonNull(profile);
-        this.value = "unknown_Profile";
+        this.value = "www.unknown.com";
         /*if (!isValidProfilePage(this.value)) {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }*/
