@@ -65,18 +65,18 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Get a color for a tag
+     * Color getter for a tag
      */
     private static String colorGetterForTag(String tagValue) {
         int colorCode;
-        boolean usedUpAllColors = true;
+        boolean isUsedUpAllColors = true;
         for (int i = 0; i < colors.length; i++) {
             if (usedColors[i] == 0) {
-                usedUpAllColors = false;
+                isUsedUpAllColors = false;
                 break;
             }
         }
-        if (usedUpAllColors) {
+        if (isUsedUpAllColors) {
             for (int j = 0; j < colors.length; j++) {
                 usedColors[j] = 0;
             }

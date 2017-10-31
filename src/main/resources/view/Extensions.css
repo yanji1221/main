@@ -4,7 +4,7 @@
 }
 
 .success {
-    -fx-text-fill: #10b22a;
+    -fx-text-fill: #10b22a !important;
 }
 
 .list-cell:empty {
