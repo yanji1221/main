@@ -35,6 +35,14 @@ public class Name {
         this.fullName = trimmedName;
     }
 
+    public Name() throws IllegalValueException {
+        String trimmedName = "unknown_name";
+        /*if (!isValidName(trimmedName)) {
+            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+        }*/
+        this.fullName = trimmedName;
+    }
+
     /**
      * Returns true if a given string is a valid person name.
      */

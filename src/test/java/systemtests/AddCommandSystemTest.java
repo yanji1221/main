@@ -77,7 +77,6 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         ReadOnlyPerson toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
                 + EMAIL_DESC_AMY + "   " + BIRTHDAY_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + PROFILE_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
-
         assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
@@ -139,13 +138,12 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
                 + ADDRESS_DESC_BOB + PROFILE_DESC_AMY  + TAG_DESC_FRIEND;
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: add a person with all fields same as another person in the address book except profile -> rejected*/
+        /* Case: add a person with all fields same as another person in the address book except profile -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_BOB).withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
                 + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
 
         /* Case: filters the person list before adding -> added */
         executeCommand(FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER);
@@ -153,12 +151,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
                 < getModel().getAddressBook().getPersonList().size();
         assertCommandSuccess(IDA);
 
-
         /* Case: add to empty address book -> added */
         executeCommand(ClearCommand.COMMAND_WORD);
         assert getModel().getAddressBook().getPersonList().size() == 0;
         assertCommandSuccess(ALICE);
-
 
         /* Case: add a person with tags, command with parameters in random order -> added */
         toAdd = BOB;
@@ -192,6 +188,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: missing address -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + PROFILE_DESC_AMY;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        /* Case: missing profile -> rejected */
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: invalid keyword -> rejected */

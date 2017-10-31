@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireNotAllNull;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -31,12 +32,18 @@ public class Person implements ReadOnlyPerson {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, ProfilePage profile, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, birthday, address, tags);
+        requireNotAllNull(name, phone, email, birthday, address, tags);
+        //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);
+        //if(phone!=null)
         this.phone = new SimpleObjectProperty<>(phone);
+        //if(email!=null)
         this.email = new SimpleObjectProperty<>(email);
+        //if(birthday!=null)
         this.birthday = new SimpleObjectProperty<>(birthday);
+        //if(address!=null)
         this.address = new SimpleObjectProperty<>(address);
+        //if(profile!=null)
         this.profile = new SimpleObjectProperty<>(profile);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));

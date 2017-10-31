@@ -131,7 +131,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: selects first card in the person list, edit a person -> edited, card selection remains unchanged but
          * browser url changes
-
+         */
         showAllPersons();
         index = INDEX_FIRST_PERSON;
         selectPerson(index);
@@ -140,10 +140,6 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new person's name
         assertCommandSuccess(command, index, AMY, index);
-        */
-        //I modify the URL part already. So this test returns some errors. I will look at it later
-
-
 
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
