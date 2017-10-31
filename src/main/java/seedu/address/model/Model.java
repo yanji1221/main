@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -45,6 +46,9 @@ public interface Model {
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
     //@@author erik0704
+    /** Deletes the given person. */
+    void deleteEvent(Event target) throws EventNotFoundException;
+
     /** Returns a view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 

@@ -26,6 +26,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -106,6 +107,11 @@ public class AddCommandTest {
         //@@author erik0704
         @Override
         public void addEvent(Event event) throws DuplicateEventException {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) throws EventNotFoundException {
             fail("This method should not be called.");
         }
         //@@author

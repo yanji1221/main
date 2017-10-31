@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -54,15 +55,15 @@ public class EventList implements Iterable<Event> {
      * @throws DuplicateEventException if the replacement is equivalent to another existing person in the list.
      * TODO: @throws EventNotFoundException if {@code target} could not be found in the list.
      */
-    public void setPerson(Event target, Event editedEvent)
-            throws DuplicateEventException {
+    public void setEvent(Event target, Event editedEvent)
+            throws DuplicateEventException, EventNotFoundException {
         requireNonNull(editedEvent);
 
         int index = internalList.indexOf(target);
-        /*
+
         if (index == -1) {
-            throw new PersonNotFoundException();
-        } */
+            throw new EventNotFoundException();
+        }
 
         if (!target.equals(editedEvent) && internalList.contains(editedEvent)) {
             throw new DuplicateEventException();
@@ -76,14 +77,15 @@ public class EventList implements Iterable<Event> {
      *
      * TODO : @throws PersonNotFoundException if no such event could be found in the list.
      */
-    public boolean remove(Event toRemove)  { // throws PersonNotFoundException
+    public boolean remove(Event toRemove) throws EventNotFoundException {
         requireNonNull(toRemove);
         final boolean eventFoundAndDeleted = internalList.remove(toRemove);
-        /*
+
         if (!eventFoundAndDeleted) {
-            throw new eventNotFoundException();
-        } */
+            throw new EventNotFoundException();
+        }
         return eventFoundAndDeleted;
+
     }
 
     public void setEvents(EventList replacement) {
