@@ -76,9 +76,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
+    //@@author quangtdn
     private Optional<ProfilePage> parseProfilePageForEdit(Optional<String> profile) throws IllegalValueException {
         requireNonNull(profile);
         return profile.isPresent() ? Optional.of(new ProfilePage(profile.get())) : Optional.empty();
     }
+    //@@author
 }

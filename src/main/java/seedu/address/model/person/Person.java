@@ -23,8 +23,9 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Email> email;
     private ObjectProperty<Birthday> birthday;
     private ObjectProperty<Address> address;
+    //@@author quangtdn
     private ObjectProperty<ProfilePage> profile;
-
+    //@@author
     private ObjectProperty<UniqueTagList> tags;
 
     /**
@@ -120,7 +121,7 @@ public class Person implements ReadOnlyPerson {
         return address.get();
     }
 
-
+    //@@author quangtdn
     public void setProfilePage(ProfilePage profile) { this.profile.set(requireNonNull(profile));}
 
     @Override
@@ -128,7 +129,7 @@ public class Person implements ReadOnlyPerson {
 
     @Override
     public ProfilePage getProfilePage() {return profile.get(); }
-
+    //@@author
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

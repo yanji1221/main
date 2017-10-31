@@ -33,7 +33,7 @@ public class BrowserPanelTest extends GuiUnitTest {
 
         browserPanelHandle = new BrowserPanelHandle(browserPanel.getRoot());
     }
-
+    //@@author quangtdn
     @Test
     public void display() throws Exception {
         // default web page
@@ -49,4 +49,5 @@ public class BrowserPanelTest extends GuiUnitTest {
       //  waitUntilBrowserLoaded(browserPanelHandle);
         assertEquals(expectedPersonUrl, browserPanelHandle.getLoadedUrl());
     }
+    //@@author
 }

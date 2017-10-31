@@ -49,8 +49,10 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label birthday;
+    //@@author quangtdn
     @FXML
     private Label profile;
+    //@@author
     @FXML
     private FlowPane tags;
 

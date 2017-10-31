@@ -68,6 +68,7 @@ public class ParserUtil {
         return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
     }
 
+    //@@author quangtdn
     /**
      * Parses a {@code Optional<String> profile} into an {@code Optional<ProfilePage>} if {@code profile} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
@@ -76,6 +77,7 @@ public class ParserUtil {
         requireNonNull(profile);
         return profile.isPresent() ? Optional.of(new ProfilePage(profile.get())) : Optional.of(new ProfilePage(""));
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
