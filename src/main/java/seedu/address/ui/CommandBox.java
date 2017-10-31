@@ -108,14 +108,17 @@ public class CommandBox extends UiPart<Region> {
             // process result of the command
             commandTextField.setText("");
             logger.info("Result: " + commandResult.feedbackToUser);
+            //@@author yanji1221
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser, false));
-
+            //@@author
         } catch (CommandException | ParseException e) {
             initHistory();
             // handle command failure
             setStyleToIndicateCommandFailure();
             logger.info("Invalid command: " + commandTextField.getText());
+            //@@author yanji1221
             raise(new NewResultAvailableEvent(e.getMessage(), true));
+            //@@author
         }
     }
 
@@ -148,7 +151,7 @@ public class CommandBox extends UiPart<Region> {
 
         styleClass.add(ERROR_STYLE_CLASS);
     }
-
+    //@@author yanji1221
     /**
      * Sets the command box style to indicate a failed command.
      */
@@ -161,5 +164,5 @@ public class CommandBox extends UiPart<Region> {
 
         styleClass.add(SUCCESS_STYLE_CLASS);
     }
-
+    //@@author
 }

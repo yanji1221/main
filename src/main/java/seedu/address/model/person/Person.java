@@ -42,7 +42,7 @@ public class Person implements ReadOnlyPerson {
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
     }
-
+    //@@author yanji1221
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
@@ -50,7 +50,7 @@ public class Person implements ReadOnlyPerson {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
                 source.getProfilePage(), source.getTags());
     }
-
+    //@@author
     public void setName(Name name) {
         this.name.set(requireNonNull(name));
     }
@@ -92,7 +92,7 @@ public class Person implements ReadOnlyPerson {
     public Email getEmail() {
         return email.get();
     }
-
+    //@@author yanji1221
     public void setBirthday(Birthday birthday) {
         this.birthday.set(requireNonNull(birthday));
     }
@@ -106,7 +106,7 @@ public class Person implements ReadOnlyPerson {
     public Birthday getBirthday() {
         return birthday.get();
     }
-
+    //@@author
     public void setAddress(Address address) {
         this.address.set(requireNonNull(address));
     }

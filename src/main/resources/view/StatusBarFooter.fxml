@@ -11,5 +11,7 @@
   </columnConstraints>
   <StatusBar styleClass="anchor-pane" fx:id="syncStatus" />
   <StatusBar styleClass="anchor-pane" fx:id="totalPersons" GridPane.columnIndex="1" />
+  <!-- @@author yanji1221 -->
   <StatusBar styleClass="anchor-pane" fx:id="currentDate" GridPane.columnIndex="2" nodeOrientation="RIGHT_TO_LEFT" />
+  <!-- @@author -->
 </GridPane>

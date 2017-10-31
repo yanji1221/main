@@ -63,24 +63,22 @@ public class AddCommandParserTest {
 
         // multiple names - last name accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + PROFILE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB
+                + PROFILE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + PROFILE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB
+                + PROFILE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                 + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + PROFILE_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
         // multiple birthdays - last birthday accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + PROFILE_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
         // multiple addresses - last address accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + BIRTHDAY_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + PROFILE_DESC_BOB
@@ -139,7 +137,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddCommand.COMMAND_WORD + VALID_NAME_BOB + VALID_PHONE_BOB
                 + VALID_EMAIL_BOB + VALID_BIRTHDAY_BOB + VALID_ADDRESS_BOB + VALID_PROFILE_BOB, expectedMessage);
     }
-
+    //@@author yanji1221
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
@@ -181,4 +179,5 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + BIRTHDAY_DESC_BOB + INVALID_ADDRESS_DESC + PROFILE_DESC_BOB , Name.MESSAGE_NAME_CONSTRAINTS);
     }
+    //@@author
 }
