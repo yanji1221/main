@@ -53,9 +53,11 @@ public class BrowserPanel extends UiPart<Region> {
     }
     //@@author
 
+    //@@author erik0704
     private void loadPersonAddressPage(ReadOnlyPerson person) {
         loadPage(GOOGLE_MAP_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+"));
     }
+    //@@author
 
     public void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
@@ -87,11 +89,13 @@ public class BrowserPanel extends UiPart<Region> {
             loadPersonPage(person);
         }
 
+
     }
-    //@@author
+    //@@author erik0704
     @Subscribe
     private void handlePersonPanelLocationChangedEvent(PersonPanelLocationChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         loadPersonAddressPage(event.getNewSelection());
     }
+    //@@author
 }

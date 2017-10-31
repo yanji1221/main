@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -76,9 +77,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tags.setTags(tags);
     }
 
+    //@@author erik0704
     public void setEvents(List<? extends Event> events) throws DuplicateEventException {
         this.events.setEvents(events);
     }
+    //@@author
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -189,7 +192,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// event-level operations
-
+    //@@author erik0704
     /**
      * Adds an event to the address book.
      * Also checks the new person's tags and updates {@link #tags} with any new tags found,
@@ -201,6 +204,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         Event newEvent = new Event(e);
         events.add(newEvent);
     }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * @throws PersonNotFoundException if the {@code key} is not in this {@code AddressBook}.
+     */
+    public boolean removeEvent(Event key) throws EventNotFoundException {
+        if (events.remove(key)) {
+            return true;
+        } else {
+            throw new EventNotFoundException();
+        }
+    }
+    //@@author
 
     //// util methods
 
@@ -215,10 +231,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asObservableList();
     }
 
+    //@@author erik0704
     @Override
     public ObservableList<Event> getEventList() {
         return events.asObservableList();
     }
+    //@@author
 
     @Override
     public ObservableList<Tag> getTagList() {

@@ -87,6 +87,7 @@ public class AddressBookParserTest {
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
+    //@@author erik0704
     @Test
     public void parseCommand_findTag() throws Exception {
         List<String> keywords = Arrays.asList("some", "tag", "here");
@@ -94,6 +95,7 @@ public class AddressBookParserTest {
                 FindTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindTagCommand(new TagContainsKeywordsPredicate(keywords)), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -127,12 +129,14 @@ public class AddressBookParserTest {
         assertEquals(new SelectCommand(INDEX_FIRST_PERSON), command);
     }
 
+    //@@author erik0704
     @Test
     public void parseCommand_locate() throws Exception {
         LocationCommand command = (LocationCommand) parser.parseCommand(
                 LocationCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new LocationCommand(INDEX_FIRST_PERSON), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_redoCommandWord_returnsRedoCommand() throws Exception {

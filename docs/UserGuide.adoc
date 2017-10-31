@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= NeoXPro Manager - User Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -120,7 +120,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Partial words will be matched e.g. `Han` will match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hansell Gruber`, `Robert Lee`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Be` will return `Hansell Gruber`, `Robert Lee`
 ****
 
 Examples:
@@ -291,6 +291,22 @@ Examples:
 Add a new event associate with the 1st person in the list.
 * `addEvent 2 n/Project Meeting d/25-11-17 e/IS1103, read up on last week lecture` +
 Add a new event associate with the 2nd person in the list.
+
+=== Deleting an event : `deleteEvent` (since v1.4)
+
+Deletes the specified event from the address book. +
+Format: `deleteEvent INDEX`
+
+****
+* Deletes the event at the specified `INDEX`.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+Examples:
+
+* `delete 2` +
+Deletes the 2nd listed event in the address book.
 
 === Listing entered commands : `history`
 
