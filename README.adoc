@@ -17,7 +17,7 @@ endif::[]
 __NeoxPro Manager is everything you need__
 
 * NeoXPro Manager is perfect for active university students who want a simple and compact way to organize their tasks as well as friend circles.
-* NeoX is a desktop contact and event manager application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
+* NeoXPro is a desktop contact and event manager application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * Users can keep track of their friends' information details and availability, upcoming events, and more.
 * With the app alert system, you will never miss or forget an important near future event again.
 
