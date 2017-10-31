@@ -17,6 +17,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    //@@author yanji1221
     private static String[] colors = { "red", "yellow", "blue", "orange", "brown", "green", "pink", "black",
         "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
@@ -24,6 +25,7 @@ public class PersonCard extends UiPart<Region> {
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
+    //@@author
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,8 +49,10 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    //@@author yanji1221
     @FXML
     private Label birthday;
+    //@@author
     @FXML
     private Label profile;
     @FXML
@@ -61,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
         initTags(person);
         bindListeners(person);
     }
-
+    //@@author yanji1221
     /**
      * Color getter for a tag
      */
@@ -90,7 +94,7 @@ public class PersonCard extends UiPart<Region> {
 
         return tagColors.get(tagValue);
     }
-
+    //@@author
     /**
      * Binds the individual UI elements to observe their respective {@code Person} properties
      * so that they will be notified of any changes.
@@ -98,7 +102,9 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        //@@author yanji1221
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
+        //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
@@ -107,7 +113,7 @@ public class PersonCard extends UiPart<Region> {
             initTags(person);
         });
     }
-
+    //@@author yanji1221
     /**
      * Distribute colors for tags
      */
@@ -118,7 +124,7 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
-
+    //@@author
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

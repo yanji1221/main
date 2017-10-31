@@ -22,8 +22,10 @@ public class XmlAdaptedPerson {
     private String phone;
     @XmlElement(required = true)
     private String email;
+    //@@author yanji1221
     @XmlElement(required = true)
     private String birthday;
+    //@@author
     @XmlElement(required = true)
     private String address;
     @XmlElement(required = true)
@@ -48,7 +50,9 @@ public class XmlAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        //@@author yanji1221
         birthday = source.getBirthday().value;
+        //@@author
         address = source.getAddress().value;
         profile= source.getProfilePage().value;
         tagged = new ArrayList<>();
@@ -70,7 +74,9 @@ public class XmlAdaptedPerson {
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone);
         final Email email = new Email(this.email);
+        //@@author yanji1221
         final Birthday birthday = new Birthday(this.birthday);
+        //@@author
         final Address address = new Address(this.address);
         final ProfilePage profile = new ProfilePage(this.profile);
         final Set<Tag> tags = new HashSet<>(personTags);

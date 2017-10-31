@@ -22,9 +22,9 @@ import seedu.address.model.AddressBook;
 public class StatusBarFooterTest extends GuiUnitTest {
 
     private static final AddressBookChangedEvent EVENT_STUB = new AddressBookChangedEvent(new AddressBook());
-
+    //@@author yanji1221
     private static final int numberOfPerson = EVENT_STUB.data.getPersonList().size();
-
+    //@@author
     private static final Clock originalClock = StatusBarFooter.getClock();
     private static final Clock injectedClock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
 

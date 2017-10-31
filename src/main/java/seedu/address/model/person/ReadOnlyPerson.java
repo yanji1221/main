@@ -18,8 +18,10 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     ObjectProperty<Email> emailProperty();
     Email getEmail();
+    //@@author yanji1221
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
+    //@@author
     ObjectProperty<Address> addressProperty();
     Address getAddress();
     ObjectProperty<ProfilePage> profilepageProperty();
@@ -36,7 +38,9 @@ public interface ReadOnlyPerson {
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getEmail().equals(this.getEmail())
+                //@@author yanji1221
                 && other.getBirthday().equals(this.getBirthday())
+                //@@author
                 && other.getAddress().equals(this.getAddress()))
                 && other.getProfilePage().equals(this.getProfilePage());
     }
@@ -51,8 +55,10 @@ public interface ReadOnlyPerson {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
+                //@@author yanji1221
                 .append(" Birthday ")
                 .append(getBirthday())
+                //@@author
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Profile Page: ")
