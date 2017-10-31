@@ -38,7 +38,9 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            //@@author yanji1221
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]"
+            //@@author
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PROFILEPAGE + "PROFILE PAGE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -98,7 +100,9 @@ public class EditCommand extends UndoableCommand {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        //@@author yanji1221
         Birthday updateBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
+        //@@author
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         ProfilePage updatedProfile= editPersonDescriptor.getProfilePage().orElse(personToEdit.getProfilePage());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -132,7 +136,9 @@ public class EditCommand extends UndoableCommand {
         private Name name;
         private Phone phone;
         private Email email;
+        //@@author yanji1221
         private Birthday birthday;
+        //@@author
         private Address address;
         private ProfilePage profile;
         private Set<Tag> tags;
@@ -143,7 +149,9 @@ public class EditCommand extends UndoableCommand {
             this.name = toCopy.name;
             this.phone = toCopy.phone;
             this.email = toCopy.email;
+            //@@author yanji1221
             this.birthday = toCopy.birthday;
+            //@@author
             this.address = toCopy.address;
             this.profile= toCopy.profile;
             this.tags = toCopy.tags;
@@ -180,7 +188,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-
+        //@@author yanji1221
         public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
         }
@@ -188,7 +196,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
         }
-
+        //@@author
         public void setAddress(Address address) {
             this.address = address;
         }
@@ -231,7 +239,9 @@ public class EditCommand extends UndoableCommand {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    //@@author yanji1221
                     && getBirthday().equals(e.getBirthday())
+                    //@@author
                     && getAddress().equals(e.getAddress())
                     && getProfilePage().equals(e.getProfilePage())
                     && getTags().equals(e.getTags());

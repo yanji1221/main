@@ -20,8 +20,9 @@ import seedu.address.commons.events.ui.NewResultAvailableEvent;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String ERROR_STYLE_CLASS = "error";
+    //@@author yanji1221
     private static final String SUCCESS_STYLE_CLASS = "success";
-
+    //@@author
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
@@ -40,13 +41,14 @@ public class ResultDisplay extends UiPart<Region> {
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         Platform.runLater(() -> displayed.setValue(event.message));
-
+        //@@author yanji1221
         if (event.isError) {
             setStyleToIndicateCommandFailure();
         }
         else {
             setStyleToIndicateCommandSuccess();
         }
+        //@@author
     }
 
     /**
@@ -69,7 +71,7 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
 
     }
-
+    //@@author yanji1221
     /**
      * Sets the {@code ResultDisplay} style to indicate a success command.
      */
@@ -83,5 +85,5 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(SUCCESS_STYLE_CLASS);
 
     }
-
+    //@@author
 }

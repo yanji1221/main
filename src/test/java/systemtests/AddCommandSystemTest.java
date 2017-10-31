@@ -76,7 +76,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
          */
         ReadOnlyPerson toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
-                + EMAIL_DESC_AMY + "   " + BIRTHDAY_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + PROFILE_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
+                //@@author yanji1221
+                + EMAIL_DESC_AMY + "   " + BIRTHDAY_DESC_AMY + "   "
+                //@@author
+                + ADDRESS_DESC_AMY + "   " + PROFILE_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
         assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
@@ -99,49 +102,68 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         // "friends" is an existing tag used in the default model, see TypicalPersons#ALICE
         // This test will fail is a new tag that is not in the model is used, see the bug documented in
         // AddressBook#addPerson(ReadOnlyPerson)
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + " " + PREFIX_TAG.getPrefix() + "friends";
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
         /* Case: add a person with all fields same as another person in the address book except name -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withProfilePage(VALID_PROFILE_AMY).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + TAG_DESC_FRIEND;
+        //@@author yanji1221
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
+        //@@author
         /* Case: add a person with all fields same as another person in the address book except phone -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_AMY).withTags(VALID_TAG_FRIEND).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + TAG_DESC_FRIEND;
+        //@@author yanji1221
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
+        //@@author
         /* Case: add a person with all fields same as another person in the address book except email -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_AMY).withTags(VALID_TAG_FRIEND).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_BOB + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + TAG_DESC_FRIEND;
+        //@@author yanji1221
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
+        //@@author
         /* Case: add a person with all fields same as another person in the address book except birthday -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_BOB).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_AMY).withTags(VALID_TAG_FRIEND).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_BOB
+                //@@author
                 + ADDRESS_DESC_AMY + PROFILE_DESC_AMY  + TAG_DESC_FRIEND;
+        //@@author yanji1221
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
+        //@@author
         /* Case: add a person with all fields same as another person in the address book except address -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_BOB).withProfilePage(VALID_PROFILE_AMY).withTags(VALID_TAG_FRIEND).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_BOB + PROFILE_DESC_AMY  + TAG_DESC_FRIEND;
+        //@@author yanji1221
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
+        //@@author
         /* Case: add a person with all fields same as another person in the address book except profile -> rejected */
         toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_BOB).withTags(VALID_TAG_FRIEND).build();
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
@@ -158,7 +180,10 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: add a person with tags, command with parameters in random order -> added */
         toAdd = BOB;
-        command = AddCommand.COMMAND_WORD + TAG_DESC_FRIEND + PROFILE_DESC_BOB + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+        command = AddCommand.COMMAND_WORD + TAG_DESC_FRIEND + PROFILE_DESC_BOB
+                //@@author yanji1221
+                + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                //@@author
                 + NAME_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
@@ -171,23 +196,35 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(HOON);
 
         /* Case: missing name -> rejected */
-        command = AddCommand.COMMAND_WORD + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        //@@author yanji1221
+        command = AddCommand.COMMAND_WORD + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing phone -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        //@@author yanji1221
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing email -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        //@@author yanji1221
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
+        //@@author yanji1221
         /* Case: missing birthday -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
+        //@@author
         /* Case: missing address -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY + PROFILE_DESC_AMY;
+        //@@author yanji1221
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + PROFILE_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         /* Case: missing profile -> rejected */
@@ -199,28 +236,40 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
 
         /* Case: invalid name -> rejected */
-        command = AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + INVALID_NAME_DESC
+                //@@author yanji1221
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, Name.MESSAGE_NAME_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY
-                + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_PHONE_DESC
+                //@@author yanji1221
+                + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, Phone.MESSAGE_PHONE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + INVALID_EMAIL_DESC
-                + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                //@@author yanji1221
+                + INVALID_EMAIL_DESC + BIRTHDAY_DESC_AMY
+                //@@author
+                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, Email.MESSAGE_EMAIL_CONSTRAINTS);
-
+        //@@author yanji1221
         /* Case: invalid birthday -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + INVALID_BIRTHDAY_DESC + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
         assertCommandFailure(command, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
-
+        //@@author
         /* Case: invalid address -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + BIRTHDAY_DESC_AMY + INVALID_ADDRESS_DESC + PROFILE_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                //@@author yanji1221
+                + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
+                + INVALID_ADDRESS_DESC + PROFILE_DESC_AMY;
         assertCommandFailure(command, Address.MESSAGE_ADDRESS_CONSTRAINTS);
 
         /* Case: invalid profile -> rejected */
@@ -229,7 +278,9 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, ProfilePage.MESSAGE_PROFILEPAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
+        //@@author yanji1221
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
+                //@@author
                 + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
 

@@ -21,7 +21,9 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Name> name;
     private ObjectProperty<Phone> phone;
     private ObjectProperty<Email> email;
+    //@@author yanji1221
     private ObjectProperty<Birthday> birthday;
+    //@@author
     private ObjectProperty<Address> address;
     private ObjectProperty<ProfilePage> profile;
 
@@ -35,7 +37,9 @@ public class Person implements ReadOnlyPerson {
         this.name = new SimpleObjectProperty<>(name);
         this.phone = new SimpleObjectProperty<>(phone);
         this.email = new SimpleObjectProperty<>(email);
+        //@@author yanji1221
         this.birthday = new SimpleObjectProperty<>(birthday);
+        //@@author
         this.address = new SimpleObjectProperty<>(address);
         this.profile = new SimpleObjectProperty<>(profile);
         // protect internal tags from changes in the arg list
@@ -91,7 +95,7 @@ public class Person implements ReadOnlyPerson {
     public Email getEmail() {
         return email.get();
     }
-
+    //@@author yanji1221
     public void setBirthday(Birthday birthday) {
         this.birthday.set(requireNonNull(birthday));
     }
@@ -105,7 +109,7 @@ public class Person implements ReadOnlyPerson {
     public Birthday getBirthday() {
         return birthday.get();
     }
-
+    //@@author
     public void setAddress(Address address) {
         this.address.set(requireNonNull(address));
     }

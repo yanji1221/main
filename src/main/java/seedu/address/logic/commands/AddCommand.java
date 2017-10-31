@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+//@@author yanji1221
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+//@@author
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,7 +28,9 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            //@@author yanji1221
             + PREFIX_BIRTHDAY + "BIRTHDAY "
+            //@@author
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_PROFILEPAGE + "PROFILE PAGE "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -34,7 +38,9 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            //@@author yanji1221
             + PREFIX_BIRTHDAY + "1995/11/03 "
+            //@@author
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_PROFILEPAGE + "www.facebook.com "
             + PREFIX_TAG + "friends "
