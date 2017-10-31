@@ -57,11 +57,11 @@ Format: `help`
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL b/BIRTHDAY a/ADDRESS [pr/PROFILE_PAGE] [t/TAG]...`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [pr/PROFILE_PAGE] [t/TAG]...`
 
 [TIP]
-A person can have any number of tags (including 0)
-The profile page is optional for a person
+A person can have any number of tags (including 0).
+All fields are optional except the person name.
 
 Examples:
 
