@@ -26,8 +26,8 @@ public class XmlAdaptedPerson {
     private String birthday;
     @XmlElement(required = true)
     private String address;
-    @XmlElement(required = true)
-    private String profile;
+    @XmlElement(required = false)
+    private String profile="";
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -50,7 +50,11 @@ public class XmlAdaptedPerson {
         email = source.getEmail().value;
         birthday = source.getBirthday().value;
         address = source.getAddress().value;
-        profile= source.getProfilePage().value;
+
+        if(!source.getProfilePage().value.equals("")) {
+            profile = source.getProfilePage().value;
+        }
+
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
