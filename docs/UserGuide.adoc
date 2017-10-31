@@ -246,11 +246,12 @@ Selects the 2nd person in the address book. +
 The 2nd person in the list has the profile page "www.faceboo.com" +
 
 image::select1.png[width="690"]
-+
+
 * `find John` +
 `select 1` +
-Selects the 1st person in the results of the `find` command.+
-The 1st person in the list does not have the profile page in address book.+
+Selects the 1st person in the results of the `find` command. +
+The 1st person in the list does not have the profile page in address book. +
+
 image::select2.png[width="690"]
 
 
