@@ -31,6 +31,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTagList tags;
     private final EventList events;
 
+    public int ELEMENT_COUNT=7;
+
+    public int[] unknownCount=new int[ELEMENT_COUNT];
+
+    public int ELEMENT_NAME=0;
+    public int ELEMENT_PHONE=1;
+    public int ELEMENT_BIRTHDAY=2;
+    public int ELEMENT_ADDRESS=3;
+    public int ELEMENT_PROFILE=4;
+    public int ELEMENT_EMAIL=5;
+
+
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
