@@ -45,7 +45,7 @@ public class StatusBarFooter extends UiPart<Region> {
     private StatusBar currentDate;
 
 
-    public StatusBarFooter(String saveLocation, int totalPersons) {
+    public StatusBarFooter(int totalPersons) {
         super(FXML);
         setSyncStatus(SYNC_STATUS_INITIAL);
         setTotalPersons(totalPersons);
