@@ -31,7 +31,7 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+     public final String NO_NAME_ERROR="Name cannot be empty.";
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -61,8 +61,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             ProfilePage profile;
             Set<Tag> tagList;
 
-
+            if(arePrefixesPresent(argMultimap, PREFIX_NAME))
             name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+            else {throw new IllegalValueException(NO_NAME_ERROR);}
 
             if(arePrefixesPresent(argMultimap, PREFIX_PHONE))
                 phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
