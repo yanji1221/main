@@ -21,9 +21,7 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Name> name;
     private ObjectProperty<Phone> phone;
     private ObjectProperty<Email> email;
-    //@@author yanji1221
     private ObjectProperty<Birthday> birthday;
-    //@@author
     private ObjectProperty<Address> address;
     private ObjectProperty<ProfilePage> profile;
 
@@ -37,15 +35,13 @@ public class Person implements ReadOnlyPerson {
         this.name = new SimpleObjectProperty<>(name);
         this.phone = new SimpleObjectProperty<>(phone);
         this.email = new SimpleObjectProperty<>(email);
-        //@@author yanji1221
         this.birthday = new SimpleObjectProperty<>(birthday);
-        //@@author
         this.address = new SimpleObjectProperty<>(address);
         this.profile = new SimpleObjectProperty<>(profile);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
     }
-
+    //@@author yanji1221
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
@@ -53,7 +49,7 @@ public class Person implements ReadOnlyPerson {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
                 source.getProfilePage(), source.getTags());
     }
-
+    //@@author
     public void setName(Name name) {
         this.name.set(requireNonNull(name));
     }

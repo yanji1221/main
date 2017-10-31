@@ -50,10 +50,9 @@ public class StatusBarFooter extends UiPart<Region> {
         setSyncStatus(SYNC_STATUS_INITIAL);
         setTotalPersons(totalPersons);
         setCurrentDate();
-        //@@author
         registerAsAnEventHandler(this);
     }
-
+    //@@author
     /**
      * Sets the clock used to determine the current time.
      */
@@ -88,7 +87,6 @@ public class StatusBarFooter extends UiPart<Region> {
         String lastUpdated = new Date(now).toString();
         logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
         setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
-        //@@author yanji1221
         setTotalPersons(abce.data.getPersonList().size());
     }
 }

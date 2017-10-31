@@ -29,9 +29,7 @@ public class PersonBuilder {
             Name defaultName = new Name(DEFAULT_NAME);
             Phone defaultPhone = new Phone(DEFAULT_PHONE);
             Email defaultEmail = new Email(DEFAULT_EMAIL);
-            //@@author yanji1221
             Birthday defaultBirthday = new Birthday(DEFAULT_BIRTHDAY);
-            //@@author
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             ProfilePage defaultProfilePage= new ProfilePage(DEFAULT_PROFILEPAGE);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
@@ -132,9 +130,9 @@ public class PersonBuilder {
         }
         return this;
     }
-    //@@author
+
     public Person build() {
         return this.person;
     }
-
+    //@@author
 }
