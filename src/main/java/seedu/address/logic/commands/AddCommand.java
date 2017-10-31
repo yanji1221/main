@@ -28,7 +28,9 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_BIRTHDAY + "BIRTHDAY "
             + PREFIX_ADDRESS + "ADDRESS "
+            //@@author quangtdn
             + PREFIX_PROFILEPAGE + "PROFILE PAGE "
+            //@@author
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -36,7 +38,9 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_BIRTHDAY + "1995/11/03 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            //@@author quangtdn
             + PREFIX_PROFILEPAGE + "www.facebook.com "
+            //@@author
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

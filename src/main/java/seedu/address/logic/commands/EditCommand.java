@@ -40,7 +40,9 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]"
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            //@@author quangtdn
             + "[" + PREFIX_PROFILEPAGE + "PROFILE PAGE] "
+            //@@author
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -102,7 +104,6 @@ public class EditCommand extends UndoableCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         ProfilePage updatedProfile= editPersonDescriptor.getProfilePage().orElse(personToEdit.getProfilePage());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
         return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile, updatedTags);
     }
 
@@ -134,7 +135,9 @@ public class EditCommand extends UndoableCommand {
         private Email email;
         private Birthday birthday;
         private Address address;
+        //@@author quangtdn
         private ProfilePage profile;
+        //@@author
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -196,7 +199,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
-
+        //@@author quangtdn
         public void setProfilePage(ProfilePage profile) {
             this.profile = profile;
         }
@@ -204,7 +207,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<ProfilePage> getProfilePage() {
             return Optional.ofNullable(profile);
         }
-
+        //@@author
         public void setTags(Set<Tag> tags) {
             this.tags = tags;
         }
