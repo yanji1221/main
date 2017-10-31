@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static com.sun.xml.internal.fastinfoset.vocab.Vocabulary.ELEMENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_NAME_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -34,8 +33,6 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     //@@author yanji1221
-
-
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
