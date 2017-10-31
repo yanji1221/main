@@ -44,11 +44,8 @@ public class ResultDisplay extends UiPart<Region> {
         if (event.isError) {
             setStyleToIndicateCommandFailure();
         }
-        else if (!event.isError) {
-            setStyleToIndicateCommandSuccess();
-        }
         else {
-            setStyleToDefault();
+            setStyleToIndicateCommandSuccess();
         }
     }
 
