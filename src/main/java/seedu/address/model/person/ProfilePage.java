@@ -16,6 +16,10 @@ public class ProfilePage {
 
     public final String value;
 
+    public boolean hasProfilePage(){
+        return (!value.equals("www.unknown.com"));
+    }
+
     /**
      * Validates given birthday.
      *

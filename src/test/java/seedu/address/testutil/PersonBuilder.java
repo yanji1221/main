@@ -17,7 +17,9 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_BIRTHDAY = "1988/08/18";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    //@@author quangtdn
     public static final String DEFAULT_PROFILEPAGE = "www.facebook.com";
+    //@@author
     public static final String DEFAULT_TAGS = "friends";
 
     private Person person;
@@ -80,7 +82,7 @@ public class PersonBuilder {
         }
         return this;
     }
-
+    //@@author quangtdn
     /**
      * Sets the {@code ProfilePage} of the {@code Person} that we are building.
      */
@@ -92,6 +94,7 @@ public class PersonBuilder {
         }
         return this;
     }
+    //@@author
 
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.

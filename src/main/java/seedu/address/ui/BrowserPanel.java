@@ -47,6 +47,11 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(GOOGLE_SEARCH_URL_PREFIX + person.getName().fullName.replaceAll(" ", "+")
                 + GOOGLE_SEARCH_URL_SUFFIX);
     }
+    //@@author quangtdn
+    private void loadProfilePage(ReadOnlyPerson person) {
+        loadPage("https://" + person.getProfilePage().toString());
+    }
+    //@@author
 
     private void loadPersonAddressPage(ReadOnlyPerson person) {
         loadPage(GOOGLE_MAP_URL_PREFIX + person.getAddress().value.replaceAll(" ", "+"));
@@ -71,12 +76,19 @@ public class BrowserPanel extends UiPart<Region> {
         browser = null;
     }
 
+    //@@author quangtdn
     @Subscribe
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        loadPersonPage(event.getNewSelection().person);
-    }
+        ReadOnlyPerson person = event.getNewSelection().person;
+        if(person.getProfilePage().hasProfilePage()) {
+            loadProfilePage(person);
+        } else {
+            loadPersonPage(person);
+        }
 
+    }
+    //@@author
     @Subscribe
     private void handlePersonPanelLocationChangedEvent(PersonPanelLocationChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
