@@ -26,8 +26,10 @@ public class XmlAdaptedPerson {
     private String birthday;
     @XmlElement(required = true)
     private String address;
-    @XmlElement(required = true)
-    private String profile;
+    //@@author quangtdn
+    @XmlElement(required = false)
+    private String profile="";
+    //@@author
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -36,9 +38,6 @@ public class XmlAdaptedPerson {
      * Constructs an XmlAdaptedPerson.
      * This is the no-arg constructor that is required by JAXB.
      */
-
-
-
     public XmlAdaptedPerson() {}
 
 
@@ -53,7 +52,11 @@ public class XmlAdaptedPerson {
         email = source.getEmail().value;
         birthday = source.getBirthday().value;
         address = source.getAddress().value;
-        profile= source.getProfilePage().value;
+
+        if(!source.getProfilePage().value.equals("")) {
+            profile = source.getProfilePage().value;
+        }
+
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
