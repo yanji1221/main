@@ -141,7 +141,7 @@ public class EditCommand extends UndoableCommand {
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
-
+        //@@author yanji1221
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.name = toCopy.name;
             this.phone = toCopy.phone;
@@ -151,7 +151,7 @@ public class EditCommand extends UndoableCommand {
             this.profile= toCopy.profile;
             this.tags = toCopy.tags;
         }
-
+        //@@author
         /**
          * Returns true if at least one field is edited.
          */
@@ -183,7 +183,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-
+        //@@author yanji1221
         public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
         }
@@ -191,7 +191,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
         }
-
+        //@@author
         public void setAddress(Address address) {
             this.address = address;
         }

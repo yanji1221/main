@@ -17,6 +17,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         try {
             return new Person[] {
+                    //@@author yanji1221
                 new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Birthday("1993/11/12"), new Address("Blk 30 Geylang Street 29, #06-40"), new ProfilePage("www.facebook.com"),
                     getTagSet("friends")),
@@ -26,6 +27,7 @@ public class SampleDataUtil {
                 new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Birthday("1987/12/12"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new ProfilePage("www.facebook.com"),
                     getTagSet("neighbours")),
+                    //@@author
                 new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Birthday("1999/01/01"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new ProfilePage("www.facebook.com"),
                     getTagSet("family")),

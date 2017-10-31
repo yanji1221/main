@@ -76,10 +76,10 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit PHONE [n/NAME] [p/PHONE] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [t/TAG]...`
 
 ****
-* Edits the person at the specified `PHONE`. The phone refers to the phone number of the person that you want to edit.
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -88,9 +88,9 @@ Format: `edit PHONE [n/NAME] [p/PHONE] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [t/TAG
 
 Examples:
 
-* `edit 91229323 p/91234567 e/johndoe@example.com` +
+* `edit 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 91212332 n/Betsy Crower t/` +
+* `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 === Update a tag name on all contacts: `updateTag` (coming in v2.0)

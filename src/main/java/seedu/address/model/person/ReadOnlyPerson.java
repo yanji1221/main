@@ -28,7 +28,7 @@ public interface ReadOnlyPerson {
     //@@author
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
-
+    //@@author yanji1221
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
@@ -42,7 +42,7 @@ public interface ReadOnlyPerson {
                 && other.getAddress().equals(this.getAddress()))
                 && other.getProfilePage().equals(this.getProfilePage());
     }
-
+    //@@author
     /**
      * Formats the person as text, showing all contact details.
      */

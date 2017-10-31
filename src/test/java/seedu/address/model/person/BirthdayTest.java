@@ -4,7 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
+//@@author yanji1221
 public class BirthdayTest {
 
     @Test

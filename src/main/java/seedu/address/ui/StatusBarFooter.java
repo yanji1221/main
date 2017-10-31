@@ -39,11 +39,11 @@ public class StatusBarFooter extends UiPart<Region> {
 
     @FXML
     private StatusBar syncStatus;
+    //@@author yanji1221
     @FXML
     private StatusBar totalPersons;
     @FXML
     private StatusBar currentDate;
-
 
     public StatusBarFooter(int totalPersons) {
         super(FXML);
@@ -52,7 +52,7 @@ public class StatusBarFooter extends UiPart<Region> {
         setCurrentDate();
         registerAsAnEventHandler(this);
     }
-
+    //@@author
     /**
      * Sets the clock used to determine the current time.
      */
@@ -70,7 +70,7 @@ public class StatusBarFooter extends UiPart<Region> {
     private void setSyncStatus(String status) {
         Platform.runLater(() -> this.syncStatus.setText(status));
     }
-
+    //@@author yanji1221
     private void setTotalPersons(int totalPersons) {
         this.totalPersons.setText(totalPersons + " person(s) total");
     }
@@ -80,7 +80,7 @@ public class StatusBarFooter extends UiPart<Region> {
         Date date = new Date();
         this.currentDate.setText(" " + dateFormat.format(date) + "\n");
     }
-
+    //@@author
     @Subscribe
     public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
         long now = clock.millis();

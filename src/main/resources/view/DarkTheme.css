@@ -159,7 +159,9 @@
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
+    /*@@author yanji1221*/
     -fx-text-fill: yellow;
+    /*author*/
 }
 
 .status-bar-with-border {
@@ -341,7 +343,9 @@
 }
 
 #tags .label {
+    /*@@author yanji1221*/
     -fx-text-fill: ivory;
+    /*@@author*/
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;

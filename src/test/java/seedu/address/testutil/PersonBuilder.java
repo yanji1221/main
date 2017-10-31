@@ -15,7 +15,9 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85657255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    //@@author yanji1221
     public static final String DEFAULT_BIRTHDAY = "1988/08/18";
+    //@@author
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     //@@author quangtdn
     public static final String DEFAULT_PROFILEPAGE = "www.facebook.com";
@@ -119,7 +121,7 @@ public class PersonBuilder {
         }
         return this;
     }
-
+    //@@author yanji1221
     /**
      * Sets the {@code Birthday} of the {@code Person} that we are building.
      */
@@ -135,5 +137,5 @@ public class PersonBuilder {
     public Person build() {
         return this.person;
     }
-
+    //@@author
 }
