@@ -57,14 +57,15 @@ Format: `help`
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL b/BIRTHDAY a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL b/BIRTHDAY a/ADDRESS [pr/PROFILE_PAGE] [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
+The profile page is optional for a person
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com b/1995/5/21 a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 e/johnd@example.com b/1995/5/21 a/John street, block 123, #01-01 pr/www.facebook.com/john`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/1999/10/10 t/criminal`
 
 === Listing all persons : `list`
@@ -231,7 +232,8 @@ Selects the person identified by the index number used in the last person listin
 Format: `select INDEX`
 
 ****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
+* Selects the person at the specified `INDEX`.
+* If the person has a valid profile page, address book loads that profile page. Otherwise, it loads the Google search page of the person.
 * The index refers to the index number shown in the most recent listing.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -240,10 +242,18 @@ Examples:
 
 * `list` +
 `select 2` +
-Selects the 2nd person in the address book.
-* `find Betsy` +
+Selects the 2nd person in the address book. +
+The 2nd person in the list has the profile page "www.faceboo.com" +
+
+image::select1.png[width="690"]
+
+* `find John` +
 `select 1` +
-Selects the 1st person in the results of the `find` command.
+Selects the 1st person in the results of the `find` command. +
+The 1st person in the list does not have the profile page in address book. +
+
+image::select2.png[width="690"]
+
 
 === Locating a person's address : `locate` (since v1.3)
 
