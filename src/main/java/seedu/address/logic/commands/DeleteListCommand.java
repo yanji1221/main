@@ -1,3 +1,4 @@
+//@@author quangtdn
 package seedu.address.logic.commands;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Deletes a list of persons identified using their last displayed indices from the address book.
  */
 public class DeleteListCommand extends UndoableCommand {
 
@@ -66,3 +67,4 @@ public class DeleteListCommand extends UndoableCommand {
                     .containsAll(this.listTargetIndices))); // state check
     }
 }
+//@@author
