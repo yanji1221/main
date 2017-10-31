@@ -15,11 +15,13 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
         this.numbers = numbers;
     }
 
+    //@@author erik0704
     @Override
     public boolean test(ReadOnlyPerson person) {
         return numbers.stream()
                 .anyMatch(number -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number));
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {
