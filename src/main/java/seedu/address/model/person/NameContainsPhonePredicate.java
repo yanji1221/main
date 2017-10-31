@@ -1,3 +1,4 @@
+//@@author quangtdn
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
@@ -6,8 +7,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Created by nguyenminhquang on 10/10/17.
+ * Tests that a {@code ReadOnlyPerson}'s {@code Phone} matches any of the phones given.
  */
+
 public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
     private final List<String> numbers;
 
@@ -29,3 +31,4 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
     }
 
 }
+//@@author

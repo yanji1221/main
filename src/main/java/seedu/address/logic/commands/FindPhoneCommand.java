@@ -1,11 +1,12 @@
+//@@author quangtdn
 package seedu.address.logic.commands;
 
 import seedu.address.model.person.NameContainsPhonePredicate;
 
-
 /**
- * Created by nguyenminhquang on 10/10/17.
+ * Finds and lists all persons in address book whose phone numbers match with any of the argument phone numbers.
  */
+
 public class FindPhoneCommand extends Command {
     public static final String COMMAND_WORD = "phone";
 
@@ -33,3 +34,4 @@ public class FindPhoneCommand extends Command {
                 && this.predicate.equals(((FindPhoneCommand) other).predicate)); // state check
     }
 }
+//@@author
