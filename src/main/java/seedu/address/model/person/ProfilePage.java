@@ -14,6 +14,7 @@ public class ProfilePage {
     public static final String MESSAGE_PROFILEPAGE_CONSTRAINTS =
             "Person Profile page should be a valid URL pointing to that person's profile";
     public static final String PROFILEPAGE_VALIDATION_REGEX = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
+    //public static final String PROFILEPAGE_VALIDATION_REGEX = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
 
     public final String value;
 
