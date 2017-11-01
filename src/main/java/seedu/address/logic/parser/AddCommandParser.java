@@ -83,7 +83,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             else {address=new Address();}
 
 
-            ProfilePage profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
+            profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
 
 
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
