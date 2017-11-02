@@ -18,8 +18,10 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     ObjectProperty<Email> emailProperty();
     Email getEmail();
+    //@@author yanji1221
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
+    //@@author
     ObjectProperty<Address> addressProperty();
     Address getAddress();
     //@@author quangtdn
