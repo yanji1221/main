@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Region> {
     private BrowserPanel browserPanel;
     private PersonListPanel personListPanel;
     private EventListPanel eventListPanel;
+    private ComingBirthdayListPanel comingBirthdayListPanel;
     private Config config;
     private UserPrefs prefs;
 
@@ -60,6 +61,9 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private StackPane eventListPanelPlaceholder;
+
+    @FXML
+    private StackPane comingBirthdayListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -135,6 +139,9 @@ public class MainWindow extends UiPart<Region> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        comingBirthdayListPanel = new ComingBirthdayListPanel(logic.getFilteredPersonList());
+        comingBirthdayListPanelPlaceholder.getChildren().add(comingBirthdayListPanel.getRoot());
 
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
@@ -219,6 +226,11 @@ public class MainWindow extends UiPart<Region> {
         return this.eventListPanel;
     }
 
+    //@@author yanji1221
+    public ComingBirthdayListPanel getComingBirthdayListPanel() {
+        return this.comingBirthdayListPanel;
+    }
+    //@author
     void releaseResources() {
         browserPanel.freeResources();
     }
