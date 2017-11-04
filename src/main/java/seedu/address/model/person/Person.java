@@ -1,17 +1,18 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireNotAllNull;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.UniqueGroupList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireNotAllNull;
 
 /**
  * Represents a Person in the address book.
@@ -28,11 +29,12 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<ProfilePage> profile;
     //@@author
     private ObjectProperty<UniqueTagList> tags;
+    private ObjectProperty<UniqueGroupList> groups;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, ProfilePage profile, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, ProfilePage profile, Set<Tag> tags,Set<Group> groups) {
         requireNotAllNull(name, phone, email, birthday, address, tags);
         //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);
@@ -48,6 +50,9 @@ public class Person implements ReadOnlyPerson {
         this.profile = new SimpleObjectProperty<>(profile);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
+       // this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
+        this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
+
     }
     //@@author yanji1221
     /**
@@ -55,7 +60,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
-                source.getProfilePage(), source.getTags());
+                source.getProfilePage(), source.getTags(), source.getGroups());
     }
     //@@author
     public void setName(Name name) {
@@ -151,11 +156,22 @@ public class Person implements ReadOnlyPerson {
         return tags;
     }
 
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups.get().toSet());
+    }
+
+    public ObjectProperty<UniqueGroupList> groupProperty() {
+        return groups;
+    }
     /**
      * Replaces this person's tags with the tags in the argument tag set.
      */
-    public void setTags(Set<Tag> replacement) {
-        tags.set(new UniqueTagList(replacement));
+    public void setTags(Set<Tag> replacementTag) {
+        tags.set(new UniqueTagList(replacementTag));
+    }
+
+    public void setGroups(Set<Group> replacementGroup) {
+        groups.set(new UniqueGroupList(replacementGroup));
     }
 
     @Override

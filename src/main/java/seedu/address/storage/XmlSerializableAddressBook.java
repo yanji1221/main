@@ -1,19 +1,19 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Event;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * An Immutable AddressBook that is serializable to XML format
@@ -27,6 +27,10 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     private List<XmlAdaptedTag> tags;
     @XmlElement
     private List<XmlAdaptedEvent> events;
+    @XmlElement
+    private List<XmlAdaptedGroup> groups;
+
+
 
     /**
      * Creates an empty XmlSerializableAddressBook.
@@ -36,6 +40,7 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
         persons = new ArrayList<>();
         tags = new ArrayList<>();
         events = new ArrayList<>();
+        groups = new ArrayList<>();
     }
 
     /**
@@ -75,6 +80,21 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return FXCollections.unmodifiableObservableList(tags);
     }
+
+    @Override
+    public ObservableList<Group> getGroupList() {
+        final ObservableList<Group> groups = this.groups.stream().map(t -> {
+            try {
+                return t.toModelType();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+                //TODO: better error handling
+                return null;
+            }
+        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
+        return FXCollections.unmodifiableObservableList(groups);
+    }
+
 
     @Override
     public ObservableList<Event> getEventList() {
