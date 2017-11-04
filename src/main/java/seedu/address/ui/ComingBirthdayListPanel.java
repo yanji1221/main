@@ -3,9 +3,7 @@ package seedu.address.ui;
 
 import java.lang.String;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -23,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ComingBirthdayPanelSelectionChangedEvent;
-import seedu.address.commons.events.ui.EventPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -48,9 +45,8 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
         boolean isRemoved = false;
         Calendar cal = Calendar.getInstance();
-        int month = cal.get(Calendar.MONTH);
-        int date = cal.get(Calendar.DATE)+1;
-        month += 1;
+        int month = cal.get(Calendar.MONTH)+1;
+        int date = cal.get(Calendar.DATE);
 
         for (int i = 0; i < comingBirthdayList.size(); i++) {
             if (!(comingBirthdayList.get(i).getBirthday().toString()
@@ -100,6 +96,12 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
             comingBirthdayListView.scrollTo(index);
             comingBirthdayListView.getSelectionModel().clearAndSelect(index);
         });
+    }
+
+    @Subscribe
+    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        scrollTo(event.targetIndex);
     }
 
     /**
