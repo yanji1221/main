@@ -82,8 +82,8 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different name but same phone number -> returns true
-        assertTrue(addAliceCommand.equals(addBobCommand));
+        // different person -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     /**
