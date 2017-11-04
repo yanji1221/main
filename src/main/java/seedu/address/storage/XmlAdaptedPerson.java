@@ -30,7 +30,7 @@ public class XmlAdaptedPerson {
     private String address;
     //@@author quangtdn
     @XmlElement(required = false)
-    private String profile="";
+    private String profile = "";
     //@@author
 
     @XmlElement

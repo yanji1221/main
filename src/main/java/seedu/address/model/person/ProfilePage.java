@@ -15,11 +15,9 @@ public class ProfilePage {
             "Person Profile page should be a valid URL pointing to that person's profile";
     public static final String PROFILEPAGE_VALIDATION_REGEX = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
 
-    public final String value;
+    //public static final String PROFILEPAGE_VALIDATION_REGEX = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
 
-    public boolean hasProfilePage(){
-        return (!value.equals("www.unknown.com"));
-    }
+    public final String value;
 
     /**
      * Validates given birthday.
@@ -39,20 +37,22 @@ public class ProfilePage {
         }
     }
 
-    public ProfilePage() throws IllegalValueException {
-        //requireNonNull(profile);
-        this.value = "www.unknown.com";
-        /*if (!isValidProfilePage(this.value)) {
-            throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
-        }*/
+    /**
+     * Returns if a given string is a valid person profile page.
+     */
+    public static boolean isValidProfilePage(String test) {
+        if(test.equals("")) {
+            return true;
+        }
 
+        return test.matches(PROFILEPAGE_VALIDATION_REGEX);
     }
 
     /**
-     * Returns if a given string is a valid person birthday.
+     * Returns true if this person has a profile page.
      */
-    public static boolean isValidProfilePage(String test) {
-        return test.matches(PROFILEPAGE_VALIDATION_REGEX);
+    public boolean hasProfilePage(){
+        return (this.value.equals("") || this.value == null) ? false: true;
     }
 
     @Override
