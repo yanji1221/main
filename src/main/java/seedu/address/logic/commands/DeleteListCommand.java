@@ -15,7 +15,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class DeleteListCommand extends UndoableCommand {
 
-    public static final String COMMAND_WORD = "deleteList";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the list of persons identified by the index numbers used in the last person listing.\n"
