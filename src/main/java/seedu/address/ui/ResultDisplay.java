@@ -36,21 +36,21 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.textProperty().bind(displayed);
         registerAsAnEventHandler(this);
     }
-
+    //@@author yanji1221
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         Platform.runLater(() -> displayed.setValue(event.message));
-        //@@author yanji1221
+
         if (event.isError) {
             setStyleToIndicateCommandFailure();
         }
         else {
-            setStyleToIndicateCommandSuccess();
+            setStyleToDefault();
         }
-        //@@author
-    }
 
+    }
+    //@@author
     /**
      * Sets the {@code ResultDisplay} style to use the default style.
      */
@@ -71,19 +71,5 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
 
     }
-    //@@author yanji1221
-    /**
-     * Sets the {@code ResultDisplay} style to indicate a success command.
-     */
-    private void setStyleToIndicateCommandSuccess() {
-        ObservableList<String> styleClass = resultDisplay.getStyleClass();
 
-        if (styleClass.contains(SUCCESS_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(SUCCESS_STYLE_CLASS);
-
-    }
-    //@@author
 }

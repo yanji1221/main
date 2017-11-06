@@ -3,9 +3,7 @@ package seedu.address.ui;
 
 import java.lang.String;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -22,6 +20,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.ui.ComingBirthdayPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -39,20 +38,32 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         super(FXML);
         ObservableList<ReadOnlyPerson> comingBirthdayList = comingBirthdayListGetter(personList);
         setConnections(comingBirthdayList);
+        registerAsAnEventHandler(this);
     }
 
     private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
-        Date date= new Date();
+        boolean isRemoved = false;
         Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        int month = cal.get(Calendar.MONTH);
-        month += 1;
+        int month = cal.get(Calendar.MONTH)+1;
+        int date = cal.get(Calendar.DATE);
 
-        for (int i = 0; i < personList.size(); i++) {
-            if (!personList.get(i).getBirthday().toString()
-                    .substring(5, 7).equals(Integer.toString(month))) {
+        for (int i = 0; i < comingBirthdayList.size(); i++) {
+            if (!(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7).equals(Integer.toString(month)))) {
                 comingBirthdayList.remove(i);
+                isRemoved = true;
+            }
+            else if(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7).equals(Integer.toString(month)) &&
+                    Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(8)) < date) {
+                comingBirthdayList.remove(i);
+                isRemoved = true;
+            }
+            if(isRemoved) {
+                i--;
+                isRemoved = false;
             }
         }
 
@@ -64,8 +75,18 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
                 comingBirthdayList, (person) -> new PersonCard(person, comingBirthdayList.indexOf(person) + 1));
         comingBirthdayListView.setItems(mappedList);
         comingBirthdayListView.setCellFactory(listView -> new BirthdayListViewCell());
+        setEventHandlerForSelectionChangeEvent();
     }
 
+    private void setEventHandlerForSelectionChangeEvent() {
+        comingBirthdayListView.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        logger.fine("Selection in event list panel changed to : '" + newValue + "'");
+                        raise(new ComingBirthdayPanelSelectionChangedEvent(newValue));
+                    }
+                });
+    }
 
     /**
      * Scrolls to the {@code PersonCard} at the {@code index} and selects it.
@@ -75,6 +96,12 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
             comingBirthdayListView.scrollTo(index);
             comingBirthdayListView.getSelectionModel().clearAndSelect(index);
         });
+    }
+
+    @Subscribe
+    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        scrollTo(event.targetIndex);
     }
 
     /**

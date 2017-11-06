@@ -18,8 +18,10 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     ObjectProperty<Email> emailProperty();
     Email getEmail();
+    //@@author yanji1221
     ObjectProperty<Birthday> birthdayProperty();
     Birthday getBirthday();
+    //@@author
     ObjectProperty<Address> addressProperty();
     Address getAddress();
     //@@author quangtdn
@@ -34,9 +36,9 @@ public interface ReadOnlyPerson {
      */
     default boolean isSameStateAs(ReadOnlyPerson other) {
         return other == this // short circuit if same object
-                || other.getPhone().equals(this.getPhone())
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
+                && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
                 && other.getBirthday().equals(this.getBirthday())
                 && other.getAddress().equals(this.getAddress()))

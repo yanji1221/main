@@ -59,9 +59,9 @@ public class PersonCardTest extends GuiUnitTest {
         // different types -> returns false
         assertFalse(personCard.equals(0));
 
-        // different person, same index, same phone number -> returns true
+        // different person, same index -> returns false
         Person differentPerson = new PersonBuilder().withName("differentName").build();
-        assertTrue(personCard.equals(new PersonCard(differentPerson, 0)));
+        assertFalse(personCard.equals(new PersonCard(differentPerson, 0)));
 
         // same person, different index -> returns false
         assertFalse(personCard.equals(new PersonCard(person, 1)));
