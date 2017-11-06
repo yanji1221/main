@@ -218,16 +218,14 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
+    public GroupListPanel getGroupListPanel() { return this.groupListPanel; }
+
     public PersonListPanel getPersonListPanel() {
         return this.personListPanel;
     }
 
     public EventListPanel getEventListPanel() {
         return this.eventListPanel;
-    }
-
-    public GroupListPanel getGroupListPanel() {
-        return this.groupListPanel;
     }
 
     void releaseResources() {
