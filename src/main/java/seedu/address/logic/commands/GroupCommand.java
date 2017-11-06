@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.person.ReadOnlyPerson;
 
 import java.util.ArrayList;
@@ -22,17 +23,22 @@ public class GroupCommand extends UndoableCommand {
 
     public static final String MESSAGE_SUCCESS = "Success Grouping!";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group name already exists in the address book";
+    public static final String MESSAGE_GROUP_CONSTRAINTS = "Groups names should be alphanumeric";
 
     private Group toAdd;
 
     private final List<Index> listTargetIndices;
 
-    public GroupCommand(Group group,List<Index> listTargetIndices) throws IllegalValueException {
+    public GroupCommand(Group group, List<Index> listTargetIndices) throws IllegalValueException {
         toAdd = new Group(group);
         this.listTargetIndices = listTargetIndices;
     }
 
     public CommandResult executeUndoableCommand() throws CommandException {
+
+        requireNonNull(model);
+        try {
+            model.addGroup(toAdd);
 
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
         for (Index targetIndex : listTargetIndices) {
@@ -51,8 +57,14 @@ public class GroupCommand extends UndoableCommand {
         requireNonNull(toAdd);
             for (ReadOnlyPerson personToGroup : listPersonsToGroup) {
                 toAdd.addPerson(personToGroup);
-               // System.out.println("haha");
             }
-            return new CommandResult(String.format(MESSAGE_SUCCESS, listPersonsToGroup));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
+    catch (DuplicateGroupException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+        }
+        catch (IllegalValueException e) {
+            throw new CommandException(MESSAGE_GROUP_CONSTRAINTS);
+        }
+    }//Constructor
 }

@@ -2,16 +2,24 @@ package seedu.address.storage;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.ReadOnlyPerson;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlValue;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * JAXB-friendly adapted version of the Tag.
  */
 public class XmlAdaptedGroup {
 
-    @XmlValue
+    @XmlElement(required = true)
     private String GroupName;
+    @XmlElement
+    private List<XmlAdaptedPerson> persons = new ArrayList<>();
 
     /**
      * Constructs an XmlAdaptedTag.
@@ -25,7 +33,12 @@ public class XmlAdaptedGroup {
      * @param source future changes to this will not affect the created
      */
     public XmlAdaptedGroup(Group source) {
-        GroupName = source.groupName;
+
+        GroupName = source.getName().fullName;
+        persons = new ArrayList<>();
+        for (ReadOnlyPerson person : source.getPersonList()) {
+            persons.add(new XmlAdaptedPerson(person));
+        }
     }
 
     /**
@@ -34,7 +47,7 @@ public class XmlAdaptedGroup {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Group toModelType() throws IllegalValueException {
-        return new Group(GroupName);
+        Name name=new Name(GroupName);
+        return new Group(name);
     }
-
 }

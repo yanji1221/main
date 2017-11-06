@@ -5,12 +5,15 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.commands.GroupCommand;
 import seedu.address.model.group.*;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.ReadOnlyPerson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.*;
 
 public class GroupCommandParser implements Parser<GroupCommand> {
     @Override
@@ -18,12 +21,27 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         try {
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {
-                System.out.println("Caught you!!!");
+                //System.out.println("Caught you up!!!");
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
             }
             String[] indices = trimmedArgs.split("\\s+");
-            List<String> inputInString = Arrays.asList(indices);
+
+            String groupName=indices[0];
+
+            if(indices[0].matches("\\d")) {
+                //System.out.println("WTF???");
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_GROUP_NAME_FORMAT, GroupCommand.MESSAGE_USAGE));
+            }
+
+            String[] real_indices=new String[indices.length-1];
+
+            for(int i=0;i<indices.length-1;i++){
+                real_indices[i]=indices[i+1];
+            }
+
+            List<String> inputInString = Arrays.asList(real_indices);
 
             List<Index> input = new ArrayList<Index>();
 
@@ -32,9 +50,11 @@ public class GroupCommandParser implements Parser<GroupCommand> {
                 input.add(index);
             }
 
-            return new GroupCommand(new Group(args),input);
+            Name name=new Name(groupName);
+            return new GroupCommand(new Group(name),input);
         }
         catch (IllegalValueException ive) {
+            //System.out.println("Caught you!!!");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }

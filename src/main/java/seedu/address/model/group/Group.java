@@ -1,75 +1,113 @@
 package seedu.address.model.group;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.UniquePersonList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-/**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidGroupName(String)}
- */
-public class Group {
+
+public class Group{
 
     public static final String MESSAGE_GROUP_CONSTRAINTS = "Groups names should be alphanumeric";
     public static final String GROUP_VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String groupName;
+    private ObjectProperty<Name> name;
 
-    private ArrayList<ReadOnlyPerson> persons;
+    private ObjectProperty<UniquePersonList> persons;
 
-    /**
-     * Validates given tag name.
-     *
-     * @throws IllegalValueException if the given tag name string is invalid.
-     */
-    public Group(String name) throws IllegalValueException {
+    public Group(Name name, Set<ReadOnlyPerson> persons) throws IllegalValueException{
+        requireAllNonNull(name, persons);
+    this.name = new SimpleObjectProperty<>(name);
+    this.persons = new SimpleObjectProperty<>(new UniquePersonList());
+        if (!this.getName().fullName.matches(GROUP_VALIDATION_REGEX)) {
+            throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
+        }
+}
+    public Group(Name name) throws IllegalValueException{
+        requireAllNonNull(name);
+        this.name = new SimpleObjectProperty<>(name);
+        this.persons = new SimpleObjectProperty<>(new UniquePersonList());
+        if (!this.getName().fullName.matches(GROUP_VALIDATION_REGEX)) {
+            throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
+        }
+    }
+
+    public Group(Group group) throws IllegalValueException{
+        this(group.getName(),group.getPersonList());
+        if (!this.getName().fullName.matches(GROUP_VALIDATION_REGEX)) {
+            throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
+        }
+    }
+
+    /*public Group(String name) throws IllegalValueException {
         requireNonNull(name);
+       // if(name==null) name="haha";
         String trimmedName = name.trim();
         if (!isValidGroupName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
         }
         this.groupName = trimmedName;
+        persons=new ArrayList<ReadOnlyPerson>();
     }
 
     public Group(Group g) throws IllegalValueException {
         this(g.getName());
     }
 
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
     public static boolean isValidGroupName(String test) {
         return test.matches(GROUP_VALIDATION_REGEX);
+    }*/
+
+    public ObjectProperty<Name> nameProperty(){
+        return this.name;
     }
 
-    public void addPerson(ReadOnlyPerson person){
-            persons.add(person);
+    public ObjectProperty<UniquePersonList> personProperty(){
+        return this.persons;
     }
 
-    public String getName(){
-        return this.groupName;
+   public void addPerson(ReadOnlyPerson person){
+        Person p=new Person(person);
+        this.getPersonList().add(p);
     }
+
+    public Name getName(){
+        return name.get();
+    }
+
+    public Set<ReadOnlyPerson> getPersonList() { return Collections.unmodifiableSet(persons.get().toSet());}
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Group // instanceof handles nulls
-                && this.groupName.equals(((Group) other).groupName)); // state check
+                && this.name.equals(((Group) other).name)); // state check
     }
 
     @Override
     public int hashCode() {
-        return groupName.hashCode();
+        return Objects.hash(name,persons);
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + groupName + ']';
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Persons: ");
+        getPersonList().forEach(builder::append);
+        return  builder.toString();
     }
-
 }

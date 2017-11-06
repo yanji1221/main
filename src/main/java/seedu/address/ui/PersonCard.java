@@ -60,11 +60,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private FlowPane groups;
+
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
+        initGroups(person);
         bindListeners(person);
     }
     //@@author yanji1221
@@ -114,6 +118,10 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().clear();
             initTags(person);
         });
+        person.groupProperty().addListener((observable, oldValue, newValue) -> {
+            groups.getChildren().clear();
+            initGroups(person);
+        });
     }
     //@@author yanji1221
     /**
@@ -126,6 +134,15 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
+
+    private void initGroups(ReadOnlyPerson person) {
+        person.getGroups().forEach(group -> {
+            Label groupLabel = new Label(group.getName().fullName);
+            groupLabel.setStyle("-fx-background-color: " + colorGetterForTag(group.getName().fullName));
+            groups.getChildren().add(groupLabel);
+        });
+    }
+
     //@@author
     @Override
     public boolean equals(Object other) {

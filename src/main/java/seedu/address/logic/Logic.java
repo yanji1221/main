@@ -6,6 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.event.Event;
+import seedu.address.model.group.Group;
 
 /**
  * API of the Logic component
@@ -25,6 +26,9 @@ public interface Logic {
 
     /** Returns a view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns a view of the filtered list of groups */
+    ObservableList<Group> getFilteredGroupList();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();

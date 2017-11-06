@@ -130,6 +130,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
@@ -143,6 +144,10 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return FXCollections.unmodifiableObservableList(filteredEvents);
+    }
+
+    public ObservableList<Group> getFilteredGroupList() {
+        return FXCollections.unmodifiableObservableList(filteredGroups);
     }
 
     @Override

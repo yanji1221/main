@@ -21,7 +21,7 @@ public class SampleDataUtil {
                     //@@author yanji1221
                 new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Birthday("1993/11/12"), new Address("Blk 30 Geylang Street 29, #06-40"), new ProfilePage("www.facebook.com"),
-                    getTagSet("friends"),getGroupSet("Sports team")),
+                    getTagSet("friends"),getGroupSet("Soccer")),
                 new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Birthday("1988/12/22"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new ProfilePage("www.facebook.com"),
                     getTagSet("colleagues", "friends"),getGroupSet("Band")),
@@ -31,10 +31,10 @@ public class SampleDataUtil {
                     //@@author
                 new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Birthday("1999/01/01"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new ProfilePage("www.facebook.com"),
-                    getTagSet("family"),getGroupSet("Soccer team")),
+                    getTagSet("family"),getGroupSet("Soccer")),
                 new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Birthday("1985/03/04"), new Address("Blk 47 Tampines Street 20, #17-35"), new ProfilePage("www.facebook.com"),
-                    getTagSet("classmates"),getGroupSet("Soccer team")),
+                    getTagSet("classmates"),getGroupSet("Soccer")),
                 new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Birthday("1983/05/08"), new Address("Blk 45 Aljunied Street 85, #11-31"),new ProfilePage("www.facebook.com"),
                     getTagSet("colleagues"),getGroupSet("Band"))
@@ -70,7 +70,8 @@ public class SampleDataUtil {
     public static Set<Group> getGroupSet(String... strings) throws IllegalValueException {
         HashSet<Group> groups = new HashSet<>();
         for (String s : strings) {
-            groups.add(new Group(s));
+            Name name=new Name(s);
+            groups.add(new Group(name));
         }
 
         return groups;

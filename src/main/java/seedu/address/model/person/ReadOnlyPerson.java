@@ -66,6 +66,8 @@ public interface ReadOnlyPerson {
                 .append(getProfilePage())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append("In Groups: ");
+        getGroups().forEach(builder::append);
         return builder.toString();
     }
 

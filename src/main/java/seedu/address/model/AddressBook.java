@@ -109,6 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(ReadOnlyPerson p) throws DuplicatePersonException {
         Person newPerson = new Person(p);
         syncMasterTagListWith(newPerson);
+        syncMasterGroupListWith(newPerson);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
@@ -139,6 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         Person editedPerson = new Person(editedReadOnlyPerson);
         syncMasterTagListWith(editedPerson);
+        syncMasterGroupListWith(editedPerson);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
@@ -165,6 +167,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.setTags(correctTagReferences);
     }
 
+    private void syncMasterGroupListWith(Person person) {
+        final UniqueGroupList personGroups = new UniqueGroupList(person.getGroups());
+        groups.mergeFrom(personGroups);
+
+        // Create map with values = tag object references in the master list
+        // used for checking person tag references
+        final Map<Group,Group> masterGroupObjects = new HashMap<>();
+        groups.forEach(group -> masterGroupObjects.put(group,group));
+
+        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        final Set<Group> correctGroupReferences = new HashSet<>();
+        personGroups.forEach(group -> correctGroupReferences.add(masterGroupObjects.get(group)));
+        person.setGroups(correctGroupReferences);
+    }
+
     /**
      * Ensures that every tag in these persons:
      *  - exists in the master list {@link #tags}
@@ -173,6 +190,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private void syncMasterTagListWith(UniquePersonList persons) {
         persons.forEach(this::syncMasterTagListWith);
+    }
+    private void syncMasterGroupListWith(UniquePersonList persons) {
+        persons.forEach(this::syncMasterGroupListWith);
     }
 
     /**

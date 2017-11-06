@@ -123,7 +123,8 @@ public class ParserUtil {
         requireNonNull(groups);
         final Set<Group> groupSet = new HashSet<>();
         for (String groupName : groups) {
-            groupSet.add(new Group(groupName));
+            Name name=new Name(groupName);
+            groupSet.add(new Group(name));
         }
         return groupSet;
     }

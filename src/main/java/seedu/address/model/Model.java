@@ -59,6 +59,9 @@ public interface Model {
     /** Returns a view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
+    /** Returns a view of the filtered group list */
+    ObservableList<Group> getFilteredGroupList();
+
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
@@ -36,12 +36,20 @@
         </padding>
     </StackPane>
 
-    <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.3, 0.9" VBox.vgrow="ALWAYS">
+    <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.3, 0.9, 0.5" VBox.vgrow="ALWAYS">
         <VBox fx:id="personList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
             <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        </VBox>
+        <VBox fx:id="groupList" alignment="TOP_RIGHT" minWidth="340" prefWidth="340">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <children>
+                <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </children>
         </VBox>
 
         <StackPane fx:id="browserPlaceholder" prefWidth="1100.0">
