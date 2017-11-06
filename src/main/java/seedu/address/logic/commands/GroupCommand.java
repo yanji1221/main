@@ -35,12 +35,12 @@ public class GroupCommand extends UndoableCommand {
     }
 
     public CommandResult executeUndoableCommand() throws CommandException {
-
         requireNonNull(model);
         try {
             model.addGroup(toAdd);
 
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
+
         for (Index targetIndex : listTargetIndices) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -57,6 +57,7 @@ public class GroupCommand extends UndoableCommand {
         requireNonNull(toAdd);
             for (ReadOnlyPerson personToGroup : listPersonsToGroup) {
                 toAdd.addPerson(personToGroup);
+                personToGroup.addGroup(toAdd);
             }
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

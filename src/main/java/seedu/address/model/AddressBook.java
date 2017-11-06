@@ -40,6 +40,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         persons = new UniquePersonList();
         tags = new UniqueTagList();
@@ -90,6 +91,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setGroups(new HashSet<>(newData.getGroupList()));
         setTags(new HashSet<>(newData.getTagList()));
         syncMasterTagListWith(persons);
+        syncMasterGroupListWith(persons);
+        syncMasterPersonListWith(groups);
         try {
             setEvents(newData.getEventList());
         } catch (DuplicateEventException e) {
@@ -118,6 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addGroup(Group g) throws DuplicateGroupException,IllegalValueException {
         Group newGroup = new Group(g);
+        syncMasterPersonListWith(newGroup);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
@@ -182,6 +186,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.setGroups(correctGroupReferences);
     }
 
+    private void syncMasterPersonListWith(Group group) {
+        final UniquePersonList groupPersons= new UniquePersonList(group.getPersonList());
+        persons.mergeFrom(groupPersons);
+
+        // Create map with values = tag object references in the master list
+        // used for checking person tag references
+        final Map<Person,Person> masterPersonObjects = new HashMap<>();
+        persons.forEach(person -> masterPersonObjects.put(person,person));
+
+        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
+        final Set<ReadOnlyPerson> correctPersonReferences = new HashSet<>();
+        groupPersons.forEach(person -> correctPersonReferences.add(masterPersonObjects.get(person)));
+        group.setPersons(correctPersonReferences);
+    }
+
     /**
      * Ensures that every tag in these persons:
      *  - exists in the master list {@link #tags}
@@ -194,6 +213,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void syncMasterGroupListWith(UniquePersonList persons) {
         persons.forEach(this::syncMasterGroupListWith);
     }
+    private void syncMasterPersonListWith(UniqueGroupList groups) { groups.forEach(this::syncMasterPersonListWith); }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

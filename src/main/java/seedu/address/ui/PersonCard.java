@@ -59,7 +59,8 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private FlowPane tags;
-
+    @FXML
+    private Label ingroups;
     @FXML
     private FlowPane groups;
 
@@ -114,6 +115,7 @@ public class PersonCard extends UiPart<Region> {
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
         profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);

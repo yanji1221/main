@@ -47,7 +47,6 @@ public class GroupCard extends UiPart<Region> {
     public GroupCard(Group group, int displayedIndex) {
         super(FXML);
         this.group = group;
-        //id.setText(displayedIndex + ". ");
         id.setText(displayedIndex + ". ");
         initPersons(group);
         bindListeners(group);

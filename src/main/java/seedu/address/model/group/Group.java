@@ -7,6 +7,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -77,9 +78,8 @@ public class Group{
         return this.persons;
     }
 
-   public void addPerson(ReadOnlyPerson person){
-        Person p=new Person(person);
-        this.getPersonList().add(p);
+   public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException{
+        persons.get().add(person);
     }
 
     public Name getName(){
@@ -87,6 +87,10 @@ public class Group{
     }
 
     public Set<ReadOnlyPerson> getPersonList() { return Collections.unmodifiableSet(persons.get().toSet());}
+
+    public void setPersons(Set<ReadOnlyPerson> replacementPerson) {
+        persons.set(new UniquePersonList(replacementPerson));
+    }
 
     @Override
     public boolean equals(Object other) {

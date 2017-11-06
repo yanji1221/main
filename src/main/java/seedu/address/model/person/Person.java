@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -54,6 +55,13 @@ public class Person implements ReadOnlyPerson {
         this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
 
     }
+
+    public Person(Name name){
+        requireNonNull(name);
+        this.name = new SimpleObjectProperty<>(name);
+    }
+
+
     //@@author yanji1221
     /**
      * Creates a copy of the given ReadOnlyPerson.
@@ -63,6 +71,10 @@ public class Person implements ReadOnlyPerson {
                 source.getProfilePage(), source.getTags(), source.getGroups());
     }
     //@@author
+    public void addGroup(Group group) throws DuplicateGroupException{
+         groups.get().add(group);
+
+    }
     public void setName(Name name) {
         this.name.set(requireNonNull(name));
     }

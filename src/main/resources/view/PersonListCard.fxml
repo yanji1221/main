@@ -29,7 +29,12 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-         <FlowPane fx:id="groups" />
+         <HBox>
+            <children>
+               <Label fx:id="ingroups" text="Label" />
+               <FlowPane fx:id="groups" />
+            </children>
+         </HBox>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />

@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import javafx.beans.property.ObjectProperty;
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.tag.Tag;
@@ -33,6 +34,8 @@ public interface ReadOnlyPerson {
 
     ObjectProperty<UniqueGroupList> groupProperty();
     Set<Group> getGroups();
+
+    void addGroup(Group group) throws DuplicateGroupException;
     //@@author yanji1221
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)

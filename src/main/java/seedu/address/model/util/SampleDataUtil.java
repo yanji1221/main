@@ -6,6 +6,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.*;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class SampleDataUtil {
                     //@@author yanji1221
                 new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Birthday("1993/11/12"), new Address("Blk 30 Geylang Street 29, #06-40"), new ProfilePage("www.facebook.com"),
-                    getTagSet("friends"),getGroupSet("Soccer")),
+                    getTagSet("friends"),getGroupSet("Soccer","Band")),
                 new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Birthday("1988/12/22"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new ProfilePage("www.facebook.com"),
                     getTagSet("colleagues", "friends"),getGroupSet("Band")),
@@ -44,15 +45,38 @@ public class SampleDataUtil {
         }
     }
 
+    public static Group[] getSampleGroups(){
+        try
+        {
+            return new Group[]{
+                    new Group(new Name("Soccer"),getPersonSet("Alex Yeoh","David Li","Irfan Ibrahim")),
+                    new Group(new Name("Band"),getPersonSet("Alex Yeoh","Bernice Yu","Roy Balakrishnan")),
+                    new Group(new Name("Painting"),getPersonSet("Charlotte Oliveiro"))
+            };
+        }
+        catch (IllegalValueException e) {
+            throw new AssertionError("sample data cannot be invalid", e);
+        }
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         try {
             AddressBook sampleAb = new AddressBook();
             for (Person samplePerson : getSamplePersons()) {
                 sampleAb.addPerson(samplePerson);
             }
+            for (Group sampleGroup : getSampleGroups()) {
+                sampleAb.addGroup(sampleGroup);
+            }
             return sampleAb;
         } catch (DuplicatePersonException e) {
             throw new AssertionError("sample data cannot contain duplicate persons", e);
+        }
+        catch (DuplicateGroupException e) {
+            throw new AssertionError("sample data cannot contain duplicate groups", e);
+        }
+        catch (IllegalValueException e) {
+            throw new AssertionError("sample Data has invalid group names", e);
         }
     }
 
@@ -76,5 +100,15 @@ public class SampleDataUtil {
 
         return groups;
     }
+    public static Set<ReadOnlyPerson> getPersonSet(String... strings) throws IllegalValueException {
+        HashSet<ReadOnlyPerson> persons = new HashSet<>();
+        for (String s : strings) {
+            Name name=new Name(s);
+            persons.add(new Person(name));
+        }
+
+        return persons;
+    }
+
 
 }

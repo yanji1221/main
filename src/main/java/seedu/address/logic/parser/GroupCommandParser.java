@@ -30,7 +30,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
             String groupName=indices[0];
 
             if(indices[0].matches("\\d")) {
-                //System.out.println("WTF???");
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_GROUP_NAME_FORMAT, GroupCommand.MESSAGE_USAGE));
             }
@@ -54,7 +53,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
             return new GroupCommand(new Group(name),input);
         }
         catch (IllegalValueException ive) {
-            //System.out.println("Caught you!!!");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
