@@ -44,9 +44,9 @@ public class MainWindow extends UiPart<Region> {
     private BrowserPanel browserPanel;
     private PersonListPanel personListPanel;
     private EventListPanel eventListPanel;
-    private GroupListPanel groupListPanel;
     private Config config;
     private UserPrefs prefs;
+    private GroupListPanel groupListPanel;
 
     @FXML
     private StackPane browserPlaceholder;
