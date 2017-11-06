@@ -3,6 +3,7 @@ package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class EventList implements Iterable<Event> {
 
     /**
      * Adds a person to the list.
-     * TO DECIDE: whether to @throws DuplicateEventException
+     * @throws DuplicateEventException
      * if the person to add is a duplicate of an existing person in the list.
      */
     public void add(Event toAdd) throws DuplicateEventException {
@@ -47,6 +48,7 @@ public class EventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.add(new Event(toAdd));
+        Collections.sort(internalList);
     }
 
     /**

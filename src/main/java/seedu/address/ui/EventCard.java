@@ -13,7 +13,7 @@ public class EventCard extends UiPart<Region> {
 
     public final Event event;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -32,7 +32,7 @@ public class EventCard extends UiPart<Region> {
     }
 
     /**
-     * Binds the individual UI elements to observe their respective {@code Person} properties
+     * Binds the individual UI elements to observe their respective {@code Event} properties
      * so that they will be notified of any changes.
      */
     private void bindListeners(Event event) {

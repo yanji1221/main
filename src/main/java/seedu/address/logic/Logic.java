@@ -23,9 +23,13 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
+    //@@author erik0704
     /** Returns a view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
 
+    /** Returns a view of the filtered list of events */
+    ObservableList<Event> getUpcomingEventList() throws java.text.ParseException;
+    //@@author
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();
 }

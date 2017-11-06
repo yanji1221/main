@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.text.ParseException;
 import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -19,8 +20,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+import seedu.address.commons.events.ui.ShowReminderRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.event.*;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -199,6 +202,17 @@ public class MainWindow extends UiPart<Region> {
         helpWindow.show();
     }
 
+    /**
+     * Opens the reminder window.
+     */
+    @FXML
+    public void handleReminder() throws ParseException{
+        for(Event event : logic.getUpcomingEventList()) {
+            ReminderWindow window = new ReminderWindow(event);
+            window.show();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -227,5 +241,11 @@ public class MainWindow extends UiPart<Region> {
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleHelp();
+    }
+    //@@author erik0704
+    @Subscribe
+    private void handleShowReminderEvent(ShowReminderRequestEvent event) throws ParseException {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleReminder();
     }
 }
