@@ -1,4 +1,3 @@
-//@@author quangtdn
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
@@ -6,19 +5,18 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's profile page in the address book.
+ * Represents a Person's birthday in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidProfilePage(String)}
  */
 public class ProfilePage {
-    public static final String PROFILEPAGE_VALIDATION_REGEX= "^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]+.[a-z]{3}.([a-z]+)((/)?[a-zA-Z0-9.]?)*?$";
+
     public static final String MESSAGE_PROFILEPAGE_CONSTRAINTS =
             "Person Profile page should be a valid URL pointing to that person's profile";
+    public static final String PROFILEPAGE_VALIDATION_REGEX = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
+
+    //public static final String PROFILEPAGE_VALIDATION_REGEX = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
 
     public final String value;
-
-    public boolean hasProfilePage(){
-        return (!value.equals("www.unknown.com"));
-    }
 
     /**
      * Validates given birthday.
@@ -40,7 +38,7 @@ public class ProfilePage {
 
     public ProfilePage() throws IllegalValueException {
         //requireNonNull(profile);
-        this.value = "www.unknown.com";
+        this.value = "unknown_Profile";
         /*if (!isValidProfilePage(this.value)) {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }*/
@@ -48,10 +46,21 @@ public class ProfilePage {
     }
 
     /**
-     * Returns if a given string is a valid person birthday.
+     * Returns if a given string is a valid person profile page.
      */
     public static boolean isValidProfilePage(String test) {
+        if(test.equals("")) {
+            return true;
+        }
+
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if this person has a profile page.
+     */
+    public boolean hasProfilePage(){
+        return (this.value.equals("") || this.value == null) ? false: true;
     }
 
     @Override
@@ -70,5 +79,5 @@ public class ProfilePage {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
-//@@author

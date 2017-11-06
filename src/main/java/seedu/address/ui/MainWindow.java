@@ -64,14 +64,13 @@ public class MainWindow extends UiPart<Region> {
     private StackPane eventListPanelPlaceholder;
 
     @FXML
-    private StackPane groupListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane groupListPanelPlaceholder;
     public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         super(FXML);
 
