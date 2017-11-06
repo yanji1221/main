@@ -16,8 +16,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Dates {
     public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Event date should be 3 number of 2 digit each, separated by '-'";
-    public static final String DATE_VALIDATION_REGEX = "\\d{2}" + "-" + "\\d{2}" + "-" + "\\d{2}";
+            "Event date should be in yyyy-mm-dd format";
+    public static final String DATE_VALIDATION_REGEX = "\\d{4}" + "-" + "\\d{2}" + "-" + "\\d{2}";
 
     public final Date date;
 
@@ -32,8 +32,7 @@ public class Dates {
         if (!isValidDateFormat(trimmedDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yy");
-        format.setLenient(false);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             //if not valid, it will throw ParseException
             Date value = format.parse(trimmedDate);
@@ -60,7 +59,7 @@ public class Dates {
 
     @Override
     public String toString() {
-        DateFormat df = new SimpleDateFormat("dd-mm-yy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         return df.format(date);
     }
 

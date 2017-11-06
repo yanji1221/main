@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -152,6 +153,11 @@ public class AddCommandTest {
         //@@author erik0704
         @Override
         public ObservableList<Event> getFilteredEventList() {
+            fail("This method should not be called.");
+            return null;
+        }
+        @Override
+        public ObservableList<Event> getUpcomingEventList() throws ParseException {
             fail("This method should not be called.");
             return null;
         }

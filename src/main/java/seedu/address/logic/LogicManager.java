@@ -57,7 +57,13 @@ public class LogicManager extends ComponentManager implements Logic {
     }
 
     //@@author erik0704
+    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public ObservableList<Event> getUpcomingEventList() throws java.text.ParseException{
+        return model.getUpcomingEventList();
     }
 }
