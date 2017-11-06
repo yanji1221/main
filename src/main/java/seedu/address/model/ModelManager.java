@@ -3,6 +3,8 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+
+
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.UpcomingEventPredicate;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -30,6 +33,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final AddressBook addressBook;
     private final FilteredList<ReadOnlyPerson> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> upcomingEvents;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +48,7 @@ public class ModelManager extends ComponentManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        upcomingEvents = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -130,10 +136,18 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getUpcomingEventList() throws java.text.ParseException {
+        UpcomingEventPredicate predicate = new UpcomingEventPredicate();
+        upcomingEvents.setPredicate(predicate);
+        return FXCollections.unmodifiableObservableList(upcomingEvents);
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
     //@@author
 
     @Override

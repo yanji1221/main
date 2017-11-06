@@ -11,7 +11,7 @@ import seedu.address.model.person.Name;
 /**
  * Main class of Event
  */
-public class Event {
+public class Event implements Comparable<Event> {
     /**
      * Reuse name class of person cause they have the exact behavior for now
      * TO DO: create a UniquePersonList and associate it with an event attribute
@@ -96,5 +96,16 @@ public class Event {
                 .append(" Description: ")
                 .append(getDescription());
         return builder.toString();
+    }
+
+    public int compareTo(Event anotherevent) {
+        Dates anotherdate = anotherevent.getDate();
+        if (this.getDate().equals(anotherdate)) {
+            return 0;
+        } else if (this.getDate().getDate().after(anotherdate.getDate())) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
