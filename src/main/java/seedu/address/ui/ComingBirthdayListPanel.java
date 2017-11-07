@@ -4,6 +4,8 @@ package seedu.address.ui;
 import java.lang.String;
 
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -22,10 +24,11 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ComingBirthdayPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of persons who are having their birthday soon.
  */
 public class ComingBirthdayListPanel extends UiPart<Region> {
     private static final String FXML = "ComingBirthdayListPanel.fxml";
@@ -48,14 +51,24 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         int month = cal.get(Calendar.MONTH)+1;
         int date = cal.get(Calendar.DATE);
 
+        if (((month == 1 || month == 3 || month == 5 || month == 7
+                || month == 8 || month == 10 || month == 12) && date == 31)
+                || ((month == 4 || month == 6 || month == 9
+                || month == 11) && date == 30)) {
+            month += 1;
+            if (month == 13) {
+                month = 1;
+            }
+            date = 0;
+        }
         for (int i = 0; i < comingBirthdayList.size(); i++) {
-            if (!(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7).equals(Integer.toString(month)))) {
+            if (!(Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month)) {
                 comingBirthdayList.remove(i);
                 isRemoved = true;
             }
-            else if(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7).equals(Integer.toString(month)) &&
+            else if((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month) &&
                     Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
                     .substring(8)) < date) {
                 comingBirthdayList.remove(i);
