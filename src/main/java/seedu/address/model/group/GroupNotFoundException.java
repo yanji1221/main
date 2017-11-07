@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.model.group;
 
 public class GroupNotFoundException extends Exception  {
