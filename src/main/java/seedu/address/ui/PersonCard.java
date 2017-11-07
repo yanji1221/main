@@ -19,10 +19,11 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     //@@author yanji1221
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "black",
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "barnRed",
         "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "rebeccaPurple", "saddleBrown",
+        "slateBlue", "blackberry", "boysenberry", "cherry" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];

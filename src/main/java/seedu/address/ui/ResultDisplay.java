@@ -20,9 +20,6 @@ import seedu.address.commons.events.ui.NewResultAvailableEvent;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String ERROR_STYLE_CLASS = "error";
-    //@@author yanji1221
-    private static final String SUCCESS_STYLE_CLASS = "success";
-    //@@author
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
