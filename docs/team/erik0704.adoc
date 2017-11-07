@@ -72,6 +72,7 @@ Overall behavior is similar to Person class logic and model.
 
 === Other contributions
 
+* Modify add command to accept partial string.
 * Updated the GUI part to display events.
 * Managed the team repository as team lead.
 * Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.
