@@ -57,3 +57,4 @@ public class DeleteGroupCommand extends UndoableCommand {
                 && this.targetIndex.equals(((DeleteGroupCommand) other).targetIndex)); // state check
     }
 }
+//@@ author

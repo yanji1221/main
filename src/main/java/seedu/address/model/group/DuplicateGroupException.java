@@ -8,3 +8,4 @@ public class DuplicateGroupException extends DuplicateDataException {
         super("Operation would result in duplicate group names");
     }
 }
+//@@ author
