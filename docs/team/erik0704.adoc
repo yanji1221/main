@@ -1,0 +1,79 @@
+= Dao Quoc Cuong - Project Portfolio
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== Project: NeoXPro Manager
+NeoXPro 4 is a desktop address book application extends from an existing stock application which was used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 7 kLoC.
+
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/erik0704.md[Functional code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/erik0704.md[Test code]]
+
+=== Enhancement Added: Find a person via the contact tags
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=findtag]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+The address book had tags for each contact, however there was no way to search for contact with certain tags.
+
+=== Enhancement Added: Locate a person
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=locate]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+May help the user finding the contact address quickly and perhaps direction if the user want to go there.
+Implementation
+
+==== Implementation
+
+Similar to select command but load a google map page instead.
+
+=== Enhancement Added: Event functionality
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=event]
+
+include::../UserGuide.adoc[tag=reminder]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+The application is also meant to be a task manager. Thus there is a need to implement task functionality.
+
+==== Implementation
+
+Overall behavior is similar to Person class logic and model.
+
+=== Other contributions
+
+* Modify add command to accept partial string.
+* Updated the GUI part to display events.
+* Managed the team repository as team lead.
+* Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.
+
