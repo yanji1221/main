@@ -38,6 +38,7 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_PROFILEPAGE + "PROFILE PAGE] "
             //@@author
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_GROUP + "GROUP]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -154,7 +155,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email,
-                    this.birthday, this.address, this.profile,  this.tags);
+                    this.birthday, this.address, this.profile,  this.tags, this.groups);
         }
 
         public void setName(Name name) {
