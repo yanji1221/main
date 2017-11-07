@@ -1,3 +1,4 @@
+//@@ author:hxy0229
 package seedu.address.ui;
 
 import javafx.beans.binding.Bindings;
@@ -15,7 +16,7 @@ public class GroupCard extends UiPart<Region> {
 
     private static final String FXML = "GroupListCard.fxml";
 
-    //@@author yanji1221
+
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "black",
             "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
             "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
@@ -23,7 +24,7 @@ public class GroupCard extends UiPart<Region> {
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
-    //@@author
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
