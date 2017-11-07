@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code ReadOnlyPerson}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Event}'s {@code Name} matches any of the keywords given.
  */
 public class UpcomingEventPredicate implements Predicate<Event> {
     private Date now;

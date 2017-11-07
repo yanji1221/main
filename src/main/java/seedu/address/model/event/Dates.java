@@ -22,9 +22,7 @@ public class Dates {
     public final Date date;
 
     /**
-     * Validates given email.
-     *
-     * @throws IllegalValueException if given email address string is invalid.
+     * @throws IllegalValueException if given date string is invalid.
      */
     public Dates(String date) throws IllegalValueException {
         requireNonNull(date);
