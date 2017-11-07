@@ -39,6 +39,15 @@ public class UniqueGroupList implements Iterable<Group> {
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
+    public boolean remove(Group toRemove) throws GroupNotFoundException {
+        requireNonNull(toRemove);
+        final boolean groupFoundAndDeleted = internalList.remove(toRemove);
+        if (!groupFoundAndDeleted) {
+            throw new GroupNotFoundException();
+        }
+        return groupFoundAndDeleted;
+    }
+
     /**
      * Returns all tags in this list as a Set.
      * This set is mutable and change-insulated against the internal list.

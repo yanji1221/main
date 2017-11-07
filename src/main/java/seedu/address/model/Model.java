@@ -5,6 +5,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.group.GroupNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -55,6 +56,8 @@ public interface Model {
     //@@author erik0704
     /** Deletes the given person. */
     void deleteEvent(Event target) throws EventNotFoundException;
+
+    void deleteGroup(Group target) throws GroupNotFoundException;
 
     /** Returns a view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
