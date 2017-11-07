@@ -10,7 +10,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Deletes an event identified using it's last displayed index from the address book.
  */
 public class DeleteEventCommand extends UndoableCommand {
 
