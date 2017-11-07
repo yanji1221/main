@@ -39,7 +39,7 @@ public class CommandTestUtil {
     //@@author
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_PROFILE_AMY = "www.facebook.com";
+    public static final String VALID_PROFILE_AMY = "instagram.com";
     public static final String VALID_PROFILE_BOB = "www.bob.com";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -68,7 +68,7 @@ public class CommandTestUtil {
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY + "12/12"; // year is missing
     //@@author
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_PROFILE_DESC = " " + PREFIX_PROFILEPAGE + "facebook.com/asdf"; // why you make profile disallow '/' ???
+    public static final String INVALID_PROFILE_DESC = " " + PREFIX_PROFILEPAGE + "random string here";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;

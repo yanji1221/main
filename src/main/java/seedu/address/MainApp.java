@@ -15,7 +15,6 @@ import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
-import seedu.address.commons.events.ui.ShowReminderRequestEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -186,7 +185,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
-        EventsCenter.getInstance().post(new ShowReminderRequestEvent());
     }
 
     @Override
