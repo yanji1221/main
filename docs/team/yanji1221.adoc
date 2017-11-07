@@ -143,7 +143,7 @@ Colored result allow users to distinguish between success command and fail comma
 
 * Updated the GUI color scheme and font (Commits https://github.com/CS2103AUG2017-W10-B4/main/commit/93b87abc63ea0b24f35911c6c07847e3e0139edd[commit on 4/11/2017],
 https://github.com/CS2103AUG2017-W10-B4/main/commit/3ba89364dfc3f83e977d8866dad8a38b3c5fc554[commit on 28/10/2017])
-* Add introduction section to Developer Guide (Pull requests https://github.com[#36], https://github.com[#38])
+* Add introduction section to Developer Guide
 
 ---
 
@@ -154,7 +154,7 @@ include::../DeveloperGuide.adoc[tag=intro]
 #End of Extract#
 
 ---
-
+* Help other group to find bugs or make suggestion(Issue https://github.com/CS2103AUG2017-W10-B3/main/issues/76[#76], https://github.com/CS2103AUG2017-W10-B3/main/issues/75[#75])
 
 
 == Project: PowerPointLabs
