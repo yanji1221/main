@@ -1,4 +1,4 @@
-//@@ author hxy0229
+//@@author hxy0229
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -57,4 +57,4 @@ public class DeleteGroupCommand extends UndoableCommand {
                 && this.targetIndex.equals(((DeleteGroupCommand) other).targetIndex)); // state check
     }
 }
-//@@ author
+//@@author

@@ -1,4 +1,4 @@
-//@@ author:hxy0229
+//@@author hxy0229
 package seedu.address.ui;
 
 import javafx.beans.binding.Bindings;

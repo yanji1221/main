@@ -1,4 +1,4 @@
-//@@ author hxy0229
+//@@author hxy0229
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -25,4 +25,4 @@ public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
     }
 
 }
-//@@ author
+//@@author

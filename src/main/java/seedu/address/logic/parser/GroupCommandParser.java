@@ -1,4 +1,4 @@
-//@@ author hxy0229
+//@@author hxy0229
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
@@ -59,4 +59,4 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         }
     }
 }
-//@@ author
+//@@author

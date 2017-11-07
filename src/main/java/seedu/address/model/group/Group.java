@@ -1,4 +1,4 @@
-//@@ author hxy0229
+//@@author hxy0229
 package seedu.address.model.group;
 
 import javafx.beans.property.ObjectProperty;
@@ -116,4 +116,4 @@ public class Group{
         return  builder.toString();
     }
 }
-//@@ author
+//@@author
