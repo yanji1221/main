@@ -1,4 +1,3 @@
-//@@author quangtdn
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
@@ -6,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's profile page in the address book.
+ * Represents a Person's birthday in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidProfilePage(String)}
  */
 public class ProfilePage {
@@ -38,6 +37,15 @@ public class ProfilePage {
         } else {
             this.value = profileLink;
         }
+    }
+
+    public ProfilePage() throws IllegalValueException {
+        //requireNonNull(profile);
+        this.value = "unknown_Profile";
+        /*if (!isValidProfilePage(this.value)) {
+            throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
+        }*/
+
     }
 
     /**
@@ -78,5 +86,5 @@ public class ProfilePage {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
-//@@author
