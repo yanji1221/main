@@ -54,6 +54,9 @@ public class AddressBookParser {
         case DeleteGroupCommand.COMMAND_WORD:
             return new DeleteGroupCommandParser().parse(arguments);
 
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
+
         case LocationCommand.COMMAND_WORD:
             return new LocationCommandParser().parse(arguments);
 
