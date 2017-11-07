@@ -59,12 +59,17 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label ingroups;
+    @FXML
+    private FlowPane groups;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
+        initGroups(person);
         bindListeners(person);
     }
     //@@author yanji1221
@@ -104,20 +109,20 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        //@@author yanji1221
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
+        //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
-
-        if(!person.profilepageProperty().toString().equals("")) {
-            profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
-            profile.setVisible(true);
-        } else {
-            profile.setVisible(false);
-        }
-
+        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
+        });
+        person.groupProperty().addListener((observable, oldValue, newValue) -> {
+            groups.getChildren().clear();
+            initGroups(person);
         });
     }
     //@@author yanji1221
@@ -131,6 +136,15 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
+
+    private void initGroups(ReadOnlyPerson person) {
+        person.getGroups().forEach(group -> {
+            Label groupLabel = new Label(group.getName().fullName);
+            groupLabel.setStyle("-fx-background-color: " + colorGetterForTag(group.getName().fullName));
+            groups.getChildren().add(groupLabel);
+        });
+    }
+
     //@@author
     @Override
     public boolean equals(Object other) {

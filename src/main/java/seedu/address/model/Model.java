@@ -2,14 +2,20 @@ package seedu.address.model;
 
 import java.text.ParseException;
 import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.group.GroupNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+
+import java.util.function.Predicate;
+
 
 /**
  * The API of the Model component.
@@ -17,6 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
@@ -29,6 +36,9 @@ public interface Model {
 
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
+
+    void addGroup(Group group) throws DuplicateGroupException,IllegalValueException;
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
@@ -53,6 +63,11 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
     /** Return a view of upcoming (in 1 day) event list */
     ObservableList<Event> getUpcomingEventList() throws ParseException;
+
+    void deleteGroup(Group target) throws GroupNotFoundException;
+
+    /** Returns a view of the filtered group list */
+    ObservableList<Group> getFilteredGroupList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.

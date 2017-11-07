@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
-import java.util.Set;
-
 import javafx.beans.property.ObjectProperty;
+import seedu.address.model.group.DuplicateGroupException;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
+
+import java.util.Set;
 
 /**
  * A read-only immutable interface for a Person in the addressbook.
@@ -30,6 +33,11 @@ public interface ReadOnlyPerson {
     //@@author
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
+
+    ObjectProperty<UniqueGroupList> groupProperty();
+    Set<Group> getGroups();
+
+    void addGroup(Group group) throws DuplicateGroupException;
     //@@author yanji1221
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -63,6 +71,8 @@ public interface ReadOnlyPerson {
                 .append(getProfilePage())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append("In Groups: ");
+        getGroups().forEach(builder::append);
         return builder.toString();
     }
 

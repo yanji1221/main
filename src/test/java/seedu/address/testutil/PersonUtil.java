@@ -31,6 +31,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getGroups().stream().forEach(
+                s -> sb.append(PREFIX_GROUP + s.getName().fullName + " ")
+        );
         return sb.toString();
     }
 }
