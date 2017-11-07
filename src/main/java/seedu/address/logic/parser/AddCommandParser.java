@@ -1,4 +1,3 @@
-//@@author hxy0229
 package seedu.address.logic.parser;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -32,7 +31,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_BIRTHDAY,
                 PREFIX_ADDRESS, PREFIX_PROFILEPAGE, PREFIX_TAG,PREFIX_GROUP);
-
+        //@@ author hxy0229
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME))
                 &&(!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
                 &&(!arePrefixesPresent(argMultimap, PREFIX_PHONE))
@@ -88,6 +87,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(ive.getMessage(), ive);
         }
     }
+    //@@ author
     //@@author
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -98,4 +98,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
 }
-//@@ author
+
