@@ -95,7 +95,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setText(text);
         commandTextField.positionCaret(commandTextField.getText().length());
     }
-
+    //@@author yanji1221
     /**
      * Handles the Enter button pressed event.
      */
@@ -108,20 +108,16 @@ public class CommandBox extends UiPart<Region> {
             // process result of the command
             commandTextField.setText("");
             logger.info("Result: " + commandResult.feedbackToUser);
-            //@@author yanji1221
             raise(new NewResultAvailableEvent(commandResult.feedbackToUser, false));
-            //@@author
         } catch (CommandException | ParseException e) {
             initHistory();
             // handle command failure
             setStyleToIndicateCommandFailure();
             logger.info("Invalid command: " + commandTextField.getText());
-            //@@author yanji1221
             raise(new NewResultAvailableEvent(e.getMessage(), true));
-            //@@author
         }
     }
-
+    //@@author
     /**
      * Initializes the history snapshot.
      */
