@@ -36,8 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 &&(!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
                 &&(!arePrefixesPresent(argMultimap, PREFIX_PHONE))
                 &&(!arePrefixesPresent(argMultimap, PREFIX_EMAIL))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_PROFILEPAGE))) {
+                &&(!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -72,9 +71,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
             else {address=new Address();}
 
-            if(arePrefixesPresent(argMultimap, PREFIX_PROFILEPAGE))
-              profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
-            else {profile=new ProfilePage();}
+            profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
+
 
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
