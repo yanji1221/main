@@ -14,6 +14,18 @@ endif::[]
 
 By: `Team W10-B4`      Since: `Jun 2016`      Licence: `MIT`
 
+== Introduction
+
+Are you a busy university student having trouble keeping track of your social and academic life?  If yes, NeoXPro Manager might just be the app for you.
+
+It is a simple but powerful tool for managing your everyday tasks and keeping track of your friends and acquaintances.
+With its intuitive interface, user would have no issue navigating the application. NeoXPro also remind you of upcoming events and tasks, so you will never miss those important meetings or assignment deadlines again.
+
+== About
+
+This guide provide a detailed instruction of how to use NeoXPro and all its features.
+It also comes with a summary of commands for users are already familiarized with NeoXPro and just need a quick reminder.
+
 == Quick Start
 
 .  Ensure you have Java version `1.8.0_60` or later installed in your Computer.
