@@ -1,3 +1,4 @@
+//@@ author hxy0229
 package seedu.address.model.group;
 
 import seedu.address.commons.exceptions.DuplicateDataException;
