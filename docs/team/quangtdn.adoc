@@ -16,7 +16,7 @@ Locating persons by phone number.
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc#locating-persons-by-phone-number-code-phone-code-since-v1-1[tag=phone]
+include::../UserGuide.adoc[tag=phone]
 
 Finds person whose phone numbers match with at least a phone number in the specified list
 Format: `phone NUMBER [MORE_NUMBERS]`
@@ -40,7 +40,7 @@ Searching a contact by phone number is extremely convenient for searching a pers
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=phone]
 
 #End of Extract#
 
@@ -56,7 +56,7 @@ When a person is selected, his/her profile page will be loaded in UI.
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=undoredo]
+include::../UserGuide.adoc[tag=addpara]
 
 #End of Extract#
 
@@ -71,7 +71,7 @@ With the profile page stored for each person, NeoXPRO enhances the user's experi
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=addpara]
 
 #End of Extract#
 
@@ -85,7 +85,7 @@ Using 'delete' command, user can now delete multiple persons from the contact li
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=undoredo]
+include::../UserGuide.adoc[tag=delete]
 
 #End of Extract#
 
@@ -100,7 +100,7 @@ include::../UserGuide.adoc[tag=undoredo]
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=delete]
 
 #End of Extract#
 
@@ -114,7 +114,7 @@ Export the contact list of NeoXPRO into a text file.
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=undoredo]
+include::../UserGuide.adoc[tag=export]
 
 #End of Extract#
 
@@ -129,7 +129,7 @@ With this feature, user can easily make use of the data in contact list.
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=export]
 
 #End of Extract#
 
@@ -143,7 +143,7 @@ When a person is selected, his/her profile page is displayed (if it's stored)
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=undoredo]
+include::../UserGuide.adoc[tag=select]
 
 #End of Extract#
 
@@ -158,7 +158,7 @@ include::../UserGuide.adoc[tag=undoredo]
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=select]
 
 #End of Extract#
 

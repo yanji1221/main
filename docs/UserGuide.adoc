@@ -144,6 +144,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
+// tag::phone[]
 === Locating persons by phone number: `phone` (since v1.1)
 
 Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person
@@ -161,6 +162,7 @@ Examples:
 Returns person with phone number 123456
 * 'phone 123456 654321'
 Returns persons with phone numbers matching with '123456' or '654321'.
+// end::phone[]
 
 === Locating persons by tags: `findTag` (since v1.1)
 
@@ -183,6 +185,7 @@ Returns any person with a `friend` tag
 * `findTag CS2103T friend` +
 Returns all persons with both `friend` and `CS2103T` tag.
 
+// tag::delete[]
 === Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
@@ -202,27 +205,7 @@ Deletes the 2nd person in the address book.
 * `find Betsy` +
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
-
-=== Deletes a list of persons with specified indices: `deleteList` (since v1.2)
-
-Deletes all persons with the specified indices from the address book. +
-Format: 'deleteList INDEX [MORE_INDICES]'
-
-****
-* The order of indices being queried does not matter.
-* The index refers to the index number shown in the most recent listing.
-* All persons at the specified 'INDEX' 's are deleted from address book.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
-
-Examples:
-
-* `list` +
-`deleteList 4 6` +
-Deletes the 4th and 6th person in the address book.
-* `find Betsy` +
-`delete 1 2` +
-Deletes the 1st and 2nd person in the results of the `find` command.
+// end::delete[]
 
 === Deleting all contacts added before a specific date: `deleteBefore` (coming in v2.0)
 
@@ -240,6 +223,7 @@ Examples:
 * `deleteBefore 10/01/2014` +
 Deletes all persons add before 10/01/2014 from the address book.
 
+// tag::select[]
 === Selecting a person : `select`
 
 Selects the person identified by the index number used in the last person listing. +
@@ -267,7 +251,7 @@ Selects the 1st person in the results of the `find` command. +
 The 1st person in the list does not have the profile page in address book. +
 
 image::select2.png[width="690"]
-
+// end::select[]
 
 === Locating a person's address : `locate` (since v1.3)
 
@@ -395,6 +379,14 @@ NeoXPro Manager will remind the user events occur on the day when when starting 
 
 Exits the program. +
 Format: `exit`
+
+// tag::export[]
+=== Exporting the data: `export`
+
+Format: `export`
+Address book data are exported
+//end::export[]
+
 
 === Saving the data
 
