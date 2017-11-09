@@ -2,11 +2,13 @@
 package seedu.address.commons.util;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-
+/** Utility method related to Date */
 public class DateUtil {
+
+    /** create current date object */
     public static Date createCurrentDate() throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat newformat = new SimpleDateFormat("yyyy-MM-dd");
