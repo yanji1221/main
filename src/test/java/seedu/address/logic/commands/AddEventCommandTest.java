@@ -60,7 +60,8 @@ public class AddEventCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different name -> returns false
-        assertFalse(standardCommand.equals(new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_APP)));
+        assertFalse(standardCommand.equals(
+        new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_APP)));
 
         // different date -> returns false
         assertFalse(standardCommand.equals(

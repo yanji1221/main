@@ -151,8 +151,8 @@ public class AddCommandParserTest {
         /*
         // invalid profile page
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PROFILE_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                        ProfilePage.MESSAGE_PROFILEPAGE_CONSTRAINTS); */
+                        + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PROFILE_DESC + TAG_DESC_HUSBAND
+                         + TAG_DESC_FRIEND, ProfilePage.MESSAGE_PROFILEPAGE_CONSTRAINTS); */
 
         // invalid tag
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -160,8 +160,9 @@ public class AddCommandParserTest {
                         Tag.MESSAGE_TAG_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + BIRTHDAY_DESC_BOB + INVALID_ADDRESS_DESC + PROFILE_DESC_BOB , Name.MESSAGE_NAME_CONSTRAINTS);
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + INVALID_NAME_DESC + PHONE_DESC_BOB
+                        + EMAIL_DESC_BOB + BIRTHDAY_DESC_BOB + INVALID_ADDRESS_DESC
+                        + PROFILE_DESC_BOB, Name.MESSAGE_NAME_CONSTRAINTS);
     }
     //@@author
 }
