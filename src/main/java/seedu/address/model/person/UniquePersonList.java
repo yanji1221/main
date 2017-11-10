@@ -106,6 +106,16 @@ public class UniquePersonList implements Iterable<Person> {
         return personFoundAndDeleted;
     }
 
+    public boolean favorite(ReadOnlyPerson toFavorite) throws PersonNotFoundException {
+        requireNonNull(toFavorite);
+        final boolean personFoundAndDeleted = internalList.contains(toFavorite);
+        if (!personFoundAndDeleted) {
+            throw new PersonNotFoundException();
+        }
+        return personFoundAndDeleted;
+    }
+
+
     public void setPersons(UniquePersonList replacement) {
         this.internalList.setAll(replacement.internalList);
     }

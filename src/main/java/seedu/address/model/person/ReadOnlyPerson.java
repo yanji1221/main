@@ -38,6 +38,9 @@ public interface ReadOnlyPerson {
     ObjectProperty<UniqueGroupList> groupProperty();
     Set<Group> getGroups();
 
+    ObjectProperty<Favorite> favoriteProperty();
+    Favorite getFavorite();
+
     void addGroup(Group group) throws DuplicateGroupException;
     //@@author yanji1221
     /**
@@ -70,6 +73,8 @@ public interface ReadOnlyPerson {
                 .append(getAddress())
                 .append(" Profile Page: ")
                 .append(getProfilePage())
+                .append(" Status: ")
+                .append(getFavorite())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append("In Groups: ");

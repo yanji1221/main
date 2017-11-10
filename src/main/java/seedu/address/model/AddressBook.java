@@ -125,6 +125,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(newPerson);
     }
 
+
+
     /** checkstyle comment @TODO: David please collate and add comment block */
     public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
         Group newGroup = new Group(g);
@@ -245,6 +247,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean removePerson(ReadOnlyPerson key) throws PersonNotFoundException {
         if (persons.remove(key)) {
+            return true;
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
+    public boolean favoritePerson(ReadOnlyPerson key) throws PersonNotFoundException {
+        if (persons.favorite(key)) {
             return true;
         } else {
             throw new PersonNotFoundException();

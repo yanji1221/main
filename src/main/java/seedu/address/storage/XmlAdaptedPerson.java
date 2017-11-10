@@ -9,14 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.ProfilePage;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 
@@ -43,6 +36,8 @@ public class XmlAdaptedPerson {
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
     @XmlElement
     private List<XmlAdaptedGroup> grouped = new ArrayList<>();
+    @XmlElement
+    private boolean favorite = false;
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -102,6 +97,7 @@ public class XmlAdaptedPerson {
         final ProfilePage profile = new ProfilePage(this.profile);
         final Set<Tag> tags = new HashSet<>(personTags);
         final Set<Group> groups = new HashSet<>(personGroups);
-        return new Person(name, phone, email, birthday, address, profile, tags, groups);
+        final Favorite favorite = new Favorite(this.favorite);
+        return new Person(name, phone, email, birthday, address, profile, favorite, tags, groups);
     }
 }

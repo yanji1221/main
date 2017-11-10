@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.SVGPath;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -46,6 +47,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    //@@author hxy0229
+    private SVGPath favorite ;
+    @FXML
+    //@@author
     private Label phone;
     @FXML
     private Label address;
@@ -125,16 +130,19 @@ public class PersonCard extends UiPart<Region> {
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        favorite.contentProperty().bind(Bindings.convert(person.favoriteProperty()));
         ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
         });
+        //@@author hxy0229
         person.groupProperty().addListener((observable, oldValue, newValue) -> {
             groups.getChildren().clear();
             initGroups(person);
         });
     }
+    //@@author
     //@@author yanji1221
     /**
      * Distribute colors for tags

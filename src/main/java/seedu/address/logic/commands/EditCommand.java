@@ -22,14 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.ProfilePage;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.*;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -116,9 +109,10 @@ public class EditCommand extends UndoableCommand {
         Birthday updateBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         ProfilePage updatedProfile = editPersonDescriptor.getProfilePage().orElse(personToEdit.getProfilePage());
+        Favorite updatedFavorite = editPersonDescriptor.getFavorite().orElse(personToEdit.getFavorite());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
-        return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,
+        return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,updatedFavorite,
                 updatedTags, updatedGroups);
     }
 
@@ -153,6 +147,9 @@ public class EditCommand extends UndoableCommand {
         //@@author quangtdn
         private ProfilePage profile;
         //@@author
+        //@@author hxy0229
+        private Favorite favorite;
+        //@@author
         private Set<Tag> tags;
         private Set<Group> groups;
 
@@ -165,6 +162,7 @@ public class EditCommand extends UndoableCommand {
             this.birthday = toCopy.birthday;
             this.address = toCopy.address;
             this.profile = toCopy.profile;
+            this.favorite = toCopy.favorite;
             this.tags = toCopy.tags;
             this.groups = toCopy.groups;
         }
@@ -174,7 +172,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email,
-                    this.birthday, this.address, this.profile,  this.tags, this.groups);
+                    this.birthday, this.address, this.profile,  this.favorite, this.tags, this.groups);
         }
 
         public void setName(Name name) {
@@ -225,6 +223,16 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(profile);
         }
         //@@author
+
+        //@@author hxy0229
+        public void setFavorite(Favorite favorite) {
+            this.favorite = favorite;
+        }
+
+        public Optional<Favorite> getFavorite() {
+            return Optional.ofNullable(favorite);
+        }
+        //@@author
         public void setTags(Set<Tag> tags) {
             this.tags = tags;
         }
@@ -263,6 +271,7 @@ public class EditCommand extends UndoableCommand {
                     && getBirthday().equals(e.getBirthday())
                     && getAddress().equals(e.getAddress())
                     && getProfilePage().equals(e.getProfilePage())
+                    && getFavorite().equals(e.getFavorite())
                     && getTags().equals(e.getTags())
                     && getGroups().equals(e.getGroups());
         }

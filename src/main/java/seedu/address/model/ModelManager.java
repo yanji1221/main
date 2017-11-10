@@ -91,6 +91,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized void favoritePerson(ReadOnlyPerson person) throws PersonNotFoundException {
+        addressBook.favoritePerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateAddressBookChanged();
+    }
+
+    @Override
     public synchronized void addGroup(Group group) throws DuplicateGroupException, IllegalValueException {
         addressBook.addGroup(group);
         updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
