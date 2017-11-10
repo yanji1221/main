@@ -1,13 +1,12 @@
 //@@author erik0704
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
-
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 

@@ -19,7 +19,7 @@ public class Address {
      */
     public static final String ADDRESS_VALIDATION_REGEX = "[^\\s].*";
 
-    public String value;
+    public final String value;
 
     /**
      * Validates given address.

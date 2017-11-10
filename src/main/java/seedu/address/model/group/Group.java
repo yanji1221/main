@@ -1,25 +1,23 @@
 //@@author hxy0229
 package seedu.address.model.group;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
-public class Group{
+/** checkstyle comment */
+public class Group {
 
     public static final String MESSAGE_GROUP_CONSTRAINTS = "Groups names should be alphanumeric";
     public static final String GROUP_VALIDATION_REGEX = "\\p{Alnum}+";
@@ -28,15 +26,16 @@ public class Group{
 
     private ObjectProperty<UniquePersonList> persons;
 
-    public Group(Name name, Set<ReadOnlyPerson> persons) throws IllegalValueException{
+    public Group(Name name, Set<ReadOnlyPerson> persons) throws IllegalValueException {
         requireAllNonNull(name, persons);
-    this.name = new SimpleObjectProperty<>(name);
-    this.persons = new SimpleObjectProperty<>(new UniquePersonList());
+        this.name = new SimpleObjectProperty<>(name);
+        this.persons = new SimpleObjectProperty<>(new UniquePersonList());
         if (!this.getName().fullName.matches(GROUP_VALIDATION_REGEX)) {
             throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
         }
-}
-    public Group(Name name) throws IllegalValueException{
+    }
+
+    public Group(Name name) throws IllegalValueException {
         requireAllNonNull(name);
         this.name = new SimpleObjectProperty<>(name);
         this.persons = new SimpleObjectProperty<>(new UniquePersonList());
@@ -45,8 +44,8 @@ public class Group{
         }
     }
 
-    public Group(Group group) throws IllegalValueException{
-        this(group.getName(),group.getPersonList());
+    public Group(Group group) throws IllegalValueException {
+        this(group.getName(), group.getPersonList());
         if (!this.getName().fullName.matches(GROUP_VALIDATION_REGEX)) {
             throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
         }
@@ -71,23 +70,25 @@ public class Group{
         return test.matches(GROUP_VALIDATION_REGEX);
     }*/
 
-    public ObjectProperty<Name> nameProperty(){
+    public ObjectProperty<Name> nameProperty() {
         return this.name;
     }
 
-    public ObjectProperty<UniquePersonList> personProperty(){
+    public ObjectProperty<UniquePersonList> personProperty() {
         return this.persons;
     }
 
-   public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException{
+    public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
         persons.get().add(person);
     }
 
-    public Name getName(){
+    public Name getName() {
         return name.get();
     }
 
-    public Set<ReadOnlyPerson> getPersonList() { return Collections.unmodifiableSet(persons.get().toSet());}
+    public Set<ReadOnlyPerson> getPersonList() {
+        return Collections.unmodifiableSet(persons.get().toSet());
+    }
 
     public void setPersons(Set<ReadOnlyPerson> replacementPerson) {
         persons.set(new UniquePersonList(replacementPerson));
@@ -102,7 +103,7 @@ public class Group{
 
     @Override
     public int hashCode() {
-        return Objects.hash(name,persons);
+        return Objects.hash(name, persons);
     }
 
     /**

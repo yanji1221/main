@@ -1,15 +1,24 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.group.Group;
-
-import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.xml.bind.annotation.XmlElement;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProfilePage;
+import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * JAXB-friendly version of the Person.
@@ -28,12 +37,12 @@ public class XmlAdaptedPerson {
     private String address;
     //@@author quangtdn
     @XmlElement(required = false)
-    private String profile="";
+    private String profile = "";
     //@@author
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
     @XmlElement
-    private List<XmlAdaptedGroup> grouped =new ArrayList<>();
+    private List<XmlAdaptedGroup> grouped = new ArrayList<>();
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -56,7 +65,7 @@ public class XmlAdaptedPerson {
         //@@author
         address = source.getAddress().value;
 
-        if(!source.getProfilePage().value.equals("")) {
+        if (!source.getProfilePage().value.equals("")) {
             profile = source.getProfilePage().value;
         }
 

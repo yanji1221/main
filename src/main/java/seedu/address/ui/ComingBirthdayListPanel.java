@@ -1,11 +1,7 @@
 //@@author yanji1221
 package seedu.address.ui;
 
-import java.lang.String;
-
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -24,7 +20,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ComingBirthdayPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -44,11 +39,12 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
+    /** checkstyle comment */
     private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
         boolean isRemoved = false;
         Calendar cal = Calendar.getInstance();
-        int month = cal.get(Calendar.MONTH)+1;
+        int month = cal.get(Calendar.MONTH) + 1;
         int date = cal.get(Calendar.DATE);
 
         if (((month == 1 || month == 3 || month == 5 || month == 7
@@ -66,15 +62,14 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
                     .substring(5, 7)) == month)) {
                 comingBirthdayList.remove(i);
                 isRemoved = true;
-            }
-            else if((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7)) == month) &&
-                    Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+            } else if ((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month)
+                    && Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
                     .substring(8)) < date) {
                 comingBirthdayList.remove(i);
                 isRemoved = true;
             }
-            if(isRemoved) {
+            if (isRemoved) {
                 i--;
                 isRemoved = false;
             }

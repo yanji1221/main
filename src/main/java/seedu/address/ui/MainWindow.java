@@ -8,7 +8,6 @@ import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -24,8 +23,9 @@ import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.events.ui.ShowReminderRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Event;
 import seedu.address.model.UserPrefs;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -218,8 +218,8 @@ public class MainWindow extends UiPart<Region> {
      * Opens the reminder window.
      */
     @FXML
-    public void handleReminder() throws ParseException{
-        for(Event event : logic.getUpcomingEventList()) {
+    public void handleReminder() throws ParseException {
+        for (Event event : logic.getUpcomingEventList()) {
             ReminderWindow window = new ReminderWindow(event);
             window.show();
         }
@@ -237,7 +237,9 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public GroupListPanel getGroupListPanel() { return this.groupListPanel; }
+    public GroupListPanel getGroupListPanel() {
+        return this.groupListPanel;
+    }
 
     public PersonListPanel getPersonListPanel() {
         return this.personListPanel;

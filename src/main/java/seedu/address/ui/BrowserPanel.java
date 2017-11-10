@@ -83,7 +83,7 @@ public class BrowserPanel extends UiPart<Region> {
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson person = event.getNewSelection().person;
-        if(person.getProfilePage().hasProfilePage()) {
+        if (person.getProfilePage().hasProfilePage()) {
             loadProfilePage(person);
         } else {
             loadPersonPage(person);

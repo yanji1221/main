@@ -5,15 +5,19 @@ import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.event.Event;
 
+/**
+ * Controller for a reminder page
+ */
 public class ReminderWindow extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(ReminderWindow.class);
     private static final String FXML = "ReminderWindow.fxml";
@@ -53,6 +57,9 @@ public class ReminderWindow extends UiPart<Region> {
 
     }
 
+    /**
+     * Show the reminder window
+     */
     public void show() {
         logger.fine("Showing reminder");
         dialogStage.showAndWait();

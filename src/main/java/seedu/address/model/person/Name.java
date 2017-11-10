@@ -19,9 +19,7 @@ public class Name {
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String fullName;
-
-    public int UNKNWON_NAME_COUNT=0;
+    public final String fullName;
 
     /**
      * Validates given name.
@@ -29,7 +27,9 @@ public class Name {
      * @throws IllegalValueException if given name string is invalid.
      */
     public Name(String name) throws IllegalValueException {
-        if(name==null) name="haha";
+        if (name == null) {
+            name = "haha";
+        }
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
