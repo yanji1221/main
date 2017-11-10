@@ -1,15 +1,17 @@
 //@@author quangtdn
 package seedu.address.logic.commands;
 
-import java.io.BufferedWriter;
-import java.io.*;
-import java.io.FileWriter;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.PrintWriter;
+
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Created by nguyenminhquang on 11/7/17.
@@ -22,9 +24,11 @@ import org.w3c.dom.Element;
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into XML file and store it at the specified input path \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into XML file "
+            + "and store it at the specified input path \n"
             + "Parameters: [FILE_PATH]...\n"
-            + "Example: " + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n" +
+            + "Example: "
+            + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n" +
             "\n";
 
     private final String savedFilePath;
@@ -89,7 +93,7 @@ public class ExportCommand extends Command {
             e.printStackTrace();
         }
 
-        return new CommandResult("File exported at " + savedFilePath +" .");
+        return new CommandResult("File exported at " + savedFilePath + " .");
         // export your data code here
     }
 
