@@ -36,7 +36,7 @@ public class Address {
     public Address() throws IllegalValueException {
         //requireNonNull(address);
         this.value = "unknwon_address";
-       /* if (!isValidAddress(this.value)) {
+        /* if (!isValidAddress(this.value)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }*/
     }

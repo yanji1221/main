@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,8 +27,8 @@ public class ExportCommand extends Command {
             + "and store it at the specified input path \n"
             + "Parameters: [FILE_PATH]...\n"
             + "Example: "
-            + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n" +
-            "\n";
+            + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n"
+            + "\n";
 
     private final String savedFilePath;
 

@@ -96,6 +96,12 @@ public class Event implements Comparable<Event> {
         return builder.toString();
     }
 
+    /**
+     *
+     * @param anotherevent
+     * @return 0, -1 or 1 if the date is same, before or after
+     *
+     */
     public int compareTo(Event anotherevent) {
         Dates anotherdate = anotherevent.getDate();
         if (this.getDate().equals(anotherdate)) {

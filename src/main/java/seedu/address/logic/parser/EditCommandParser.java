@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILEPAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;

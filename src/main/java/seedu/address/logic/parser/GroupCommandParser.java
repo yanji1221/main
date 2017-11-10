@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 
+/** checkstyle comment */
 public class GroupCommandParser implements Parser<GroupCommand> {
     @Override
     public GroupCommand parse(String args) throws ParseException {

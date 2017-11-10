@@ -125,6 +125,7 @@ public class UniquePersonList implements Iterable<Person> {
         return FXCollections.unmodifiableObservableList(mappedList);
     }
 
+    /** checkstyle comment, @TODO: David collate this please */
     public Set<ReadOnlyPerson> toSet() {
         assert CollectionUtil.elementsAreUnique(internalList);
         return new HashSet<>(internalList);

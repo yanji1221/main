@@ -10,9 +10,9 @@ import java.util.Set;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
-import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -38,7 +38,7 @@ public class Person implements ReadOnlyPerson {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address,
-                  ProfilePage profile, Set<Tag> tags,Set<Group> groups) {
+                  ProfilePage profile, Set<Tag> tags, Set<Group> groups) {
         requireNotAllNull(name, phone, email, birthday, address, tags, groups);
         //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);

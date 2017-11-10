@@ -23,8 +23,8 @@ import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.events.ui.ShowReminderRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.event.Event;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Event;
 
 
 /**
