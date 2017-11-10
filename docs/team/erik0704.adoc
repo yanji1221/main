@@ -76,4 +76,5 @@ Overall behavior is similar to Person class logic and model.
 * Updated the GUI part to display events.
 * Managed the team repository as team lead.
 * Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.
+* Fixed all checkstyle errors of every team member.
 
