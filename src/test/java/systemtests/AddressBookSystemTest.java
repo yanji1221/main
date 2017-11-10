@@ -185,12 +185,12 @@ public abstract class AddressBookSystemTest {
         String selectedCardProfile = getPersonListPanel().getHandleToSelectedCard().getProfilePage();
         URL expectedUrl;
         try {
-            if(selectedCardProfile.equals("")) {
+            if (selectedCardProfile.equals("")) {
                 expectedUrl = new URL(GOOGLE_SEARCH_URL_PREFIX + selectedCardName.replaceAll(" ", "+")
                         + GOOGLE_SEARCH_URL_SUFFIX);
             } else {
                 //expectedUrl = new URL("http://" + selectedCardProfile);
-                expectedUrl= new URL("https://m.facebook.com/?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr");
+                expectedUrl = new URL("https://m.facebook.com/?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr");
                 //Strange modification here !?!?
             }
         } catch (MalformedURLException mue) {

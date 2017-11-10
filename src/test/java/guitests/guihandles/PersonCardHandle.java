@@ -42,7 +42,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         this.idLabel = getChildNode(ID_FIELD_ID);
         this.nameLabel = getChildNode(NAME_FIELD_ID);
         this.addressLabel = getChildNode(ADDRESS_FIELD_ID);
-        this.profileLabel= getChildNode(PROFILEPAGE_FIELD_ID);
+        this.profileLabel = getChildNode(PROFILEPAGE_FIELD_ID);
         this.phoneLabel = getChildNode(PHONE_FIELD_ID);
         this.emailLabel = getChildNode(EMAIL_FIELD_ID);
         //@@author yanji1221
@@ -69,8 +69,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
     }
 
     //@@author quangtdn
-    public String getProfilePage() { return profileLabel.getText(); }
-    //@@author quangtdn
+    public String getProfilePage() {
+        return profileLabel.getText();
+    }
+    //@@author
 
     public String getPhone() {
         return phoneLabel.getText();
