@@ -1,10 +1,10 @@
 //@@author hxy0229
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -62,7 +62,7 @@ public class GroupCommand extends UndoableCommand {
                 toAdd.addPerson(personToGroup);
                 personToGroup.addGroup(toAdd);
             }
-                return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (DuplicateGroupException e) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         } catch (IllegalValueException e) {
