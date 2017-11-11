@@ -20,8 +20,9 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
 
     @Override
     public boolean test(ReadOnlyPerson person) {
-        return numbers.stream()
-                .anyMatch(number -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number));
+        return numbers.stream().anyMatch(number
+                -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number)) || numbers.stream()
+                .anyMatch(number -> person.getPhone().toString().contains(number));
     }
 
     @Override

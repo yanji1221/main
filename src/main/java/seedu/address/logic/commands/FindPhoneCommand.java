@@ -1,6 +1,7 @@
 //@@author quangtdn
 package seedu.address.logic.commands;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.NameContainsPhonePredicate;
 
 /**
