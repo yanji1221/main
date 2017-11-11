@@ -135,8 +135,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getFavorite().value == true) {
             Image image = new Image("/images/star.png");
             favorite.setImage(image);
-        }
-        else {
+        } else {
             favorite = null;
         }
         ingroups.textProperty().setValue("In Groups:  ");
@@ -163,7 +162,7 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
-    /** checkstyle comment, @TODO: David collate this please */
+    //@@author hxy0229
     private void initGroups(ReadOnlyPerson person) {
         person.getGroups().forEach(group -> {
             Label groupLabel = new Label(group.getName().fullName);
@@ -171,6 +170,7 @@ public class PersonCard extends UiPart<Region> {
             groups.getChildren().add(groupLabel);
         });
     }
+    //@@author
 
     //@@author
     @Override

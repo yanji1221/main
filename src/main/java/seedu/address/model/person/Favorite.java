@@ -1,9 +1,10 @@
 //@@author hxy0229
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents whether a Person is favorite in the address book.

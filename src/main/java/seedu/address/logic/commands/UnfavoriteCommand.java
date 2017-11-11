@@ -1,19 +1,19 @@
 //@@author hxy0229
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Favorite;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.commons.core.index.Index;
-
-import java.util.List;
 
 
-public class UnfavoriteCommand extends UndoableCommand{
+public class UnfavoriteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "unfav";
 
