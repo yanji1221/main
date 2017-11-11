@@ -40,6 +40,11 @@ public interface Model {
 
     void addGroup(Group group) throws DuplicateGroupException, IllegalValueException;
 
+    void deleteGroup(Group target) throws GroupNotFoundException;
+
+    /** Returns a view of the filtered group list */
+    ObservableList<Group> getFilteredGroupList();
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
@@ -64,11 +69,6 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
     /** Return a view of upcoming (in 1 day) event list */
     ObservableList<Event> getUpcomingEventList() throws ParseException;
-
-    void deleteGroup(Group target) throws GroupNotFoundException;
-
-    /** Returns a view of the filtered group list */
-    ObservableList<Group> getFilteredGroupList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
