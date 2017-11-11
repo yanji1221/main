@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -22,7 +21,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsPhonePredicate;
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -69,7 +67,7 @@ public class FindPhoneCommandTest {
     @Test
     public void execute_multipleNumbers_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        FindPhoneCommand command = prepareCommand(CARL.getPhone().toString()+" "+ELLE.getPhone().toString()+" 1111222");
+        FindPhoneCommand command = prepareCommand(CARL.getPhone().toString() + " " + ELLE.getPhone().toString() + " 1111222");
         assertCommandSuccess(command, expectedMessage, Arrays.asList(CARL, ELLE));
     }
 
@@ -89,7 +87,8 @@ public class FindPhoneCommandTest {
      *     - the {@code FilteredList<ReadOnlyPerson>} is equal to {@code expectedList}<br>
      *     - the {@code AddressBook} in model remains the same after executing the {@code command}
      */
-    private void assertCommandSuccess(FindPhoneCommand command, String expectedMessage, List<ReadOnlyPerson> expectedList) {
+    private void assertCommandSuccess(FindPhoneCommand command, String expectedMessage,
+                                      List<ReadOnlyPerson> expectedList) {
         AddressBook expectedAddressBook = new AddressBook(model.getAddressBook());
         CommandResult commandResult = command.execute();
 
