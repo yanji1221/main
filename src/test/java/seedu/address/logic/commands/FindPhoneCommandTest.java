@@ -67,7 +67,8 @@ public class FindPhoneCommandTest {
     @Test
     public void execute_multipleNumbers_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        FindPhoneCommand command = prepareCommand(CARL.getPhone().toString() + " " + ELLE.getPhone().toString() + " 1111222");
+        FindPhoneCommand command = prepareCommand(
+                CARL.getPhone().toString() + " " + ELLE.getPhone().toString() + " 1111222");
         assertCommandSuccess(command, expectedMessage, Arrays.asList(CARL, ELLE));
     }
 
