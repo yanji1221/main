@@ -2,19 +2,19 @@ package seedu.address.model;
 
 import java.text.ParseException;
 import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.group.DuplicateGroupException;
+import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.function.Predicate;
 
 
 /**
@@ -37,7 +37,7 @@ public interface Model {
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
 
-    void addGroup(Group group) throws DuplicateGroupException,IllegalValueException;
+    void addGroup(Group group) throws DuplicateGroupException, IllegalValueException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

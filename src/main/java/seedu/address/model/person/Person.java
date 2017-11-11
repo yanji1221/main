@@ -1,19 +1,21 @@
 package seedu.address.model.person;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.UniqueGroupList;
-import seedu.address.model.group.DuplicateGroupException;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireNotAllNull;
 
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireNotAllNull;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+import seedu.address.model.group.DuplicateGroupException;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.UniqueGroupList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
+
 
 /**
  * Represents a Person in the address book.
@@ -35,7 +37,8 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, ProfilePage profile, Set<Tag> tags,Set<Group> groups) {
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address,
+                  ProfilePage profile, Set<Tag> tags, Set<Group> groups) {
         requireNotAllNull(name, phone, email, birthday, address, tags, groups);
         //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);
@@ -51,12 +54,12 @@ public class Person implements ReadOnlyPerson {
         this.profile = new SimpleObjectProperty<>(profile);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
-       // this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
+        // this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
         this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
 
     }
 
-    public Person(Name name){
+    public Person(Name name) {
         requireNonNull(name);
         this.name = new SimpleObjectProperty<>(name);
     }
@@ -71,8 +74,9 @@ public class Person implements ReadOnlyPerson {
                 source.getProfilePage(), source.getTags(), source.getGroups());
     }
     //@@author
-    public void addGroup(Group group) throws DuplicateGroupException{
-         groups.get().add(group);
+    /** checkstyle comment, @TODO: David collate this please */
+    public void addGroup(Group group) throws DuplicateGroupException {
+        groups.get().add(group);
 
     }
     public void setName(Name name) {
@@ -146,13 +150,19 @@ public class Person implements ReadOnlyPerson {
     }
 
     //@@author quangtdn
-    public void setProfilePage(ProfilePage profile) { this.profile.set(requireNonNull(profile));}
+    public void setProfilePage(ProfilePage profile) {
+        this.profile.set(requireNonNull(profile));
+    }
 
     @Override
-    public ObjectProperty<ProfilePage> profilepageProperty() { return profile; }
+    public ObjectProperty<ProfilePage> profilepageProperty() {
+        return profile;
+    }
 
     @Override
-    public ProfilePage getProfilePage() {return profile.get(); }
+    public ProfilePage getProfilePage() {
+        return profile.get();
+    }
     //@@author
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

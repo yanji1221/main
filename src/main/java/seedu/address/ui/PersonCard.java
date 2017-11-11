@@ -115,7 +115,7 @@ public class PersonCard extends UiPart<Region> {
         //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
 
-        if(!person.profilepageProperty().toString().equals("")) {
+        if (!person.profilepageProperty().toString().equals("")) {
             profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
             profile.setVisible(true);
         } else {
@@ -147,6 +147,7 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    /** checkstyle comment, @TODO: David collate this please */
     private void initGroups(ReadOnlyPerson person) {
         person.getGroups().forEach(group -> {
             Label groupLabel = new Label(group.getName().fullName);

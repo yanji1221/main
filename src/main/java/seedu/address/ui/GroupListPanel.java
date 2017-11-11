@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.ui;
 
 import java.util.logging.Logger;
@@ -13,8 +14,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.GroupPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.model.group.Group;
 
 /**

@@ -164,6 +164,7 @@ Returns person with phone number 123456
 Returns persons with phone numbers matching with '123456' or '654321'.
 // end::phone[]
 
+// tag::findtag[]
 === Locating persons by tags: `findTag` (since v1.1)
 
 Finds persons whose tags include all of the given keywords. +
@@ -184,6 +185,7 @@ Examples:
 Returns any person with a `friend` tag
 * `findTag CS2103T friend` +
 Returns all persons with both `friend` and `CS2103T` tag.
+// end::findtag[]
 
 // tag::delete[]
 === Deleting a person : `delete`
@@ -253,6 +255,8 @@ The 1st person in the list does not have the profile page in address book. +
 image::select2.png[width="690"]
 // end::select[]
 
+
+// tag::locate[]
 === Locating a person's address : `locate` (since v1.3)
 
 Locate the person's address identified by the index number used in the last person listing. +
@@ -272,7 +276,9 @@ Locates the 2nd person's address in the address book.
 * `find Betsy` +
 `locate 1` +
 Locates the 1st person in the results of the `find` command.
+// end::locate[]
 
+// tag::event[]
 === Adding an event: `addEvent` (since v1.2)
 
 Adds a person to the address book +
@@ -287,7 +293,7 @@ Examples:
 
 * `addEvent n/Return 5$ d/2017-08-17 de/lunch money` +
 Add a new event with description.
-* `addEvent n/Project Meeting d/2017-11-25 de/ +
+* `addEvent n/Project Meeting d/2017-11-25 de/` +
 Add a new event with empty description.
 
 === Deleting an event : `deleteEvent` (since v1.4)
@@ -303,8 +309,9 @@ Format: `deleteEvent INDEX`
 
 Examples:
 
-* `delete 2` +
+* `deleteEvent 2` +
 Deletes the 2nd listed event in the address book.
+// end::event[]
 
 === Listing entered commands : `history`
 
@@ -371,9 +378,11 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from the address book. +
 Format: `clear`
 
+// tag::reminder[]
 === Auto-reminder (since v1.5)
 
 NeoXPro Manager will remind the user events occur on the day when when starting the application.
+// end::reminder[]
 
 === Exiting the program : `exit`
 

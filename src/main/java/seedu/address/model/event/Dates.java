@@ -1,13 +1,12 @@
 //@@author erik0704
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
-
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -22,9 +21,7 @@ public class Dates {
     public final Date date;
 
     /**
-     * Validates given email.
-     *
-     * @throws IllegalValueException if given email address string is invalid.
+     * @throws IllegalValueException if given date string is invalid.
      */
     public Dates(String date) throws IllegalValueException {
         requireNonNull(date);

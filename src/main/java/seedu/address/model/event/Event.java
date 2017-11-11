@@ -13,9 +13,7 @@ import seedu.address.model.person.Name;
  */
 public class Event implements Comparable<Event> {
     /**
-     * Reuse name class of person cause they have the exact behavior for now
-     * TO DO: create a UniquePersonList and associate it with an event attribute
-     * i.e. an event can associate with none or many persons
+     * Reuse name class of person because they have the exact behavior for now
      *
      */
     private ObjectProperty<Name> name;
@@ -98,6 +96,12 @@ public class Event implements Comparable<Event> {
         return builder.toString();
     }
 
+    /**
+     *
+     * @param anotherevent
+     * @return 0, -1 or 1 if the date is same, before or after
+     *
+     */
     public int compareTo(Event anotherevent) {
         Dates anotherdate = anotherevent.getDate();
         if (this.getDate().equals(anotherdate)) {

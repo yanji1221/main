@@ -42,10 +42,12 @@ public class AddEventCommandTest {
 
     @Test
     public void equals() {
-        final AddEventCommand standardCommand = new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_APP, VALID_DES_APP);
+        final AddEventCommand standardCommand =
+         new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_APP, VALID_DES_APP);
 
         // same values -> returns true
-        AddEventCommand commandWithSameValues = new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_APP, VALID_DES_APP);
+        AddEventCommand commandWithSameValues =
+         new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_APP, VALID_DES_APP);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -58,13 +60,16 @@ public class AddEventCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different name -> returns false
-        assertFalse(standardCommand.equals(new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_APP)));
+        assertFalse(standardCommand.equals(
+        new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_APP)));
 
         // different date -> returns false
-        assertFalse(standardCommand.equals(new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_DINNER, VALID_DES_APP)));
+        assertFalse(standardCommand.equals(
+        new AddEventCommand(VALID_EVENT_NAME_APPOINTMENT, VALID_DATE_DINNER, VALID_DES_APP)));
 
         // different description -> returns false
-        assertFalse(standardCommand.equals(new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_DINNER)));
+        assertFalse(standardCommand.equals(
+        new AddEventCommand(VALID_EVENT_NAME_DINNER, VALID_DATE_APP, VALID_DES_DINNER)));
     }
 
     /**

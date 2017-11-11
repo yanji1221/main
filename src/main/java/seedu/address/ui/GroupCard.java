@@ -1,4 +1,8 @@
+//@@author hxy0229
 package seedu.address.ui;
+
+import java.util.HashMap;
+import java.util.Random;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -8,22 +12,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.group.Group;
 
-import java.util.HashMap;
-import java.util.Random;
-
+/** checkstyle comment */
 public class GroupCard extends UiPart<Region> {
 
     private static final String FXML = "GroupListCard.fxml";
 
-    //@@author yanji1221
+
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "black",
-            "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
-            "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-            "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
+        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+        "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
-    //@@author
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

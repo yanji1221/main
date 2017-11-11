@@ -16,11 +16,11 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.event.Event;
 
 public class AddressBookTest {
 
@@ -82,7 +82,8 @@ public class AddressBookTest {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
         private final ObservableList<Group> groups = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Tag> tags, Collection<? extends Event> events, Collection<? extends Group> groups) {
+        AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Tag> tags,
+                        Collection<? extends Event> events, Collection<? extends Group> groups) {
             this.persons.setAll(persons);
             this.tags.setAll(tags);
             this.events.setAll(events);

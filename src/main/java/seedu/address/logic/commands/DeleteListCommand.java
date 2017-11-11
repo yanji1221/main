@@ -1,14 +1,15 @@
 //@@author quangtdn
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Deletes a list of persons identified using their last displayed indices from the address book.
@@ -63,7 +64,7 @@ public class DeleteListCommand extends UndoableCommand {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && (this.listTargetIndices.containsAll(((DeleteListCommand) other).listTargetIndices)
-                    && ((DeleteListCommand)other).listTargetIndices
+                    && ((DeleteListCommand) other).listTargetIndices
                     .containsAll(this.listTargetIndices))); // state check
     }
 }

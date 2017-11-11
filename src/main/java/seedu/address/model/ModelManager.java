@@ -90,7 +90,8 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
-    public synchronized void addGroup(Group group) throws DuplicateGroupException,IllegalValueException {
+    @Override
+    public synchronized void addGroup(Group group) throws DuplicateGroupException, IllegalValueException {
         addressBook.addGroup(group);
         updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         indicateAddressBookChanged();
@@ -143,7 +144,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-
+    /** checkstyle comment, @TODO: David collate this please */
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);

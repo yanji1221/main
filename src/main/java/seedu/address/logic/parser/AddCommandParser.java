@@ -1,18 +1,32 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_NAME_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILEPAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_NAME_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProfilePage;
+import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -30,13 +44,13 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_BIRTHDAY,
-                PREFIX_ADDRESS, PREFIX_PROFILEPAGE, PREFIX_TAG,PREFIX_GROUP);
+                PREFIX_ADDRESS, PREFIX_PROFILEPAGE, PREFIX_TAG, PREFIX_GROUP);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_PHONE))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_EMAIL))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))) {
+                && (!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
+                && (!arePrefixesPresent(argMultimap, PREFIX_PHONE))
+                && (!arePrefixesPresent(argMultimap, PREFIX_EMAIL))
+                && (!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -51,25 +65,35 @@ public class AddCommandParser implements Parser<AddCommand> {
             Set<Tag> tagList;
             Set<Group> groupList;
 
-            if(arePrefixesPresent(argMultimap, PREFIX_NAME))
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
-            else {throw new IllegalValueException(MESSAGE_NO_NAME_FORMAT);}
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+            } else {
+                throw new IllegalValueException(MESSAGE_NO_NAME_FORMAT);
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_PHONE))
+            if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
                 phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
-            else {phone=new Phone();}
+            } else {
+                phone = new Phone();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_EMAIL))
+            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
                 email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
-            else {email=new Email();}
+            } else {
+                email = new Email();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))
+            if (arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY)) {
                 birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)).get();
-            else {birthday=new Birthday();}
+            } else {
+                birthday = new Birthday();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
+            if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
                 address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
-            else {address=new Address();}
+            } else {
+                address = new Address();
+            }
 
             profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
 
@@ -77,7 +101,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, tagList,groupList);
+            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, tagList, groupList);
 
 
             return new AddCommand(person);
@@ -95,3 +119,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
 }
+

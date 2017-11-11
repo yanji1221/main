@@ -1,10 +1,10 @@
+//@@author hxy0229
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
 
+    /** checkstyle comment */
     public DeleteGroupCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
@@ -24,3 +25,4 @@ public class DeleteGroupCommandParser implements Parser<DeleteGroupCommand> {
     }
 
 }
+//@@author

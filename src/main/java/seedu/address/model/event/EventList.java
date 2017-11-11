@@ -16,7 +16,7 @@ import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of events that enforces uniqueness between its elements and does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
@@ -30,7 +30,7 @@ public class EventList implements Iterable<Event> {
     private final ObservableList<Event> mappedList = EasyBind.map(internalList, (event) -> event);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent event as the given argument.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
@@ -38,9 +38,9 @@ public class EventList implements Iterable<Event> {
     }
 
     /**
-     * Adds a person to the list.
+     * Adds a event to the list.
      * @throws DuplicateEventException
-     * if the person to add is a duplicate of an existing person in the list.
+     * if the event to add is a duplicate of an existing event in the list.
      */
     public void add(Event toAdd) throws DuplicateEventException {
         requireNonNull(toAdd);
@@ -52,10 +52,10 @@ public class EventList implements Iterable<Event> {
     }
 
     /**
-     * Replaces the event {@code target} in the list with {@code editedPerson}.
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
      *
-     * @throws DuplicateEventException if the replacement is equivalent to another existing person in the list.
-     * TODO: @throws EventNotFoundException if {@code target} could not be found in the list.
+     * @throws DuplicateEventException if the replacement is equivalent to another existing event in the list.
+     * @throws EventNotFoundException if {@code target} could not be found in the list.
      */
     public void setEvent(Event target, Event editedEvent)
             throws DuplicateEventException, EventNotFoundException {
@@ -75,9 +75,8 @@ public class EventList implements Iterable<Event> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     *
-     * TODO : @throws PersonNotFoundException if no such event could be found in the list.
+     * Removes the equivalent event from the list.
+     * * @throws EventNotFoundException if {@code toRemove} could not be found in the list.
      */
     public boolean remove(Event toRemove) throws EventNotFoundException {
         requireNonNull(toRemove);
@@ -96,8 +95,8 @@ public class EventList implements Iterable<Event> {
 
     public void setEvents(List<? extends Event> events) throws DuplicateEventException {
         final EventList replacement = new EventList();
-        for (final Event person : events) {
-            replacement.add(new Event(person));
+        for (final Event event : events) {
+            replacement.add(new Event(event));
         }
         setEvents(replacement);
     }

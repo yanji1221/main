@@ -1,16 +1,19 @@
+//@@author hxy0229
 package seedu.address.model.group;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.DuplicateDataException;
-import seedu.address.commons.util.CollectionUtil;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import seedu.address.commons.exceptions.DuplicateDataException;
+import seedu.address.commons.util.CollectionUtil;
+
 
 /**
  * A list of tags that enforces no nulls and uniqueness between its elements.
@@ -39,6 +42,7 @@ public class UniqueGroupList implements Iterable<Group> {
         assert CollectionUtil.elementsAreUnique(internalList);
     }
 
+    /** checkstyle comment */
     public boolean remove(Group toRemove) throws GroupNotFoundException {
         requireNonNull(toRemove);
         final boolean groupFoundAndDeleted = internalList.remove(toRemove);
