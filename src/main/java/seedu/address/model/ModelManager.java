@@ -161,7 +161,9 @@ public class ModelManager extends ComponentManager implements Model {
     public ObservableList<Group> getFilteredGroupList() {
         return FXCollections.unmodifiableObservableList(filteredGroups);
     }
-
+    /**
+     * Update GroupList in the view.in the GroupListPanel
+     */
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
