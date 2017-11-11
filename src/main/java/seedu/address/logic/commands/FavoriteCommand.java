@@ -12,8 +12,6 @@ import seedu.address.commons.core.index.Index;
 
 import java.util.List;
 
-import static seedu.address.logic.commands.AddCommand.MESSAGE_DUPLICATE_PERSON;
-import static sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte1.other;
 
 public class FavoriteCommand extends UndoableCommand{
 
