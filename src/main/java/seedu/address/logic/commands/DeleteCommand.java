@@ -32,7 +32,7 @@ public class DeleteCommand extends UndoableCommand {
     }
 
     public DeleteCommand(Index targetIndex) {
-        this.listTargetIndices= new ArrayList<Index>();
+        this.listTargetIndices = new ArrayList<Index>();
         this.listTargetIndices.add(targetIndex);
     }
 
