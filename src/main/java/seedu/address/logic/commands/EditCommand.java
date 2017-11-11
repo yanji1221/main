@@ -24,12 +24,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.ProfilePage;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Favorite;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProfilePage;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -120,8 +120,8 @@ public class EditCommand extends UndoableCommand {
         Favorite updatedFavorite = editPersonDescriptor.getFavorite().orElse(personToEdit.getFavorite());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
-        return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,updatedFavorite,
-                updatedTags, updatedGroups);
+        return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,
+                updatedFavorite, updatedTags, updatedGroups);
     }
 
     @Override

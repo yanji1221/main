@@ -18,7 +18,7 @@ public class Favorite {
      *
      * @throws IllegalValueException if given birthday address string is invalid.
      */
-    public Favorite(boolean favorite){
+    public Favorite (boolean favorite) {
         requireNonNull(favorite);
         this.value = favorite;
     }
@@ -30,7 +30,7 @@ public class Favorite {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Favorite // instanceof handles nulls
-                && this.value==(((Favorite) other).value)); // state check
+                && this.value == (((Favorite) other).value)); // state check
     }
 
 }

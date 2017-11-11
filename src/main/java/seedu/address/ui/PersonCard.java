@@ -6,11 +6,11 @@ import java.util.Random;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import seedu.address.model.person.ReadOnlyPerson;
 
@@ -132,11 +132,13 @@ public class PersonCard extends UiPart<Region> {
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
-        if(person.getFavorite().value==true){
+        if (person.getFavorite().value == true){
             Image image = new Image("/images/star.png");
             favorite.setImage(image);
         }
-        else favorite = null;
+        else {
+            favorite = null;
+        }
         ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();

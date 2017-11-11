@@ -1,19 +1,19 @@
 //@@author hxy0229
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Favorite;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.commons.core.index.Index;
-
-import java.util.List;
 
 
-public class FavoriteCommand extends UndoableCommand{
+public class FavoriteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "fav";
 
@@ -43,10 +43,13 @@ public class FavoriteCommand extends UndoableCommand{
         }
 
         ReadOnlyPerson personToFavorite = lastShownList.get(targetIndex.getZeroBased());
-        if(personToFavorite.getFavorite().value==true)
-            return new CommandResult(personToFavorite.getName().fullName + new String(MESSAGE_FAVORITING_FAVORITED_PERSON));
-        Person editedPerson = new Person(personToFavorite.getName(), personToFavorite.getPhone(), personToFavorite.getEmail(),personToFavorite.getBirthday(),
-                personToFavorite.getAddress(), personToFavorite.getProfilePage(), favorite, personToFavorite.getTags(), personToFavorite.getGroups());
+        if (personToFavorite.getFavorite().value == true) {
+            return new CommandResult(personToFavorite.getName().fullName +
+                    new String(MESSAGE_FAVORITING_FAVORITED_PERSON));
+        }
+        Person editedPerson = new Person(personToFavorite.getName(), personToFavorite.getPhone(),
+                personToFavorite.getEmail(), personToFavorite.getBirthday(), personToFavorite.getAddress(),
+                personToFavorite.getProfilePage(), favorite, personToFavorite.getTags(), personToFavorite.getGroups());
 
         try {
             model.updatePerson(personToFavorite, editedPerson);
