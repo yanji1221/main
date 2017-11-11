@@ -1057,32 +1057,23 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add event associated with a person
+=== Use case: Add an event reminder
 
 *MSS*
 
-1.  User requests to list persons
-2.  Application shows a list of persons
-3.  User requests to add in an event associate with a specific person in the list
-4.  Application adds the event
+1.  User requests to add an event associated with a future date.
+2.  Application adds the event
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 3. User start the application on the date associated with the added event.
+* 4. Application shows the user popup reminder for the event upon the start.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. Application shows an error message.
-+
-Use case resumes at step 2.
-
-{More to be added}
 
 [appendix]
 == Non Functional Requirements
@@ -1111,18 +1102,4 @@ A contact detail that is not meant to be shared with others
 ....
 
 [appendix]
-== Product Survey
 
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
