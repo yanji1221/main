@@ -29,7 +29,8 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsPhonePredicate // instanceof handles nulls
-                && this.numbers.equals(((NameContainsPhonePredicate) other).numbers)); // state check
+                && this.numbers.containsAll((((NameContainsPhonePredicate) other).numbers))
+                && ((NameContainsPhonePredicate) other).numbers.containsAll(this.numbers)); // state check
     }
 
 }
