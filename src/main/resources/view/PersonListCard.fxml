@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -9,9 +10,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -28,7 +28,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <SVGPath fx:id="favorite" content="M40,60 C42,48 44,30 25,32" />
+            <ImageView fx:id="favorite" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
       </HBox>
       <FlowPane fx:id="tags" />
          <HBox>

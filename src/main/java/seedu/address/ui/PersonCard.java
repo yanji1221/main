@@ -9,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.SVGPath;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -48,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     //@@author hxy0229
-    private SVGPath favorite ;
+    private ImageView favorite ;
     @FXML
     //@@author
     private Label phone;
@@ -130,7 +132,11 @@ public class PersonCard extends UiPart<Region> {
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
-        favorite.contentProperty().bind(Bindings.convert(person.favoriteProperty()));
+        if(person.getFavorite().value==true){
+            Image image = new Image("/images/star.png");
+            favorite.setImage(image);
+        }
+        else favorite = null;
         ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
