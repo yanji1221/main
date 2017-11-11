@@ -18,6 +18,8 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.NameContainsKeywordsEventPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -149,4 +151,18 @@ public class CommandTestUtil {
             throw new AssertionError("Person in filtered list must exist in model.", pnfe);
         }
     }
+
+    //@@author erik0704
+    /**
+     * Updates {@code model}'s filtered list to show only the first event in the {@code model}'s address book.
+     */
+    public static void showFirstEventOnly(Model model) {
+        Event event = model.getAddressBook().getEventList().get(0);
+
+        final String[] splitName = event.getName().fullName.split("\\s+");
+        model.updateFilteredEventList(new NameContainsKeywordsEventPredicate(Arrays.asList(splitName[0])));
+
+        assert model.getFilteredEventList().size() == 1;
+    }
+    //@@author
 }
