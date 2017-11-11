@@ -8,7 +8,15 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.DuplicateGroupException;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.ProfilePage;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Favorite;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
 
