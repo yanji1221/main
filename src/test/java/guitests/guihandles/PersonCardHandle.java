@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 /**
@@ -16,6 +17,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ADDRESS_FIELD_ID = "#address";
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String EMAIL_FIELD_ID = "#email";
+    private static final String FAVORITE_FIELD_ID = "#favorite";
     //@@author yanji1221
     private static final String BIRTHDAY_FIELD_ID = "#birthday";
     //@@author quangtdn
@@ -36,6 +38,8 @@ public class PersonCardHandle extends NodeHandle<Node> {
     //@@author
     private final List<Label> tagLabels;
 
+    private final ImageView favoriteLabel;
+
     public PersonCardHandle(Node cardNode) {
         super(cardNode);
 
@@ -48,6 +52,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         //@@author yanji1221
         this.birthdayLabel = getChildNode(BIRTHDAY_FIELD_ID);
         //@@author
+        this.favoriteLabel = getChildNode(FAVORITE_FIELD_ID);
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         this.tagLabels = tagsContainer
                 .getChildrenUnmodifiable()
@@ -76,6 +81,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
 
     public String getPhone() {
         return phoneLabel.getText();
+    }
+
+    public boolean getFavorite() {
+        return (favoriteLabel != null);
     }
 
     public String getEmail() {

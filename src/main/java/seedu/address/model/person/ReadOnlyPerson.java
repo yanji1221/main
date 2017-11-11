@@ -74,11 +74,10 @@ public interface ReadOnlyPerson {
                 .append(" Profile Page: ")
                 .append(getProfilePage())
                 .append(" Status: ")
-                .append(getFavorite())
+                .append(" ")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append("In Groups: ");
-        getGroups().forEach(builder::append);
         return builder.toString();
     }
 
