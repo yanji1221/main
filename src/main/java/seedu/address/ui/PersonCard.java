@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     //@@author hxy0229
-    private ImageView favorite ;
+    private ImageView favorite;
     @FXML
     //@@author
     private Label phone;
@@ -132,7 +132,7 @@ public class PersonCard extends UiPart<Region> {
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
-        if (person.getFavorite().value == true){
+        if (person.getFavorite().value == true) {
             Image image = new Image("/images/star.png");
             favorite.setImage(image);
         }

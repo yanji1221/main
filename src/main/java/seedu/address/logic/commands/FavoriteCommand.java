@@ -44,8 +44,8 @@ public class FavoriteCommand extends UndoableCommand {
 
         ReadOnlyPerson personToFavorite = lastShownList.get(targetIndex.getZeroBased());
         if (personToFavorite.getFavorite().value == true) {
-            return new CommandResult(personToFavorite.getName().fullName +
-                    new String(MESSAGE_FAVORITING_FAVORITED_PERSON));
+            return new CommandResult(personToFavorite.getName().fullName
+                    + new String(MESSAGE_FAVORITING_FAVORITED_PERSON));
         }
         Person editedPerson = new Person(personToFavorite.getName(), personToFavorite.getPhone(),
                 personToFavorite.getEmail(), personToFavorite.getBirthday(), personToFavorite.getAddress(),

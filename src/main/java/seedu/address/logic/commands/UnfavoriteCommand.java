@@ -43,12 +43,12 @@ public class UnfavoriteCommand extends UndoableCommand{
         }
 
         ReadOnlyPerson personToFavorite = lastShownList.get(targetIndex.getZeroBased());
-        if(personToFavorite.getFavorite().value == false){
-            return new CommandResult(personToFavorite.getName().fullName +
-                    new String(MESSAGE_UNFAVORITING_UNFAVORITED_PERSON));
+        if (personToFavorite.getFavorite().value == false) {
+            return new CommandResult(personToFavorite.getName().fullName
+                    +  new String(MESSAGE_UNFAVORITING_UNFAVORITED_PERSON));
         }
         Person editedPerson = new Person(personToFavorite.getName(), personToFavorite.getPhone(),
-                personToFavorite.getEmail(),personToFavorite.getBirthday(), personToFavorite.getAddress(),
+                personToFavorite.getEmail(), personToFavorite.getBirthday(), personToFavorite.getAddress(),
                 personToFavorite.getProfilePage(), favorite, personToFavorite.getTags(), personToFavorite.getGroups());
 
         try {

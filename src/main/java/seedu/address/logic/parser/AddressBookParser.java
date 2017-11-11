@@ -95,16 +95,18 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-//@@author hxy0229
+
+        //@@author hxy0229
         case FavoriteCommand.COMMAND_WORD:
             return new FavoriteCommandParser().parse(arguments);
-  //
+
         case UnfavoriteCommand.COMMAND_WORD:
             return new UnfavoriteCommandParser().parse(arguments);
 
         case ListFavoriteCommand.COMMAND_WORD:
-             return new ListFavoriteCommandParser().parse();
-//@@author
+            return new ListFavoriteCommandParser().parse();
+        //@@author
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
