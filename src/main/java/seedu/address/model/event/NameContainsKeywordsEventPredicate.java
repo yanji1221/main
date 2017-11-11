@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Event}'s {@code Name} matches any of the keywords given.
+ */
 public class NameContainsKeywordsEventPredicate implements Predicate<Event> {
     private final List<String> keywords;
 
@@ -17,8 +20,8 @@ public class NameContainsKeywordsEventPredicate implements Predicate<Event> {
     @Override
     public boolean test(Event event) {
         return keywords.stream().anyMatch(keyword
-                -> StringUtil.containsWordIgnoreCase(event.getName().fullName, keyword)) || keywords.stream()
-                .anyMatch(keyword -> event.getName().fullName.toLowerCase().contains(keyword.toLowerCase()));
+            -> StringUtil.containsWordIgnoreCase(event.getName().fullName, keyword)) || keywords.stream()
+            .anyMatch(keyword -> event.getName().fullName.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
