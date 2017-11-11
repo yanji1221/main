@@ -31,5 +31,7 @@ public class ListFavoriteCommand extends Command {
                 || (other instanceof ListFavoriteCommand // instanceof handles nulls
                 && this.predicate.equals(((ListFavoriteCommand) other).predicate)); // state check
     }
+
 }
+
 //@@author

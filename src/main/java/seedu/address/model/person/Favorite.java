@@ -33,9 +33,6 @@ public class Favorite {
                 && this.value==(((Favorite) other).value)); // state check
     }
 
-   /*public int hashCode() {
-        return value.hashCode();
-    }*/
-
 }
+
 //@@author

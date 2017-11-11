@@ -28,4 +28,5 @@ public class FavoritePredicate implements Predicate<ReadOnlyPerson> {
     }
 
 }
+
 //@@author
