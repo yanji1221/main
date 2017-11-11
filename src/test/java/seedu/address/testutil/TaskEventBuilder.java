@@ -58,6 +58,14 @@ public class TaskEventBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Description} of the {@code Event} that we are building.
+     */
+    public TaskEventBuilder withDescription(String des) {
+        this.event.setDescription(des);
+        return this;
+    }
+
     public Event build() {
         return this.event;
     }
