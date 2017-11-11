@@ -120,6 +120,7 @@ public class Person implements ReadOnlyPerson {
         return email;
     }
 
+    //@@author hxy0229
     @Override
     public Favorite getFavorite() {
         return favorite.get();
@@ -133,6 +134,7 @@ public class Person implements ReadOnlyPerson {
     public ObjectProperty<Favorite> favoriteProperty() {
         return favorite;
     }
+    //@@author
 
     @Override
     public Email getEmail() {

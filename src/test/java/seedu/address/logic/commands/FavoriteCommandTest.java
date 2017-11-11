@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
@@ -121,3 +122,4 @@ public class FavoriteCommandTest {
         assert model.getFilteredPersonList().isEmpty();
     }
 }
+//@@author

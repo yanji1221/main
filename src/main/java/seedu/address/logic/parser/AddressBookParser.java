@@ -71,7 +71,7 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
+//@@author hxy0229
             case FavoriteCommand.COMMAND_WORD:
                 return new FavoriteCommandParser().parse(arguments);
 
@@ -80,7 +80,7 @@ public class AddressBookParser {
 
             case ListFavoriteCommand.COMMAND_WORD:
                 return new ListFavoriteCommandParser().parse();
-
+//@@author
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 

@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ListFavoriteCommand;
@@ -18,3 +19,4 @@ public class ListFavoriteCommandParser {
         return new ListFavoriteCommand(new FavoritePredicate());
     }
 }
+//@@author

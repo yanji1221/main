@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.model.person;
 
 import java.util.List;
@@ -27,3 +28,4 @@ public class FavoritePredicate implements Predicate<ReadOnlyPerson> {
     }
 
 }
+//@@author

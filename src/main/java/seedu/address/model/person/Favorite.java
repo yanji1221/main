@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.model.person;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -37,3 +38,4 @@ public class Favorite {
     }*/
 
 }
+//@@author

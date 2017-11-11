@@ -106,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
         return personFoundAndDeleted;
     }
 
+    //@@author hxy0229
     public boolean favorite(ReadOnlyPerson toFavorite) throws PersonNotFoundException {
         requireNonNull(toFavorite);
         final boolean personFoundAndDeleted = internalList.contains(toFavorite);
@@ -114,6 +115,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return personFoundAndDeleted;
     }
+    //@@author
 
 
     public void setPersons(UniquePersonList replacement) {

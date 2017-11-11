@@ -90,12 +90,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author hxy0229
     @Override
     public synchronized void favoritePerson(ReadOnlyPerson person) throws PersonNotFoundException {
         addressBook.favoritePerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
+    //@@author
 
     @Override
     public synchronized void addGroup(Group group) throws DuplicateGroupException, IllegalValueException {
@@ -151,11 +153,12 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    /** checkstyle comment, @TODO: David collate this please */
+    //@@author  hxy0229
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
     }
+    //@@author
 
     public ObservableList<Group> getFilteredGroupList() {
         return FXCollections.unmodifiableObservableList(filteredGroups);

@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
@@ -66,3 +67,4 @@ public class UnfavoriteCommand extends UndoableCommand{
     }
 
 }
+//@@author

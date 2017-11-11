@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
@@ -23,3 +24,4 @@ public class UnfavoriteCommandParser implements Parser<UnfavoriteCommand> {
         }
     }
 }
+//@@author

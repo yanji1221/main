@@ -1,3 +1,4 @@
+//@@author hxy0229
 package seedu.address.logic.commands;
 
 import seedu.address.model.person.FavoritePredicate;
@@ -31,3 +32,4 @@ public class ListFavoriteCommand extends Command {
                 && this.predicate.equals(((ListFavoriteCommand) other).predicate)); // state check
     }
 }
+//@@author
