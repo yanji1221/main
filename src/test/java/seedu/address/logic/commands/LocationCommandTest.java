@@ -94,7 +94,6 @@ public class LocationCommandTest {
 
     /**
      * Executes a {@code LocationCommand} with the given {@code index}
-     * is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index) {
         LocationCommand locateCommand = prepareCommand(index);
