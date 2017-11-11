@@ -76,13 +76,15 @@ public class Event implements Comparable<Event> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Event)) {
+        if (other instanceof Event) {
+            // state check
+            Event e = (Event) other;
+            return e.getName().equals(this.getName())
+                    && e.getDate().equals(this.getDate())
+                    && e.getDescription().equals(this.getDescription());
+        } else {
             return false;
         }
-
-        // state check
-        Event e = (Event) other;
-        return name.equals(e.name) && date.equals(e.date) && description.equals(e.description);
     }
 
     @Override

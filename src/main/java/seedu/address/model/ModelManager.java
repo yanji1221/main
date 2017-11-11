@@ -110,7 +110,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public synchronized void addEvent(Event event) throws DuplicateEventException {
         addressBook.addEvent(event);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         indicateAddressBookChanged();
     }
 
