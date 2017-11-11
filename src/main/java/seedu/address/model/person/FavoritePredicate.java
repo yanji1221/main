@@ -19,10 +19,8 @@ public class FavoritePredicate implements Predicate<ReadOnlyPerson> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FavoritePredicate // instanceof handles nulls
-        ); // state check
+                || (other instanceof FavoritePredicate);
     }
-
 }
 
 //@@author

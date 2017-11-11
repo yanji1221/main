@@ -12,7 +12,9 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-
+/**
+ * Favorites a person identified using it's last displayed index from the address book.
+ */
 public class FavoriteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "fav";
@@ -33,7 +35,7 @@ public class FavoriteCommand extends UndoableCommand {
         this.favorite = new Favorite(favorite);
     }
 
-
+    @Override
     public CommandResult executeUndoableCommand() throws CommandException {
 
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();

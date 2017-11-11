@@ -8,9 +8,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Parses input arguments and creates a new UnfavoriteCommand object
+ */
 public class UnfavoriteCommandParser implements Parser<UnfavoriteCommand> {
+
     @Override
+
     public UnfavoriteCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);

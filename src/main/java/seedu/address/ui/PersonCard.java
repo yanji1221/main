@@ -144,6 +144,7 @@ public class PersonCard extends UiPart<Region> {
             initTags(person);
         });
         //@@author hxy0229
+
         person.groupProperty().addListener((observable, oldValue, newValue) -> {
             groups.getChildren().clear();
             initGroups(person);
@@ -163,6 +164,9 @@ public class PersonCard extends UiPart<Region> {
     }
 
     //@@author hxy0229
+    /**
+     * Distribute colors for groups
+     */
     private void initGroups(ReadOnlyPerson person) {
         person.getGroups().forEach(group -> {
             Label groupLabel = new Label(group.getName().fullName);

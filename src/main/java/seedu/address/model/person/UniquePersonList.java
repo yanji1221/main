@@ -107,6 +107,11 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     //@@author hxy0229
+    /**
+     * Favorites the equivalent person from the list.
+     *
+     * @throws PersonNotFoundException if no such person could be found in the list.
+     */
     public boolean favorite(ReadOnlyPerson toFavorite) throws PersonNotFoundException {
         requireNonNull(toFavorite);
         final boolean personFoundAndDeleted = internalList.contains(toFavorite);

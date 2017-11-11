@@ -36,7 +36,6 @@ import seedu.address.model.tag.Tag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     //@@author yanji1221
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -99,13 +98,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
             favorite = new Favorite(false);
-
-
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, favorite, tagList, groupList);
-
+            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, favorite, tagList,
+                    groupList);
 
             return new AddCommand(person);
         } catch (IllegalValueException ive) {

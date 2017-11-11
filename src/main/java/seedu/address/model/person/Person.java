@@ -77,6 +77,9 @@ public class Person implements ReadOnlyPerson {
                 source.getProfilePage(), source.getFavorite(), source.getTags(), source.getGroups());
     }
     //@@author hxy0229
+    /**
+     * Add a group into AddressGroup
+     */
     public void addGroup(Group group) throws DuplicateGroupException {
         groups.get().add(group);
 

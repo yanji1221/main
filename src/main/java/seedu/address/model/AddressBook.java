@@ -252,7 +252,10 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new PersonNotFoundException();
         }
     }
-
+    /**
+     * Favorites {@code key} from this {@code AddressBook}.
+     * @throws PersonNotFoundException if the {@code key} is not in this {@code AddressBook}.
+     */
     public boolean favoritePerson(ReadOnlyPerson key) throws PersonNotFoundException {
         if (persons.favorite(key)) {
             return true;

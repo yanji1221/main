@@ -153,16 +153,20 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //@@author  hxy0229
+    //@@author hxy0229
+    /**
+     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
+     * {@code addressBook}
+     */
+    public ObservableList<Group> getFilteredGroupList() {
+        return FXCollections.unmodifiableObservableList(filteredGroups);
+    }
+
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
     }
     //@@author
-
-    public ObservableList<Group> getFilteredGroupList() {
-        return FXCollections.unmodifiableObservableList(filteredGroups);
-    }
 
     //@@author erik0704
     /**
