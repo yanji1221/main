@@ -9,6 +9,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 
+/**
+ * A utility class containing a list of {@code Event} objects to be used in tests.
+ */
 public class TypicalTaskEvents {
     public static final Event ONE = new TaskEventBuilder().withName("Project Demo")
             .withDates("2016-12-15").withDescription("Read requirements").build();
