@@ -7,11 +7,11 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favorite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProfilePage;
-import seedu.address.model.person.Favorite;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -32,7 +32,9 @@ public class PersonBuilder {
     public static final String DEFAULT_PROFILEPAGE = "www.facebook.com";
     //@@author
     public static final String DEFAULT_TAGS = "friends";
+    //@@author hxy0229
     public static final boolean DEFAULT_FAVORITE = true;
+    //@@author
     public static final String DEFAULT_GROUPS = "NUS";
 
     private Person person;
@@ -49,7 +51,7 @@ public class PersonBuilder {
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
             Set<Group> defaultGroups = SampleDataUtil.getGroupSet(DEFAULT_GROUPS);
             this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultBirthday, defaultAddress,
-                    defaultProfilePage,defaultFavorite, defaultTags, defaultGroups);
+                    defaultProfilePage, defaultFavorite, defaultTags, defaultGroups);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }

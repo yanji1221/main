@@ -3,15 +3,61 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== Project: AddressBook - Level 4
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+== Project: AddressBook - NeoxPro
+AddressBook - NeoxPro is a desktop address book application used for teaching Software Engineering principles.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about
+6 kLoC.NeoXPro not only allows users to keep track of the personal information of their friends and acquaintances,
+it helps users to manage their everyday tasks too.
 
-*Code contributed*: [https://github.com [Functional code]] [https://github.com[Test code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/hxy0229.md [Functional code]]
+[https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/hxy0229.md[Test code]] {give links to collated code files}
 
+
+=== Enhancement Added: Make most `add` fields optional
+
+==== External behavior
+
+Can Add
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=add]
+
+Finds person whose phone numbers match with at least a phone number in the specified list
+Format: `phone NUMBER [MORE_NUMBERS]`
+
+****
+* The order of phone numbers being queried does not matter.
+* Only the phone number is searched.
+* Only full numbers will be matched e.b. '12345' will not match '123456' // can be modifed latter to match a chain of partial number
+****
+
+#End of Extract#
+
+---
+
+==== Justification
+
+Searching a contact by phone number is extremely convenient for searching a person in NeoXPRO when searching a contact by name is inefficient in a large contact list.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=phone]
+
+#End of Extract#
+
+---
 === Enhancement Added:
 1. When adding people, everything except for the name is optional.
 2. Can group people into several groups.
 3. Can DeleteGroups.
+4. Can favorite a person.
+5. Can undo favorite a person.
+6. Can list all the favorited person.
 
 ==== External behavior
 
@@ -44,6 +90,13 @@ include::../DeveloperGuide.adoc[tag=add]
 2. Add a person into a group.
 3. Remove a person from a group.
 4. Add password into the group.
+5. Add several different levels of favorite.
 
 === Other contributions
 Fix the help window problems that can happen to some computers.
+
+* Help other group to find bugs or make suggestion(Issue https://github.com/CS2103AUG2017-W10-B3/main/issues/76[#76], https://github.com/CS2103AUG2017-W10-B3/main/issues/75[#75])
+
+== Project: PowerPointLabs
+
+{Optionally (not graded), you may include other projects in your portfolio.}
