@@ -35,37 +35,39 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: repeat previous find command where person list is displaying the persons we are finding
-         * -> 2 persons found
+        /* Case: repeat previous find phone command where person list is displaying the persons with the phone that we are
+         * finding -> 2 persons found
          */
         command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find person where person list is not displaying the person we are finding -> 1 person found */
+        /* Case: find phone where person list is not displaying the person with the phone that we are finding
+         * -> 1 person found
+         */
         command = FindPhoneCommand.COMMAND_WORD + " " + CARL.getPhone().value;
         ModelHelper.setFilteredList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple persons in address book, 2 keywords -> 2 persons found */
+        /* Case: find multiple phones in address book, 2 phones -> 2 persons found */
         command = FindPhoneCommand.COMMAND_WORD + " " + BENSON.getPhone().value + " " + DANIEL.getPhone().value;
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple persons in address book, 2 keywords in reversed order -> 2 persons found */
+        /* Case: find multiple phones in address book, 2 phones in reversed order -> 2 persons found */
         command = FindPhoneCommand.COMMAND_WORD + " " + DANIEL.getPhone().value + " " + BENSON.getPhone().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple persons in address book, 2 keywords with 1 repeat -> 2 persons found */
+        /* Case: find multiple phones in address book, 2 phones with 1 repeat -> 2 persons found */
         command = FindPhoneCommand.COMMAND_WORD +  " " + DANIEL.getPhone().value + " "
                 + BENSON.getPhone().value + " " + DANIEL.getPhone().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple persons in address book, 2 matching keywords and 1 non-matching keyword
+        /* Case: find multiple phones in address book, 2 matching phones and 1 non-matching phone
          * -> 2 persons found
          */
         String nonMatchingPhone = "91919191";
@@ -74,17 +76,19 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: undo previous find command -> rejected */
+        /* Case: undo previous find phone command -> rejected */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: redo previous find command -> rejected */
+        /* Case: redo previous find phone command -> rejected */
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: find same persons in address book after deleting 1 of them -> 1 person found */
+        /* Case: find same persons with previously specified phone in address book after deleting 1 of them
+        * -> 1 person found
+        */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assert !getModel().getAddressBook().getPersonList().contains(BENSON);
         command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING;
@@ -93,19 +97,19 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find person in address book, keyword is substring of name -> 2 persons found */
+        /* Case: find phone in address book, input is substring of phone -> 2 persons found */
         command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING;
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find person in address book, name is substring of keyword -> 0 persons found */
+        /* Case: find phone in address book, phone is substring of input -> 0 persons found */
         command = FindPhoneCommand.COMMAND_WORD + " " +PARTIAL_PHONE_MATCHING + "000";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find person not in address book -> 0 persons found */
+        /* Case: find phone not in address book -> 0 persons found */
         command = FindPhoneCommand.COMMAND_WORD + " 000000";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -131,7 +135,7 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find while a person is selected -> selected card deselected */
+        /* Case: find phone while a person is selected -> selected card deselected */
         showAllPersons();
         selectPerson(Index.fromOneBased(1));
         assert !getPersonListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName);
@@ -140,7 +144,7 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
-        /* Case: find person in empty address book -> 0 persons found */
+        /* Case: find phone in empty address book -> 0 persons found */
         executeCommand(ClearCommand.COMMAND_WORD);
         assert getModel().getAddressBook().getPersonList().size() == 0;
         command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING;
