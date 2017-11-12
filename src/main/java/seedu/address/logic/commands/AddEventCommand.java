@@ -21,10 +21,10 @@ public class AddEventCommand extends UndoableCommand {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE (yyyy-mm-dd format) "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
+            + PREFIX_DESCRIPTION + "[" + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Doctor appointment "
-            + PREFIX_DATE + "2017-10-17 "
+            + PREFIX_DATE + "2017-12-17 "
             + PREFIX_DESCRIPTION + "Come before 9am";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";

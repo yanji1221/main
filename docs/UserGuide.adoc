@@ -171,7 +171,7 @@ Finds persons whose tags include all of the given keywords. +
 Format: `findTag KEYWORD [MORE_KEYWORDS]`
 
 ****
-* The search is case insensitive. e.g `cs2103t` will match `CS2103T`
+* The search is case sensitive. e.g `cs2103t` will not match `CS2103T`
 * The order of the keywords does not matter.
 * Only the tag is searched.
 * Only full words will be matched e.g. `cs210` will not match `cs2101`
@@ -431,24 +431,12 @@ The `redo` command fails as there are no `undo` commands executed previously.
 Clears all entries from the address book. +
 Format: `clear`
 
-// tag::reminder[]
-=== Auto-reminder (since v1.5)
-
-NeoXPro Manager will remind the user events occur on the day when when starting the application.
-// end::reminder[]
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-Format: `exit`
-
 // tag::export[]
 === Exporting the data: `export`
 
 Format: `export`
 Address book data are exported
 //end::export[]
-
 
 // tag::comingbirthdaylist[]
 === Special feature
@@ -482,8 +470,20 @@ Examples:
     Only Amy is shown in the list +
     Restart the software +
     Both Amy and John are shown in the list +
-
 // end::comingbirthdaylist[]
+
+
+// tag::reminder[]
+==== Auto-reminder (since v1.5)
+
+NeoXPro Manager will remind the user events occur on the day when when starting the application.
+// end::reminder[]
+
+=== Exiting the program : `exit`
+
+Exits the program. +
+Format: `exit`
+
 
 === Saving the data
 
