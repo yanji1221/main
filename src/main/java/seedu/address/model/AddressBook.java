@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setGroups(new HashSet<>(newData.getGroupList()));
         setTags(new HashSet<>(newData.getTagList()));
         syncMasterTagListWith(persons);
-        syncMasterGroupListWith(persons);
+        //syncMasterGroupListWith(persons);
         syncMasterPersonListWith(groups);
         try {
             setEvents(newData.getEventList());
@@ -118,7 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(ReadOnlyPerson p) throws DuplicatePersonException {
         Person newPerson = new Person(p);
         syncMasterTagListWith(newPerson);
-        syncMasterGroupListWith(newPerson);
+        //syncMasterGroupListWith(newPerson);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
