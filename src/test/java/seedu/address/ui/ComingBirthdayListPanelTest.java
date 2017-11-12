@@ -37,7 +37,8 @@ public class ComingBirthdayListPanelTest extends GuiUnitTest {
         ComingBirthdayListPanel comingBirthdayListPanel = new ComingBirthdayListPanel(TYPICAL_PERSONS);
         uiPartRule.setUiPart(comingBirthdayListPanel);
 
-        comingBirthdayListPanelHandle = new ComingBirthdayListPanelHandle(getChildNode(comingBirthdayListPanel.getRoot(),
+        comingBirthdayListPanelHandle = new ComingBirthdayListPanelHandle(getChildNode(comingBirthdayListPanel
+                        .getRoot(),
                 ComingBirthdayListPanelHandle.COMING_BIRTHDAY_LIST_VIEW_ID));
     }
 
