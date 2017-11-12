@@ -120,6 +120,11 @@ public class AddCommandTest {
         //@@author
 
         @Override
+        public void favoritePerson(ReadOnlyPerson person) throws PersonNotFoundException {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void resetData(ReadOnlyAddressBook newData) {
             fail("This method should not be called.");
         }

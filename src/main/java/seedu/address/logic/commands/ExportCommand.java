@@ -41,14 +41,9 @@ public class ExportCommand extends Command {
         try {
             File file;
             file = new File(savedFilePath);
-
-
             File fXmlFile = new File(System.getProperty("user.dir") + "/data/addressbook.xml");
             System.out.println(System.getProperty("user.dir") + "/data/addressbook.xml");
-            //PrintWriter output = null;
-            //PrintWriter output = new PrintWriter(new FileWriter(file), "UTF-8");
             PrintWriter output = new PrintWriter(savedFilePath, "UTF-8");
-            //File fXmlFile = new File("/Users/mkyong/staff.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -66,8 +61,6 @@ public class ExportCommand extends Command {
                     output.println("Name : "
                             + eElement.getElementsByTagName("name")
                             .item(0).getTextContent());
-                    //output.println("Name : "
-                    //      + eElement.getAttribute("name"));
                     output.println("Phone : "
                             + eElement.getElementsByTagName("phone")
                             .item(0).getTextContent());
@@ -91,9 +84,7 @@ public class ExportCommand extends Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return new CommandResult("File exported at " + savedFilePath + " .");
-        // export your data code here
     }
 
 

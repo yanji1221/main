@@ -30,7 +30,7 @@ public class FindPhoneCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
+                || (other instanceof FindPhoneCommand // instanceof handles nulls
                 && this.predicate.equals(((FindPhoneCommand) other).predicate)); // state check
     }
 }

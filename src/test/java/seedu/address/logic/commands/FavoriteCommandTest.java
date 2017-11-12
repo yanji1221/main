@@ -1,16 +1,15 @@
+//@@author hxy0229
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
+import static seedu.address.logic.commands.FavoriteCommand.MESSAGE_FAVORITE_COMMAND_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -23,55 +22,51 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ReadOnlyPerson;
 
-
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class FavoriteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    //@@author quangtdn
+
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
-        ReadOnlyPerson personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = prepareCommand(INDEX_FIRST_PERSON);
-        List<ReadOnlyPerson> listPersonsToDelete = new ArrayList<ReadOnlyPerson>();
-        listPersonsToDelete.add(personToDelete);
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, listPersonsToDelete);
+        ReadOnlyPerson personToFavorite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        FavoriteCommand favoriteCommand = prepareCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = MESSAGE_FAVORITE_COMMAND_SUCCESS + personToFavorite.getName().fullName;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.favoritePerson(personToFavorite);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandResult result = favoriteCommand.execute();
+        assertEquals(expectedMessage, result.feedbackToUser);
     }
-    //@@author
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = prepareCommand(outOfBoundIndex);
+        FavoriteCommand favoriteCommand  = prepareCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(favoriteCommand , model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-    //@@author quangtdn
+
     @Test
     public void execute_validIndexFilteredList_success() throws Exception {
         showFirstPersonOnly(model);
 
-        ReadOnlyPerson personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = prepareCommand(INDEX_FIRST_PERSON);
-        List<ReadOnlyPerson> listPersonsToDelete = new ArrayList<ReadOnlyPerson>();
-        listPersonsToDelete.add(personToDelete);
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, listPersonsToDelete);
+        ReadOnlyPerson personToFavorite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        FavoriteCommand favoriteCommand = prepareCommand(INDEX_FIRST_PERSON);
 
+        String expectedMessage = MESSAGE_FAVORITE_COMMAND_SUCCESS + personToFavorite.getName().fullName;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.favoritePerson(personToFavorite);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandResult result = favoriteCommand.execute();
+        assertEquals(expectedMessage, result.feedbackToUser);
     }
-    //@@author
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
@@ -81,41 +76,40 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = prepareCommand(outOfBoundIndex);
+        FavoriteCommand favoriteCommand = prepareCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(favoriteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        FavoriteCommand favoriteFirstCommand = new FavoriteCommand(INDEX_FIRST_PERSON, true);
+        FavoriteCommand favoriteSecondCommand = new FavoriteCommand(INDEX_SECOND_PERSON, true);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(favoriteFirstCommand.equals(favoriteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        FavoriteCommand favoriteFirstCommandCopy = new FavoriteCommand(INDEX_FIRST_PERSON, true);
+        assertTrue(favoriteFirstCommand.equals(favoriteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(favoriteFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(favoriteFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(favoriteFirstCommand.equals(favoriteSecondCommand));
     }
 
     /**
      * Returns a {@code DeleteCommand} with the parameter {@code index}.
      */
-    private DeleteCommand prepareCommand(Index index) {
-        DeleteCommand deleteCommand = new DeleteCommand(index);
-        deleteCommand.setData(model, new CommandHistory(), new UndoRedoStack());
-        return deleteCommand;
+    private FavoriteCommand prepareCommand(Index index) {
+        FavoriteCommand favoriteCommand = new FavoriteCommand(index, true);
+        favoriteCommand.setData(model, new CommandHistory(), new UndoRedoStack());
+        return favoriteCommand;
     }
 
     /**

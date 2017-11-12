@@ -20,15 +20,17 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
 
     @Override
     public boolean test(ReadOnlyPerson person) {
-        return numbers.stream()
-                .anyMatch(number -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number));
+        return numbers.stream().anyMatch(number
+            -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number)) || numbers.stream()
+            .anyMatch(number -> person.getPhone().toString().contains(number));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsPhonePredicate // instanceof handles nulls
-                && this.numbers.equals(((NameContainsPhonePredicate) other).numbers)); // state check
+                && this.numbers.containsAll((((NameContainsPhonePredicate) other).numbers))
+                && ((NameContainsPhonePredicate) other).numbers.containsAll(this.numbers)); // state check
     }
 
 }
