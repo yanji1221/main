@@ -398,6 +398,8 @@ image::ModelClassForBirthday.png[width="300"]
 To make sure that birthday can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.
 // end::addbirthday[]
 
+==== Add Profile Page
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -413,9 +415,9 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-=== deleteList: deletes a list of persons with specified indices
+=== delete: deletes a list of persons with specified indices
 
-'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
+`delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
 
 The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
 
