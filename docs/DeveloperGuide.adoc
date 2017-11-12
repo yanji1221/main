@@ -399,6 +399,33 @@ To make sure that birthday can be stored in the xml format for future usage, xml
 // end::addbirthday[]
 
 ==== Add Profile Page
+The profile page parameter is facilitated by the class `ProfilePage` of which the class `Person` consists. As profile page is an optional paraeterm, a `Person` can be linked to 0 or 1 `ProfilePage` object. +
+The relationship is illustrated in the following diagram:
+
+image::profilePage.png[width="300"]
+
+In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.
+
+* `UI Component:` +
+`PersonCard`, which resides in UI component, create a label for profile page parameter:
+[source, java]
+----
+@FXML
+    private Label profile;
+----
+
+Then `PersonCard` binds the label with the value of `ProfilePage` object. If the input value for `ProfilePage` object is null, it make the label dissapear from UI by setting its visibility to FALSE:
+[source, java]
+----
+if (!person.profilepageProperty().toString().equals("")) {
+    profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+    profile.setVisible(true);
+} else {
+    profile.setVisible(false);
+}
+----
+
+
 
 === Logging
 
