@@ -555,7 +555,7 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 === export Command
 `export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
-The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. + 
+The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
 `ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
 
 === Configuration
