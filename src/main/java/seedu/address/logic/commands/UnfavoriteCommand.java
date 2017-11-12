@@ -51,7 +51,7 @@ public class UnfavoriteCommand extends UndoableCommand {
         }
         Person editedPerson = new Person(personToFavorite.getName(), personToFavorite.getPhone(),
                 personToFavorite.getEmail(), personToFavorite.getBirthday(), personToFavorite.getAddress(),
-                personToFavorite.getProfilePage(), favorite, personToFavorite.getTags(), personToFavorite.getGroups());
+                personToFavorite.getProfilePage(), favorite, personToFavorite.getTags());
 
         try {
             model.updatePerson(personToFavorite, editedPerson);

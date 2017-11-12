@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -49,9 +48,8 @@ public class PersonBuilder {
             ProfilePage defaultProfilePage = new ProfilePage(DEFAULT_PROFILEPAGE);
             Favorite defaultFavorite = new Favorite(DEFAULT_FAVORITE);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-            Set<Group> defaultGroups = SampleDataUtil.getGroupSet(DEFAULT_GROUPS);
             this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultBirthday, defaultAddress,
-                    defaultProfilePage, defaultFavorite, defaultTags, defaultGroups);
+                    defaultProfilePage, defaultFavorite, defaultTags);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }
@@ -87,19 +85,6 @@ public class PersonBuilder {
         }
         return this;
     }
-    //@@author erik0704
-    /**
-     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withGroups(String ... groups) {
-        try {
-            this.person.setGroups(SampleDataUtil.getGroupSet(groups));
-        } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("groups are expected to be unique.");
-        }
-        return this;
-    }
-    //@@author
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */

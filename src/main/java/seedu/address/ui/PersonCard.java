@@ -67,17 +67,12 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label ingroups;
-    @FXML
-    private FlowPane groups;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
-        initGroups(person);
         bindListeners(person);
     }
     //@@author yanji1221
@@ -138,19 +133,16 @@ public class PersonCard extends UiPart<Region> {
         } else {
             favorite = null;
         }
-        ingroups.textProperty().setValue("In Groups:  ");
+
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
         });
-        //@@author hxy0229
 
-        person.groupProperty().addListener((observable, oldValue, newValue) -> {
-            groups.getChildren().clear();
-            initGroups(person);
-        });
+
+
     }
-    //@@author
+
     //@@author yanji1221
     /**
      * Distribute colors for tags
@@ -163,18 +155,6 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
-    //@@author hxy0229
-    /**
-     * Distribute colors for groups
-     */
-    private void initGroups(ReadOnlyPerson person) {
-        person.getGroups().forEach(group -> {
-            Label groupLabel = new Label(group.getName().fullName);
-            groupLabel.setStyle("-fx-background-color: " + colorGetterForTag(group.getName().fullName));
-            groups.getChildren().add(groupLabel);
-        });
-    }
-    //@@author
 
     //@@author
     @Override

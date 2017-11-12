@@ -21,7 +21,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -119,9 +118,8 @@ public class EditCommand extends UndoableCommand {
         ProfilePage updatedProfile = editPersonDescriptor.getProfilePage().orElse(personToEdit.getProfilePage());
         Favorite updatedFavorite = editPersonDescriptor.getFavorite().orElse(personToEdit.getFavorite());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
         return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,
-                updatedFavorite, updatedTags, updatedGroups);
+                updatedFavorite, updatedTags);
     }
 
     @Override
@@ -159,7 +157,6 @@ public class EditCommand extends UndoableCommand {
         private Favorite favorite;
         //@@author
         private Set<Tag> tags;
-        private Set<Group> groups;
 
         public EditPersonDescriptor() {}
         //@@author yanji1221
@@ -172,7 +169,6 @@ public class EditCommand extends UndoableCommand {
             this.profile = toCopy.profile;
             this.favorite = toCopy.favorite;
             this.tags = toCopy.tags;
-            this.groups = toCopy.groups;
         }
         //@@author
         /**
@@ -180,7 +176,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email,
-                    this.birthday, this.address, this.profile,  this.favorite, this.tags, this.groups);
+                    this.birthday, this.address, this.profile,  this.favorite, this.tags);
         }
 
         public void setName(Name name) {
@@ -249,15 +245,6 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(tags);
         }
 
-        public void setGroups(Set<Group> groups) {
-            this.groups = groups;
-        }
-
-        public Optional<Set<Group>> getGroups() {
-            return Optional.ofNullable(groups);
-        }
-
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -280,8 +267,7 @@ public class EditCommand extends UndoableCommand {
                     && getAddress().equals(e.getAddress())
                     && getProfilePage().equals(e.getProfilePage())
                     && getFavorite().equals(e.getFavorite())
-                    && getTags().equals(e.getTags())
-                    && getGroups().equals(e.getGroups());
+                    && getTags().equals(e.getTags());
         }
     }
 }

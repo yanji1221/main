@@ -21,7 +21,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.ProfilePage;
 import seedu.address.model.tag.Tag;
 
@@ -60,7 +59,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             parseProfilePageForEdit(
                     argMultimap.getValue(PREFIX_PROFILEPAGE)).ifPresent(editPersonDescriptor::setProfilePage);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-            parseGroupsForEdit(argMultimap.getAllValues(PREFIX_GROUP)).ifPresent(editPersonDescriptor::setGroups);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }
@@ -86,22 +84,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-    //@@author erik0704
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Group>> parseGroupsForEdit(Collection<String> groups) throws IllegalValueException {
-        assert groups != null;
 
-        if (groups.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> groupSet = groups.size() == 1 && groups.contains("") ? Collections.emptySet() : groups;
-        return Optional.of(ParserUtil.parseGroups(groupSet));
-    }
-    //@@author
     //@@author quangtdn
     private Optional<ProfilePage> parseProfilePageForEdit(Optional<String> profile) throws IllegalValueException {
         requireNonNull(profile);

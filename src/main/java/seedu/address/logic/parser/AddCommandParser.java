@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -64,7 +63,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             ProfilePage profile;
             Favorite favorite;
             Set<Tag> tagList;
-            Set<Group> groupList;
 
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
                 name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
@@ -99,10 +97,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
             favorite = new Favorite(false);
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, favorite, tagList,
-                    groupList);
+            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, favorite, tagList);
 
             return new AddCommand(person);
         } catch (IllegalValueException ive) {
