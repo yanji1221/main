@@ -9,7 +9,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.ui.PersonCard;
 
 /**
- * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
+ * Provides a handle for {@code ComingBirthdayListPanel} containing the list of {@code PersonCard}.
  */
 public class ComingBirthdayListPanelHandle extends NodeHandle<ListView<PersonCard>> {
     public static final String COMING_BIRTHDAY_LIST_VIEW_ID = "#comingBirthdayListView";
