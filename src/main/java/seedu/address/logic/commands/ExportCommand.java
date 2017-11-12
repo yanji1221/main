@@ -12,9 +12,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Created by nguyenminhquang on 11/7/17.
- */
 
 /**
  * Export the contact list into XML file and store it at the specified input path
@@ -23,7 +20,7 @@ import org.w3c.dom.NodeList;
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into XML file "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into text file "
             + "and store it at the specified input path \n"
             + "Parameters: [FILE_PATH]...\n"
             + "Example: "

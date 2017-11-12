@@ -1,3 +1,4 @@
+//@@author quangtdn
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
@@ -31,7 +32,6 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    //@@author quangtdn
     @Test
     public void execute_validIndexUnfilteredList_success() throws Exception {
         ReadOnlyPerson personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -45,7 +45,7 @@ public class DeleteCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-    //@@author
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -53,7 +53,7 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-    //@@author quangtdn
+
     @Test
     public void execute_validIndexFilteredList_success() throws Exception {
         showFirstPersonOnly(model);
@@ -71,7 +71,7 @@ public class DeleteCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-    //@@author
+
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
@@ -91,22 +91,35 @@ public class DeleteCommandTest {
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        List<Index> deleteList = new ArrayList<>();
+        deleteList.add(INDEX_FIRST_PERSON);
+        deleteList.add(INDEX_SECOND_PERSON);
+        DeleteCommand deleteListCommand = new DeleteCommand(deleteList);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(deleteListCommand.equals(deleteListCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
+        DeleteCommand deleteListCommandCopy = new DeleteCommand(deleteList);
+        assertTrue(deleteListCommand.equals(deleteListCommandCopy));
+
         // different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteListCommand.equals(1));
 
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(deleteListCommand.equals(null));
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        // different number of input arguments -> return false
+        assertFalse(deleteFirstCommand.equals(deleteListCommand));
     }
 
     /**

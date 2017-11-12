@@ -10,9 +10,6 @@ import java.util.Set;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-import seedu.address.model.group.DuplicateGroupException;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -28,19 +25,16 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Email> email;
     private ObjectProperty<Birthday> birthday;
     private ObjectProperty<Address> address;
-    //@@author quangtdn
     private ObjectProperty<ProfilePage> profile;
-    //@@author
     private ObjectProperty<UniqueTagList> tags;
-    private ObjectProperty<UniqueGroupList> groups;
     private ObjectProperty<Favorite> favorite;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address,
-                  ProfilePage profile, Favorite favorite, Set<Tag> tags, Set<Group> groups) {
-        requireNotAllNull(name, phone, email, birthday, address, tags, groups);
+                  ProfilePage profile, Favorite favorite, Set<Tag> tags) {
+        requireNotAllNull(name, phone, email, birthday, address, tags);
         //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);
         //if(phone!=null)
@@ -57,8 +51,6 @@ public class Person implements ReadOnlyPerson {
         this.favorite = new SimpleObjectProperty<>(favorite);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
-        // this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
-        this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
 
     }
 
@@ -74,17 +66,8 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
-                source.getProfilePage(), source.getFavorite(), source.getTags(), source.getGroups());
+                source.getProfilePage(), source.getFavorite(), source.getTags());
     }
-    //@@author hxy0229
-    /**
-     * Add a group into AddressGroup
-     */
-    public void addGroup(Group group) throws DuplicateGroupException {
-        groups.get().add(group);
-
-    }
-    //@@author
 
     public void setName(Name name) {
         this.name.set(requireNonNull(name));
@@ -200,23 +183,11 @@ public class Person implements ReadOnlyPerson {
     public ObjectProperty<UniqueTagList> tagProperty() {
         return tags;
     }
-
-    public Set<Group> getGroups() {
-        return Collections.unmodifiableSet(groups.get().toSet());
-    }
-
-    public ObjectProperty<UniqueGroupList> groupProperty() {
-        return groups;
-    }
     /**
      * Replaces this person's tags with the tags in the argument tag set.
      */
     public void setTags(Set<Tag> replacementTag) {
         tags.set(new UniqueTagList(replacementTag));
-    }
-
-    public void setGroups(Set<Group> replacementGroup) {
-        groups.set(new UniqueGroupList(replacementGroup));
     }
 
     @Override
@@ -226,11 +197,13 @@ public class Person implements ReadOnlyPerson {
                 && this.isSameStateAs((ReadOnlyPerson) other));
     }
 
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, birthday, address, profile,  tags);
     }
+
 
     @Override
     public String toString() {
