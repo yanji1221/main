@@ -125,25 +125,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(newPerson);
     }
 
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
-        Group newGroup = new Group(g);
-        syncMasterPersonListWith(newGroup);
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-        groups.add(newGroup);
-    }
-
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public boolean removeGroup(Group key) throws GroupNotFoundException {
-        if (groups.remove(key)) {
-            return true;
-        } else {
-            throw new GroupNotFoundException();
-        }
-    }
-
     /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
      * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
@@ -197,7 +178,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.forEach(this::syncMasterTagListWith);
     }
 
+    //@@author hxy0229
     /** checkstyle comment @TODO: David please collate and add comment block */
+    public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
+        Group newGroup = new Group(g);
+        syncMasterPersonListWith(newGroup);
+        // TODO: the tags master list will be updated even though the below line fails.
+        // This can cause the tags master list to have additional tags that are not tagged to any person
+        // in the person list.
+        groups.add(newGroup);
+    }
+
+    /** checkstyle comment @TODO: David please collate and add comment block */
+    public boolean removeGroup(Group key) throws GroupNotFoundException {
+        if (groups.remove(key)) {
+            return true;
+        } else {
+            throw new GroupNotFoundException();
+        }
+    }
+
+    /**
+     * Ensures that every group tag in these persons:
+     *  - exists in the master list {@link #groups}
+     *  - points to a Tag object in the master list
+     *  @see #syncMasterGroupListWith(Person)
+     */
     private void syncMasterGroupListWith(Person person) {
         final UniqueGroupList personGroups = new UniqueGroupList(person.getGroups());
         groups.mergeFrom(personGroups);
@@ -213,12 +219,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         person.setGroups(correctGroupReferences);
     }
 
-    /** checkstyle comment @TODO: David please collate and add comment block */
     private void syncMasterGroupListWith(UniquePersonList persons) {
         persons.forEach(this::syncMasterGroupListWith);
     }
 
-    /** checkstyle comment @TODO: David please collate and add comment block */
+    /**
+     * Ensures that every group tag in these persons:
+     *  - exists in the master list {@link #groups}
+     *  - points to a Tag object in the master list
+     *  @see #syncMasterGroupListWith(Person)
+     */
     private void syncMasterPersonListWith(Group group) {
         final UniquePersonList groupPersons = new UniquePersonList(group.getPersonList());
         persons.mergeFrom(groupPersons);
@@ -234,10 +244,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         group.setPersons(correctPersonReferences);
     }
 
-    /** checkstyle comment @TODO: David please collate and add comment block */
+
     private void syncMasterPersonListWith(UniqueGroupList groups) {
         groups.forEach(this::syncMasterPersonListWith);
     }
+    //@@author
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -245,6 +256,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean removePerson(ReadOnlyPerson key) throws PersonNotFoundException {
         if (persons.remove(key)) {
+            return true;
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+    /**
+     * Favorites {@code key} from this {@code AddressBook}.
+     * @throws PersonNotFoundException if the {@code key} is not in this {@code AddressBook}.
+     */
+    public boolean favoritePerson(ReadOnlyPerson key) throws PersonNotFoundException {
+        if (persons.favorite(key)) {
             return true;
         } else {
             throw new PersonNotFoundException();

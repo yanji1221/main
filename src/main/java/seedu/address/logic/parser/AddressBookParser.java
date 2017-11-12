@@ -13,10 +13,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
-import seedu.address.logic.commands.DeleteListCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.commands.FindTagCommand;
@@ -24,10 +24,12 @@ import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListFavoriteCommand;
 import seedu.address.logic.commands.LocationCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -87,11 +89,19 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case DeleteListCommand.COMMAND_WORD:
-            return new DeleteListCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        //@@author hxy0229
+        case FavoriteCommand.COMMAND_WORD:
+            return new FavoriteCommandParser().parse(arguments);
+
+        case UnfavoriteCommand.COMMAND_WORD:
+            return new UnfavoriteCommandParser().parse(arguments);
+
+        case ListFavoriteCommand.COMMAND_WORD:
+            return new ListFavoriteCommandParser().parse();
+        //@@author
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

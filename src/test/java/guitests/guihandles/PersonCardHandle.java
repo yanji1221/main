@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 /**
@@ -16,22 +17,21 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ADDRESS_FIELD_ID = "#address";
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String EMAIL_FIELD_ID = "#email";
+    private static final String FAVORITE_FIELD_ID = "#favorite";
     private static final String BIRTHDAY_FIELD_ID = "#birthday";
-    //@@author quangtdn
     private static final String PROFILEPAGE_FIELD_ID = "#profile";
-    //@@author
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
     private final Label nameLabel;
     private final Label addressLabel;
-    //@@author quangtdn
     private final Label profileLabel;
-    //@@author
     private final Label phoneLabel;
     private final Label emailLabel;
     private final Label birthdayLabel;
     private final List<Label> tagLabels;
+
+    private final ImageView favoriteLabel;
 
     public PersonCardHandle(Node cardNode) {
         super(cardNode);
@@ -43,6 +43,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         this.phoneLabel = getChildNode(PHONE_FIELD_ID);
         this.emailLabel = getChildNode(EMAIL_FIELD_ID);
         this.birthdayLabel = getChildNode(BIRTHDAY_FIELD_ID);
+        this.favoriteLabel = getChildNode(FAVORITE_FIELD_ID);
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         this.tagLabels = tagsContainer
                 .getChildrenUnmodifiable()
@@ -71,6 +72,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
 
     public String getPhone() {
         return phoneLabel.getText();
+    }
+
+    public boolean getFavorite() {
+        return (favoriteLabel != null);
     }
 
     public String getEmail() {
