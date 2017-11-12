@@ -16,23 +16,13 @@ public class ProfilePage {
             "Person Profile page should be a valid URL pointing to that person's profile";
     public static final String PROFILEPAGE_VALIDATION_REGEX =
             "^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]+.[a-z]{3}.([a-z]+)((/)?[a-zA-Z0-9.]?)*?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX
-    // = "^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX
-    // = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX
-    // = "^(http://|https://)?(www.).(facebook.com/){1}[\\w/]{0,63}$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX
-    // ="^http(s{0,1})://[a-zA-Z0-9_/\\-\\.]+\\.([A-Za-z/]{2,5})[a-zA-Z0-9_/\\&\\?\\=\\-\\.\\~\\%]*";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX= "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?
-    // (http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
 
     public final String value;
 
     /**
-     * Validates given birthday.
+     * Validates given profile page.
      *
-     * @throws IllegalValueException if given birthday address string is invalid.
+     * @throws IllegalValueException if given profile page string is invalid.
      */
     public ProfilePage(String profile) throws IllegalValueException {
         requireNonNull(profile);
@@ -55,11 +45,6 @@ public class ProfilePage {
         if (test.equals("")) {
             return true;
         }
-        /*
-        String[] schemes = {"http","https"}; // DEFAULT schemes = "http", "https", "ftp"
-        UrlValidator urlValidator = new UrlValidator(schemes);
-        return urlValidator.isValid(test);
-        */
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
     }
 
