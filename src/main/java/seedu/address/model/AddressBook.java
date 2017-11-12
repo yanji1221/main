@@ -10,15 +10,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.group.DuplicateGroupException;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.GroupNotFoundException;
-import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -37,7 +32,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueTagList tags;
     private final EventList events;
-    private final UniqueGroupList groups;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -51,7 +45,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         tags = new UniqueTagList();
         events = new EventList();
-        groups = new UniqueGroupList();
     }
 
     public AddressBook() {}
@@ -74,15 +67,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tags.setTags(tags);
     }
 
-    public void setGroups(Set<Group> groups) {
-        this.groups.setGroups(groups);
-    }
-
     //@@author erik0704
     public void setEvents(List<? extends Event> events) throws DuplicateEventException {
         this.events.setEvents(events);
     }
     //@@author
+
+
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -94,11 +85,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         } catch (DuplicatePersonException e) {
             assert false : "AddressBooks should not have duplicate persons";
         }
-        setGroups(new HashSet<>(newData.getGroupList()));
         setTags(new HashSet<>(newData.getTagList()));
         syncMasterTagListWith(persons);
-        //syncMasterGroupListWith(persons);
-        syncMasterPersonListWith(groups);
         try {
             setEvents(newData.getEventList());
         } catch (DuplicateEventException e) {
@@ -138,10 +126,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedReadOnlyPerson)
             throws DuplicatePersonException, PersonNotFoundException {
         requireNonNull(editedReadOnlyPerson);
-
         Person editedPerson = new Person(editedReadOnlyPerson);
         syncMasterTagListWith(editedPerson);
-        syncMasterGroupListWith(editedPerson);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
@@ -178,77 +164,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.forEach(this::syncMasterTagListWith);
     }
 
-    //@@author hxy0229
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
-        Group newGroup = new Group(g);
-        syncMasterPersonListWith(newGroup);
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-        groups.add(newGroup);
-    }
-
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public boolean removeGroup(Group key) throws GroupNotFoundException {
-        if (groups.remove(key)) {
-            return true;
-        } else {
-            throw new GroupNotFoundException();
-        }
-    }
-
-    /**
-     * Ensures that every group tag in these persons:
-     *  - exists in the master list {@link #groups}
-     *  - points to a Tag object in the master list
-     *  @see #syncMasterGroupListWith(Person)
-     */
-    private void syncMasterGroupListWith(Person person) {
-        final UniqueGroupList personGroups = new UniqueGroupList(person.getGroups());
-        groups.mergeFrom(personGroups);
-
-        // Create map with values = tag object references in the master list
-        // used for checking person tag references
-        final Map<Group, Group> masterGroupObjects = new HashMap<>();
-        groups.forEach(group -> masterGroupObjects.put(group, group));
-
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
-        final Set<Group> correctGroupReferences = new HashSet<>();
-        personGroups.forEach(group -> correctGroupReferences.add(masterGroupObjects.get(group)));
-        person.setGroups(correctGroupReferences);
-    }
-
-    private void syncMasterGroupListWith(UniquePersonList persons) {
-        persons.forEach(this::syncMasterGroupListWith);
-    }
-
-    /**
-     * Ensures that every group tag in these persons:
-     *  - exists in the master list {@link #groups}
-     *  - points to a Tag object in the master list
-     *  @see #syncMasterGroupListWith(Person)
-     */
-    private void syncMasterPersonListWith(Group group) {
-        final UniquePersonList groupPersons = new UniquePersonList(group.getPersonList());
-        persons.mergeFrom(groupPersons);
-
-        // Create map with values = tag object references in the master list
-        // used for checking person tag references
-        final Map<Person, Person> masterPersonObjects = new HashMap<>();
-        persons.forEach(person -> masterPersonObjects.put(person, person));
-
-        // Rebuild the list of person tags to point to the relevant tags in the master tag list.
-        final Set<ReadOnlyPerson> correctPersonReferences = new HashSet<>();
-        groupPersons.forEach(person -> correctPersonReferences.add(masterPersonObjects.get(person)));
-        group.setPersons(correctPersonReferences);
-    }
-
-
-    private void syncMasterPersonListWith(UniqueGroupList groups) {
-        groups.forEach(this::syncMasterPersonListWith);
-    }
-    //@@author
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -338,10 +253,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tags.asObservableList();
     }
 
-    @Override
-    public ObservableList<Group> getGroupList() {
-        return groups.asObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {

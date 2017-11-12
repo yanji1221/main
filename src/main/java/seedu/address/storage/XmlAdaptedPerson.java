@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -43,8 +42,6 @@ public class XmlAdaptedPerson {
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
     @XmlElement
-    private List<XmlAdaptedGroup> grouped = new ArrayList<>();
-    @XmlElement
     private boolean favorite = false;
 
     /**
@@ -75,10 +72,6 @@ public class XmlAdaptedPerson {
             tagged.add(new XmlAdaptedTag(tag));
         }
 
-        grouped = new ArrayList<>();
-        for (Group group : source.getGroups()) {
-            grouped.add(new XmlAdaptedGroup(group));
-        }
     }
 
     /**
@@ -91,10 +84,6 @@ public class XmlAdaptedPerson {
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-        final List<Group> personGroups = new ArrayList<>();
-        for (XmlAdaptedGroup group : grouped) {
-            personGroups.add(group.toModelType());
-        }
         final Name name = new Name(this.name);
         final Phone phone = new Phone(this.phone);
         final Email email = new Email(this.email);
@@ -102,8 +91,7 @@ public class XmlAdaptedPerson {
         final Address address = new Address(this.address);
         final ProfilePage profile = new ProfilePage(this.profile);
         final Set<Tag> tags = new HashSet<>(personTags);
-        final Set<Group> groups = new HashSet<>(personGroups);
         final Favorite favorite = new Favorite(this.favorite);
-        return new Person(name, phone, email, birthday, address, profile, favorite, tags, groups);
+        return new Person(name, phone, email, birthday, address, profile, favorite, tags);
     }
 }
