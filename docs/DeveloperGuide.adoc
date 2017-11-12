@@ -553,7 +553,7 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 // end::comingbirthdaylist[]
 
 === export Command
-
+`export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
 
 === Configuration
 

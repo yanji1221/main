@@ -36,10 +36,7 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            File file;
-            file = new File(savedFilePath);
             File fXmlFile = new File(System.getProperty("user.dir") + "/data/addressbook.xml");
-            System.out.println(System.getProperty("user.dir") + "/data/addressbook.xml");
             PrintWriter output = new PrintWriter(savedFilePath, "UTF-8");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -52,7 +49,7 @@ public class ExportCommand extends Command {
 
             for (int temp = 0; temp < personList.getLength(); temp++) {
                 Node nNode = personList.item(temp);
-                output.println("\nPerson :" + nNode.getNodeName());
+                output.println("\nPerson :" + (temp+1));
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     output.println("Name : "
@@ -81,7 +78,7 @@ public class ExportCommand extends Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new CommandResult("File exported at " + savedFilePath + " .");
+        return new CommandResult("File exported at " + savedFilePath);
     }
 
 
