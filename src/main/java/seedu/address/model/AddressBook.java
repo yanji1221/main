@@ -125,27 +125,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(newPerson);
     }
 
-
-
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
-        Group newGroup = new Group(g);
-        syncMasterPersonListWith(newGroup);
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-        groups.add(newGroup);
-    }
-
-    /** checkstyle comment @TODO: David please collate and add comment block */
-    public boolean removeGroup(Group key) throws GroupNotFoundException {
-        if (groups.remove(key)) {
-            return true;
-        } else {
-            throw new GroupNotFoundException();
-        }
-    }
-
     /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
      * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
@@ -200,6 +179,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //@@author hxy0229
+    /** checkstyle comment @TODO: David please collate and add comment block */
+    public void addGroup(Group g) throws DuplicateGroupException, IllegalValueException {
+        Group newGroup = new Group(g);
+        syncMasterPersonListWith(newGroup);
+        // TODO: the tags master list will be updated even though the below line fails.
+        // This can cause the tags master list to have additional tags that are not tagged to any person
+        // in the person list.
+        groups.add(newGroup);
+    }
+
+    /** checkstyle comment @TODO: David please collate and add comment block */
+    public boolean removeGroup(Group key) throws GroupNotFoundException {
+        if (groups.remove(key)) {
+            return true;
+        } else {
+            throw new GroupNotFoundException();
+        }
+    }
+
     /**
      * Ensures that every group tag in these persons:
      *  - exists in the master list {@link #groups}

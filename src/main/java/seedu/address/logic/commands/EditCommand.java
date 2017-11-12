@@ -240,14 +240,6 @@ public class EditCommand extends UndoableCommand {
         public Optional<Favorite> getFavorite() {
             return Optional.ofNullable(favorite);
         }
-        //@@author
-        public void setTags(Set<Tag> tags) {
-            this.tags = tags;
-        }
-
-        public Optional<Set<Tag>> getTags() {
-            return Optional.ofNullable(tags);
-        }
 
         public void setGroups(Set<Group> groups) {
             this.groups = groups;
@@ -255,6 +247,14 @@ public class EditCommand extends UndoableCommand {
 
         public Optional<Set<Group>> getGroups() {
             return Optional.ofNullable(groups);
+        }
+        //@@author
+        public void setTags(Set<Tag> tags) {
+            this.tags = tags;
+        }
+
+        public Optional<Set<Tag>> getTags() {
+            return Optional.ofNullable(tags);
         }
 
 
