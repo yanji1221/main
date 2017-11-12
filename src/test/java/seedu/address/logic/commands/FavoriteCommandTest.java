@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
 import static seedu.address.logic.commands.FavoriteCommand.MESSAGE_FAVORITE_COMMAND_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -84,14 +83,14 @@ public class FavoriteCommandTest {
 
     @Test
     public void equals() {
-        FavoriteCommand favoriteFirstCommand = new FavoriteCommand(INDEX_FIRST_PERSON,true);
-        FavoriteCommand favoriteSecondCommand = new FavoriteCommand(INDEX_SECOND_PERSON,true);
+        FavoriteCommand favoriteFirstCommand = new FavoriteCommand(INDEX_FIRST_PERSON, true);
+        FavoriteCommand favoriteSecondCommand = new FavoriteCommand(INDEX_SECOND_PERSON, true);
 
         // same object -> returns true
         assertTrue(favoriteFirstCommand.equals(favoriteFirstCommand));
 
         // same values -> returns true
-        FavoriteCommand favoriteFirstCommandCopy = new FavoriteCommand(INDEX_FIRST_PERSON,true);
+        FavoriteCommand favoriteFirstCommandCopy = new FavoriteCommand(INDEX_FIRST_PERSON, true);
         assertTrue(favoriteFirstCommand.equals(favoriteFirstCommandCopy));
 
         // different types -> returns false
@@ -108,7 +107,7 @@ public class FavoriteCommandTest {
      * Returns a {@code DeleteCommand} with the parameter {@code index}.
      */
     private FavoriteCommand prepareCommand(Index index) {
-        FavoriteCommand favoriteCommand = new FavoriteCommand(index,true);
+        FavoriteCommand favoriteCommand = new FavoriteCommand(index, true);
         favoriteCommand.setData(model, new CommandHistory(), new UndoRedoStack());
         return favoriteCommand;
     }

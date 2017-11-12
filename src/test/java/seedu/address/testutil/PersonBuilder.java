@@ -48,8 +48,8 @@ public class PersonBuilder {
             Favorite defaultFavorite = new Favorite(DEFAULT_FAVORITE);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
             Set<Group> defaultGroups = SampleDataUtil.getGroupSet(DEFAULT_GROUPS);
-            this.person = new Person(defaultName, defaultPhone,
-                    defaultEmail, defaultBirthday, defaultAddress, defaultProfilePage,defaultFavorite, defaultTags , defaultGroups);
+            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultBirthday, defaultAddress,
+                    defaultProfilePage,defaultFavorite, defaultTags, defaultGroups);
         } catch (IllegalValueException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }
@@ -158,10 +158,12 @@ public class PersonBuilder {
         }
         return this;
     }
-
+    /**
+     * Sets the {@code Favorite} of the {@code Person} that we are building.
+     */
     public PersonBuilder withFavorite(boolean favorite) {
-            this.person.setFavorite(new Favorite(favorite));
-            return this;
+        this.person.setFavorite(new Favorite(favorite));
+        return this;
     }
 
     public Person build() {

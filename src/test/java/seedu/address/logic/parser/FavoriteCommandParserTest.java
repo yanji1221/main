@@ -23,7 +23,7 @@ public class FavoriteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFavoriteCommand() {
-        assertParseSuccess(parser, "1", new FavoriteCommand(INDEX_FIRST_PERSON,true));
+        assertParseSuccess(parser, "1", new FavoriteCommand(INDEX_FIRST_PERSON, true));
     }
 
     @Test
