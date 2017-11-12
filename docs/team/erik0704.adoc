@@ -25,6 +25,11 @@ include::../UserGuide.adoc[tag=findtag]
 
 The address book had tags for each contact, however there was no way to search for contact with certain tags.
 
+==== Implementation
+
+Tag component in model already had API method for searching, but unused. Implementation is similar to `find` command
+but instead of interacting with `Name` component and its predicate we interact with `Tag` and its predicate.
+
 === Enhancement Added: Locate a person
 
 ==== External behavior
@@ -41,7 +46,6 @@ include::../UserGuide.adoc[tag=locate]
 ==== Justification
 
 May help the user finding the contact address quickly and perhaps direction if the user want to go there.
-Implementation
 
 ==== Implementation
 
@@ -64,17 +68,25 @@ include::../UserGuide.adoc[tag=reminder]
 
 ==== Justification
 
-The application is also meant to be a task manager. Thus there is a need to implement task functionality.
+The application is also meant to be a task manager. Thus there is a need to implement task/event functionality.
 
 ==== Implementation
 
 Overall behavior is similar to Person class logic and model.
+Auto-reminder is done by filtering events whose date is same as the current date, and adding a GUI popup panel section
+to display it similar to the `HelpWindow`. These steps are automatically initialized at the application start.
+
+=== Enhancement Added: Change application css theme
+
+==== Justification
+
+Original DarkTheme color looked dull and uninspired for a user end product.
 
 === Other contributions
 
-* Modify add command to accept partial string.
+* Modified add command to accept partial string.
 * Updated the GUI part to display events.
-* Managed the team repository as team lead.
-* Checked pull requests code quality. Resolved conflict and fix bugs from pull requests codes of other members.
+* Managed the team repository and progress as team lead.
+* Checked pull requests code quality. Resolved conflict and fix bugs from pull requests of other members.
 * Fixed all checkstyle errors of every team member.
 

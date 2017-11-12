@@ -22,11 +22,10 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     //@@author yanji1221
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "barnRed",
-        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
+        "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "rebeccaPurple", "saddleBrown",
-        "slateBlue", "blackberry", "byzantine", "blush" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
@@ -123,7 +122,6 @@ public class PersonCard extends UiPart<Region> {
         } else {
             profile.setVisible(false);
         }
-        //profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));

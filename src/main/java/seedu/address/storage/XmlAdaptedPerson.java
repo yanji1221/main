@@ -60,9 +60,7 @@ public class XmlAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        //@@author yanji1221
         birthday = source.getBirthday().value;
-        //@@author
         address = source.getAddress().value;
 
         if (!source.getProfilePage().value.equals("")) {

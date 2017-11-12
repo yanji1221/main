@@ -113,8 +113,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(newPerson);
     }
 
-
-
     /**
      * Replaces the given person {@code target} in the list with {@code editedReadOnlyPerson}.
      * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyPerson}.
@@ -165,6 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void syncMasterTagListWith(UniquePersonList persons) {
         persons.forEach(this::syncMasterTagListWith);
     }
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

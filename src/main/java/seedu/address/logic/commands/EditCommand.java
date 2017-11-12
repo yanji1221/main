@@ -236,6 +236,7 @@ public class EditCommand extends UndoableCommand {
         public Optional<Favorite> getFavorite() {
             return Optional.ofNullable(favorite);
         }
+
         //@@author
         public void setTags(Set<Tag> tags) {
             this.tags = tags;

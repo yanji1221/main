@@ -90,7 +90,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
-    //@@author
+
 
 
     @Override
@@ -118,8 +118,8 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author
 
 
+    //=========== Filtered Person List Accessors =============================================================
 
-    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code ReadOnlyPerson} backed by the internal list of
