@@ -88,8 +88,6 @@ public class BrowserPanel extends UiPart<Region> {
         } else {
             loadPersonPage(person);
         }
-
-
     }
     //@@author erik0704
     @Subscribe
