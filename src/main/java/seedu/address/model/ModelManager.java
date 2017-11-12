@@ -97,7 +97,6 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
-    //@@author
 
     @Override
     public synchronized void addGroup(Group group) throws DuplicateGroupException, IllegalValueException {
@@ -105,6 +104,13 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         indicateAddressBookChanged();
     }
+
+    @Override
+    public synchronized void deleteGroup(Group target) throws GroupNotFoundException {
+        addressBook.removeGroup(target);
+        indicateAddressBookChanged();
+    }
+    //@@author
 
     @Override
     public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
@@ -129,12 +135,6 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
     //@@author
-
-    @Override
-    public synchronized void deleteGroup(Group target) throws GroupNotFoundException {
-        addressBook.removeGroup(target);
-        indicateAddressBookChanged();
-    }
 
     //=========== Filtered Person List Accessors =============================================================
 
