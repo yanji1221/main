@@ -36,7 +36,9 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
-    /** checkstyle comment */
+    /**
+     * To get the list of person who are having their birthday soon
+     */
     private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
         boolean isRemoved = false;
