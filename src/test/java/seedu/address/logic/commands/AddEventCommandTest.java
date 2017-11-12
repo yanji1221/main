@@ -114,6 +114,11 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public void favoritePerson(ReadOnlyPerson p) throws PersonNotFoundException {
+            fail("This method should not be called.");
+        }
+
+        @Override
         public void deleteEvent(Event target) throws EventNotFoundException {
             fail("This method should not be called.");
         }

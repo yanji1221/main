@@ -30,26 +30,26 @@ public class TypicalPersons {
     //@@author yanji1221
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withBirthday("1988/08/18").withPhone("85355255").withProfilePage("www.facebook.com")
+            .withBirthday("1988/08/18").withPhone("85355255").withProfilePage("www.facebook.com").withFavorite(false)
             .withTags("friends").build();
     public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withBirthday("1980/03/12").withPhone("98765432")
+            .withEmail("johnd@example.com").withBirthday("1980/03/12").withPhone("98765432").withFavorite(false)
             .withTags("owesMoney", "friends").build();
     public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withBirthday("1999/12/11")
+            .withEmail("heinz@example.com").withBirthday("1999/12/11").withFavorite(false)
             .withAddress("wall street").build();
     public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withBirthday("1980/03/01")
+            .withEmail("cornelia@example.com").withBirthday("1980/03/01").withFavorite(false)
             .withAddress("10th street").build();
     public static final ReadOnlyPerson ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withBirthday("1990/01/01")
+            .withEmail("werner@example.com").withBirthday("1990/01/01").withFavorite(false)
             .withAddress("michegan ave").build();
     public static final ReadOnlyPerson FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withBirthday("1982/06/05")
+            .withEmail("lydia@example.com").withBirthday("1982/06/05").withFavorite(false)
             .withAddress("little tokyo").build();
     public static final ReadOnlyPerson GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withBirthday("2000/09/09")
+            .withEmail("anna@example.com").withBirthday("2000/09/09").withFavorite(false)
             .withAddress("4th street").build();
     //@@author
     // Manually added

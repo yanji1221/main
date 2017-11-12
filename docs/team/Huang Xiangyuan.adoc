@@ -3,15 +3,65 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== Project: AddressBook - Level 4
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+== Project: AddressBook - NeoxPro
+AddressBook - NeoxPro is a desktop address book application used for teaching Software Engineering principles.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about
+6 kLoC.NeoXPro not only allows users to keep track of the personal information of their friends and acquaintances,
+it helps users to manage their everyday tasks too.
 
-*Code contributed*: [https://github.com [Functional code]] [https://github.com[Test code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/hxy0229.md [Functional code]]
+[https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/hxy0229.md[Test code]] {give links to collated code files}
+
+
+=== Enhancement Added: Make most `add` fields optional
+
+==== External behavior
+
+Can Add
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=addpara]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+When you try to add a person into a contact book, it is quite impossible to know his birthday,phone,email,etc. at once.
+Therefore, this feature is improved for accepting partial information.
+
+=== Enhancement Added: Grouping Several person
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=locate]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+May help the user finding the contact address quickly and perhaps direction if the user want to go there.
+Implementation
+
+==== Implementation
+
+Similar to select command but load a google map page instead.
 
 === Enhancement Added:
 1. When adding people, everything except for the name is optional.
 2. Can group people into several groups.
 3. Can DeleteGroups.
+4. Can favorite a person.
+5. Can undo favorite a person.
+6. Can list all the favorited person.
 
 ==== External behavior
 
@@ -44,6 +94,13 @@ include::../DeveloperGuide.adoc[tag=add]
 2. Add a person into a group.
 3. Remove a person from a group.
 4. Add password into the group.
+5. Add several different levels of favorite.
 
 === Other contributions
 Fix the help window problems that can happen to some computers.
+
+* Help other group to find bugs or make suggestion(Issue https://github.com/CS2103AUG2017-W10-B3/main/issues/76[#76], https://github.com/CS2103AUG2017-W10-B3/main/issues/75[#75])
+
+== Project: PowerPointLabs
+
+{Optionally (not graded), you may include other projects in your portfolio.}
