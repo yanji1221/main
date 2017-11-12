@@ -188,16 +188,16 @@ public abstract class AddressBookSystemTest {
             if (selectedCardProfile.equals("")) {
                 expectedUrl = new URL(GOOGLE_SEARCH_URL_PREFIX + selectedCardName.replaceAll(" ", "+")
                         + GOOGLE_SEARCH_URL_SUFFIX);
-            } else {
-                //expectedUrl = new URL("http://" + selectedCardProfile);
+            } else if (selectedCardProfile.contains("facebook")){
+                //Facebook will link to the login page
                 expectedUrl = new URL("https://m.facebook.com/?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr");
-                //Strange modification here !?!?
+            } else {
+                expectedUrl = new URL("http://" + selectedCardProfile);
             }
         } catch (MalformedURLException mue) {
             throw new AssertionError("URL expected to be valid.");
         }
         assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
-
         assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
     }
     //@@author
