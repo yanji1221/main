@@ -35,8 +35,8 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: repeat previous find phone command where person list is displaying the persons with the phone that we are
-         * finding -> 2 persons found
+        /* Case: repeat previous find phone command where person list is displaying the persons with the phone that
+         * we are finding -> 2 persons found
          */
         command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING;
         assertCommandSuccess(command, expectedModel);
@@ -104,7 +104,7 @@ public class FindPhoneCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find phone in address book, phone is substring of input -> 0 persons found */
-        command = FindPhoneCommand.COMMAND_WORD + " " +PARTIAL_PHONE_MATCHING + "000";
+        command = FindPhoneCommand.COMMAND_WORD + " " + PARTIAL_PHONE_MATCHING + "000";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();

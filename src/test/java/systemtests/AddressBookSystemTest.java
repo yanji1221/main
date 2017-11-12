@@ -188,7 +188,7 @@ public abstract class AddressBookSystemTest {
             if (selectedCardProfile.equals("")) {
                 expectedUrl = new URL(GOOGLE_SEARCH_URL_PREFIX + selectedCardName.replaceAll(" ", "+")
                         + GOOGLE_SEARCH_URL_SUFFIX);
-            } else if (selectedCardProfile.contains("facebook")){
+            } else if (selectedCardProfile.contains("facebook")) {
                 //Facebook will link to the login page
                 expectedUrl = new URL("https://m.facebook.com/?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr");
             } else {

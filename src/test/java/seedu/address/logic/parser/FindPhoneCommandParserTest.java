@@ -20,7 +20,8 @@ public class FindPhoneCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPhoneCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPhoneCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -29,11 +30,13 @@ public class FindPhoneCommandParserTest {
         String firstPersonPhone = ALICE.getPhone().toString();
         String secondPersonPhone = BENSON.getPhone().toString();
         FindPhoneCommand expectedFindPhoneCommand =
-                new FindPhoneCommand(new NameContainsPhonePredicate(Arrays.asList(firstPersonPhone, secondPersonPhone)));
+                new FindPhoneCommand(new NameContainsPhonePredicate(Arrays.asList(firstPersonPhone,
+                        secondPersonPhone)));
         assertParseSuccess(parser, firstPersonPhone + " " + secondPersonPhone, expectedFindPhoneCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n "+ firstPersonPhone +" \n \t "+ secondPersonPhone +"  \t", expectedFindPhoneCommand);
+        assertParseSuccess(parser, " \n " + firstPersonPhone + " \n \t " + secondPersonPhone + "  \t",
+                expectedFindPhoneCommand);
     }
 }
 //@@author
