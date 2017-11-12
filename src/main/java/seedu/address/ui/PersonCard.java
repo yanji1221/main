@@ -116,9 +116,7 @@ public class PersonCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
-        //@@author yanji1221
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
-        //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
 
         if (!person.profilepageProperty().toString().equals("")) {
@@ -141,14 +139,13 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().clear();
             initTags(person);
         });
-        //@@author hxy0229
 
         person.groupProperty().addListener((observable, oldValue, newValue) -> {
             groups.getChildren().clear();
             initGroups(person);
         });
     }
-    //@@author
+
     //@@author yanji1221
     /**
      * Distribute colors for tags
@@ -174,7 +171,6 @@ public class PersonCard extends UiPart<Region> {
     }
     //@@author
 
-    //@@author
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

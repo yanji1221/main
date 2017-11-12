@@ -26,7 +26,7 @@
                     <children>
                   <HBox>
                      <children>
-                        <Label fx:id="id" text="Label" />
+                        <Label fx:id="id" />
                         <Label fx:id="name" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$name" />
                      </children>
                   </HBox>
