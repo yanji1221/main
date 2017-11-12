@@ -6,9 +6,12 @@ import java.util.Random;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -19,11 +22,10 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
 
     //@@author yanji1221
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "barnRed",
-        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
+        "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "rebeccaPurple", "saddleBrown",
-        "slateBlue", "blackberry", "byzantine", "blush" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
@@ -46,6 +48,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    //@@author hxy0229
+    private ImageView favorite;
+    @FXML
+    //@@author
     private Label phone;
     @FXML
     private Label address;
@@ -125,16 +131,25 @@ public class PersonCard extends UiPart<Region> {
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        if (person.getFavorite().value == true) {
+            Image image = new Image("/images/star.png");
+            favorite.setImage(image);
+        } else {
+            favorite = null;
+        }
         ingroups.textProperty().setValue("In Groups:  ");
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
         });
+        //@@author hxy0229
+
         person.groupProperty().addListener((observable, oldValue, newValue) -> {
             groups.getChildren().clear();
             initGroups(person);
         });
     }
+    //@@author
     //@@author yanji1221
     /**
      * Distribute colors for tags
@@ -147,7 +162,10 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
-    /** checkstyle comment, @TODO: David collate this please */
+    //@@author hxy0229
+    /**
+     * Distribute colors for groups
+     */
     private void initGroups(ReadOnlyPerson person) {
         person.getGroups().forEach(group -> {
             Label groupLabel = new Label(group.getName().fullName);
@@ -155,6 +173,7 @@ public class PersonCard extends UiPart<Region> {
             groups.getChildren().add(groupLabel);
         });
     }
+    //@@author
 
     //@@author
     @Override

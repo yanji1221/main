@@ -33,12 +33,13 @@ public class Person implements ReadOnlyPerson {
     //@@author
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<UniqueGroupList> groups;
+    private ObjectProperty<Favorite> favorite;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address,
-                  ProfilePage profile, Set<Tag> tags, Set<Group> groups) {
+                  ProfilePage profile, Favorite favorite, Set<Tag> tags, Set<Group> groups) {
         requireNotAllNull(name, phone, email, birthday, address, tags, groups);
         //if(name!=null)
         this.name = new SimpleObjectProperty<>(name);
@@ -52,6 +53,8 @@ public class Person implements ReadOnlyPerson {
         this.address = new SimpleObjectProperty<>(address);
         //if(profile!=null)
         this.profile = new SimpleObjectProperty<>(profile);
+        //if(profile!=null)
+        this.favorite = new SimpleObjectProperty<>(favorite);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
         // this.groups = new SimpleObjectProperty<>(new UniqueGroupList(groups));
@@ -71,14 +74,18 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
-                source.getProfilePage(), source.getTags(), source.getGroups());
+                source.getProfilePage(), source.getFavorite(), source.getTags(), source.getGroups());
     }
-    //@@author
-    /** checkstyle comment, @TODO: David collate this please */
+    //@@author hxy0229
+    /**
+     * Add a group into AddressGroup
+     */
     public void addGroup(Group group) throws DuplicateGroupException {
         groups.get().add(group);
 
     }
+    //@@author
+
     public void setName(Name name) {
         this.name.set(requireNonNull(name));
     }
@@ -115,6 +122,22 @@ public class Person implements ReadOnlyPerson {
     public ObjectProperty<Email> emailProperty() {
         return email;
     }
+
+    //@@author hxy0229
+    @Override
+    public Favorite getFavorite() {
+        return favorite.get();
+    }
+
+    public void setFavorite(Favorite favorite) {
+        this.favorite.set(requireNonNull(favorite));
+    }
+
+    @Override
+    public ObjectProperty<Favorite> favoriteProperty() {
+        return favorite;
+    }
+    //@@author
 
     @Override
     public Email getEmail() {

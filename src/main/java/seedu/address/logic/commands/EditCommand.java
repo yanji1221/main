@@ -25,6 +25,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favorite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -63,7 +64,7 @@ public class EditCommand extends UndoableCommand {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -116,10 +117,11 @@ public class EditCommand extends UndoableCommand {
         Birthday updateBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         ProfilePage updatedProfile = editPersonDescriptor.getProfilePage().orElse(personToEdit.getProfilePage());
+        Favorite updatedFavorite = editPersonDescriptor.getFavorite().orElse(personToEdit.getFavorite());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
         return new Person(updatedName, updatedPhone, updatedEmail, updateBirthday, updatedAddress, updatedProfile,
-                updatedTags, updatedGroups);
+                updatedFavorite, updatedTags, updatedGroups);
     }
 
     @Override
@@ -153,6 +155,9 @@ public class EditCommand extends UndoableCommand {
         //@@author quangtdn
         private ProfilePage profile;
         //@@author
+        //@@author hxy0229
+        private Favorite favorite;
+        //@@author
         private Set<Tag> tags;
         private Set<Group> groups;
 
@@ -165,6 +170,7 @@ public class EditCommand extends UndoableCommand {
             this.birthday = toCopy.birthday;
             this.address = toCopy.address;
             this.profile = toCopy.profile;
+            this.favorite = toCopy.favorite;
             this.tags = toCopy.tags;
             this.groups = toCopy.groups;
         }
@@ -174,7 +180,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email,
-                    this.birthday, this.address, this.profile,  this.tags, this.groups);
+                    this.birthday, this.address, this.profile,  this.favorite, this.tags, this.groups);
         }
 
         public void setName(Name name) {
@@ -225,12 +231,14 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(profile);
         }
         //@@author
-        public void setTags(Set<Tag> tags) {
-            this.tags = tags;
+
+        //@@author hxy0229
+        public void setFavorite(Favorite favorite) {
+            this.favorite = favorite;
         }
 
-        public Optional<Set<Tag>> getTags() {
-            return Optional.ofNullable(tags);
+        public Optional<Favorite> getFavorite() {
+            return Optional.ofNullable(favorite);
         }
 
         public void setGroups(Set<Group> groups) {
@@ -239,6 +247,14 @@ public class EditCommand extends UndoableCommand {
 
         public Optional<Set<Group>> getGroups() {
             return Optional.ofNullable(groups);
+        }
+        //@@author
+        public void setTags(Set<Tag> tags) {
+            this.tags = tags;
+        }
+
+        public Optional<Set<Tag>> getTags() {
+            return Optional.ofNullable(tags);
         }
 
 
@@ -263,6 +279,7 @@ public class EditCommand extends UndoableCommand {
                     && getBirthday().equals(e.getBirthday())
                     && getAddress().equals(e.getAddress())
                     && getProfilePage().equals(e.getProfilePage())
+                    && getFavorite().equals(e.getFavorite())
                     && getTags().equals(e.getTags())
                     && getGroups().equals(e.getGroups());
         }
