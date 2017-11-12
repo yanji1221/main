@@ -12,14 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UpcomingEventPredicate;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.group.DuplicateGroupException;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.GroupNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -38,8 +34,6 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> upcomingEvents;
 
-    private final FilteredList<Group> filteredGroups;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -54,7 +48,6 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
         upcomingEvents = new FilteredList<>(this.addressBook.getEventList());
-        filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
     }
 
     public ModelManager() {
@@ -98,19 +91,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
-    @Override
-    public synchronized void addGroup(Group group) throws DuplicateGroupException, IllegalValueException {
-        addressBook.addGroup(group);
-        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
-        indicateAddressBookChanged();
-    }
 
-    @Override
-    public synchronized void deleteGroup(Group target) throws GroupNotFoundException {
-        addressBook.removeGroup(target);
-        indicateAddressBookChanged();
-    }
-    //@@author
 
     @Override
     public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
@@ -136,7 +117,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
     //@@author
 
+
     //=========== Filtered Person List Accessors =============================================================
+
 
     /**
      * Returns an unmodifiable view of the list of {@code ReadOnlyPerson} backed by the internal list of
@@ -153,22 +136,6 @@ public class ModelManager extends ComponentManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //@@author hxy0229
-    /**
-     * Returns an unmodifiable view of the list of {@code Group} backed by the internal list of
-     * {@code addressBook}
-     */
-    public ObservableList<Group> getFilteredGroupList() {
-        return FXCollections.unmodifiableObservableList(filteredGroups);
-    }
-    /**
-     * Update GroupList in the view.in the GroupListPanel
-     */
-    public void updateFilteredGroupList(Predicate<Group> predicate) {
-        requireNonNull(predicate);
-        filteredGroups.setPredicate(predicate);
-    }
-    //@@author
 
     //@@author erik0704
     /**
