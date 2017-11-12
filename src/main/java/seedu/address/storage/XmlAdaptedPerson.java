@@ -35,10 +35,8 @@ public class XmlAdaptedPerson {
     private String birthday;
     @XmlElement(required = true)
     private String address;
-    //@@author quangtdn
     @XmlElement(required = false)
     private String profile = "";
-    //@@author
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
     @XmlElement
@@ -71,7 +69,6 @@ public class XmlAdaptedPerson {
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
         }
-
     }
 
     /**

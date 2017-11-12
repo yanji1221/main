@@ -25,9 +25,7 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Email> email;
     private ObjectProperty<Birthday> birthday;
     private ObjectProperty<Address> address;
-    //@@author quangtdn
     private ObjectProperty<ProfilePage> profile;
-    //@@author
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<Favorite> favorite;
 
@@ -199,11 +197,13 @@ public class Person implements ReadOnlyPerson {
                 && this.isSameStateAs((ReadOnlyPerson) other));
     }
 
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, birthday, address, profile,  tags);
     }
+
 
     @Override
     public String toString() {
