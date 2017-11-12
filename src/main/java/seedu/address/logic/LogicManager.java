@@ -12,7 +12,6 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -63,11 +62,6 @@ public class LogicManager extends ComponentManager implements Logic {
         return model.getUpcomingEventList();
     }
     //@@author
-    @Override
-    public ObservableList<Group> getFilteredGroupList() {
-        return model.getFilteredGroupList();
-    }
-
     @Override
     public ListElementPointer getHistorySnapshot() {
         return new ListElementPointer(history.getHistory());

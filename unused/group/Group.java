@@ -51,25 +51,6 @@ public class Group {
         }
     }
 
-    /*public Group(String name) throws IllegalValueException {
-        requireNonNull(name);
-       // if(name==null) name="haha";
-        String trimmedName = name.trim();
-        if (!isValidGroupName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_GROUP_CONSTRAINTS);
-        }
-        this.groupName = trimmedName;
-        persons=new ArrayList<ReadOnlyPerson>();
-    }
-
-    public Group(Group g) throws IllegalValueException {
-        this(g.getName());
-    }
-
-    public static boolean isValidGroupName(String test) {
-        return test.matches(GROUP_VALIDATION_REGEX);
-    }*/
-
     public ObjectProperty<Name> nameProperty() {
         return this.name;
     }
@@ -98,7 +79,7 @@ public class Group {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Group // instanceof handles nulls
-                && this.name.equals(((Group) other).name)); // state check
+                && this.name.get().fullName.equals(((Group) other).name.get().fullName)); // state check
     }
 
     @Override

@@ -43,7 +43,7 @@ public class GroupListPanel extends UiPart<Region> {
         groupListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        logger.fine("Selection in event list panel changed to : '" + newValue + "'");
+                        logger.fine("Selection in group list panel changed to : '" + newValue + "'");
                         raise(new GroupPanelSelectionChangedEvent(newValue));
                     }
                 });
@@ -61,7 +61,7 @@ public class GroupListPanel extends UiPart<Region> {
 
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code EventCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code GroupCard}.
      */
     class GroupListViewCell extends ListCell<GroupCard> {
 

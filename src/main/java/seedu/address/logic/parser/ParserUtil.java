@@ -11,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.event.Dates;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -128,15 +127,6 @@ public class ParserUtil {
     */
 
     /** checkstyle comment, @TODO: David collate this please */
-    public static Set<Group> parseGroups(Collection<String> groups) throws IllegalValueException {
-        requireNonNull(groups);
-        final Set<Group> groupSet = new HashSet<>();
-        for (String groupName : groups) {
-            Name name = new Name(groupName);
-            groupSet.add(new Group(name));
-        }
-        return groupSet;
-    }
 
     //@@author erik0704
     /**
