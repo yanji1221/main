@@ -25,7 +25,8 @@ public class PersonCard extends UiPart<Region> {
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
         "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue",
+        "chocolate", "darksalmon"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
