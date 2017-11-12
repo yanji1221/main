@@ -224,7 +224,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
     }
 
     /**
-     * Removes the {@code ReadOnlyPerson} at the specified {@code index} in {@code model}'s address book.
+     * Removes all the {@code ReadOnlyPerson}'s at the specified {@code index}'s in {@code model}'s address book.
      * @return the removed person
      */
     private List<ReadOnlyPerson> removePersonsList(Model model, List<Index> listTargetIndices) {
@@ -264,8 +264,8 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
     }
 
     /**
-     * Deletes a list of persons at {@code toDelete} by creating a default {@code DeleteCommand} using {@code toDelete} and
-     * performs the same verification as {@code assertCommandSuccess(String, Model, String)}.
+     * Deletes a list of persons at {@code toDelete} by creating a default {@code DeleteCommand} using {@code toDelete}
+     * and performs the same verification as {@code assertCommandSuccess(String, Model, String)}.
      * @see DeleteCommandSystemTest#assertCommandSuccess(String, Model, String)
      */
     private void assertCommandSuccess(List<Index> toDelete) {
