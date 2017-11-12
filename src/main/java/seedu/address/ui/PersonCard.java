@@ -127,7 +127,6 @@ public class PersonCard extends UiPart<Region> {
         } else {
             profile.setVisible(false);
         }
-        //profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
 
 
         email.textProperty().bind(Bindings.convert(person.emailProperty()));
