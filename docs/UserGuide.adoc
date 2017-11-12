@@ -410,8 +410,8 @@ There is no need to save manually.
 The list will show upcoming birthdays of persons in the address book. The list will cotains people who are having their
 birthday in current month. At the end of each month(the last day), the list will show people who are having their birthday
 in the next month. +
-`Take note:` February is a special month which end at 28 or 29. In the last day of February, people who are having their
-birthday in March will not be shown. Please check the list for upcoming birthday in 1st of March. +
+`Take note:` February is a special month which end at 28th or 29th. Only in the cases of 29th of February, people who are having their
+birthday in March will be shown. Please check the list for upcoming birthday on 1st of March when February is ended at 28th. +
 `Take note:` If a new person with relevant birthday is added or a person's birthday is edited to a relevant birthday which
 supposed to be shown in the list, you should restart the software before seeing changes are made in coming birthday list. +
 
@@ -428,11 +428,6 @@ Examples:
     John with birthday: 1990/12/01 +
     Jolin with birthday: 1980/12/31 +
     John and Jolin are shown in the list +
-* Current date: 2017/02/19 +
-    Amy with birthday: 1991/02/05 +
-    John with birthday: 1998/02/27 +
-    Jolin with birthday: 1997/03/04 +
-    John and Jolin are shown in the list.
 * Current date: 2017/07/08 +
     Amy with birthday: 1990/07/17 +
     Add a new person, John with birthday: 1990/07/10 +

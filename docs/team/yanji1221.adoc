@@ -155,7 +155,8 @@ include::../DeveloperGuide.adoc[tag=intro]
 
 ---
 * Help other group to find bugs or make suggestion(Issue https://github.com/CS2103AUG2017-W10-B3/main/issues/76[#76], https://github.com/CS2103AUG2017-W10-B3/main/issues/75[#75])
-
+* When adding a new parameter: Birthday, a lot of the codes are just a small portion of the entire class(both main and test).
+Those codes are not collated, however they can be a huge portion as a total.
 
 == Project: PowerPointLabs
 
