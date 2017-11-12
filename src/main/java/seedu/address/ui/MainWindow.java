@@ -153,6 +153,8 @@ public class MainWindow extends UiPart<Region> {
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
+        groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
+        groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
