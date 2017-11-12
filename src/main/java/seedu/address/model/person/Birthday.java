@@ -13,7 +13,7 @@ public class Birthday {
 
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS =
             "Person birthday should be in the yyyy/mm/dd format";
-    public static final String BIRTHDAY_VALIDATION_REGEX = "[\\d{4}\\.]+/[\\d{2}\\.]+/[\\d{2]+";
+    public static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}" + "/" + "\\d{2}" + "/" + "\\d{2}";
 
     public final String value;
 
@@ -33,7 +33,7 @@ public class Birthday {
 
     public Birthday() throws IllegalValueException {
         // requireNonNull(birthday);
-        String trimmedBirthday = "00/00/00";
+        String trimmedBirthday = "0000/00/00";
         /*if (!isValidBirthday(trimmedBirthday)) {
             throw new IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
         }*/

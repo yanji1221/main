@@ -30,16 +30,16 @@ public class TypicalPersons {
     //@@author yanji1221
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withBirthday("1988/08/18").withPhone("85355255").withProfilePage("www.facebook.com").withFavorite(false)
+            .withBirthday("1988/08/18").withPhone("97235255").withProfilePage("www.facebook.com").withFavorite(false)
             .withTags("friends").build();
     public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withBirthday("1980/03/12").withPhone("98765432").withFavorite(false)
+            .withEmail("johnd@example.com").withBirthday("1980/03/12").withPhone("85357654").withFavorite(false)
             .withTags("owesMoney", "friends").build();
     public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withBirthday("1999/12/11").withFavorite(false)
             .withAddress("wall street").build();
-    public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("85352533")
             .withEmail("cornelia@example.com").withBirthday("1980/03/01").withFavorite(false)
             .withAddress("10th street").build();
     public static final ReadOnlyPerson ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
@@ -70,6 +70,7 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String PARTIAL_PHONE_MATCHING = "8535"; // A partial number in BENSON and DANIEL phones
 
     private TypicalPersons() {} // prevents instantiation
 

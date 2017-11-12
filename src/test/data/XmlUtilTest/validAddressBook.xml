@@ -54,7 +54,7 @@
         <name>Anna Best</name>
         <phone isPrivate="false">9482442</phone>
         <email isPrivate="false">anna@example.com</email>
-        <birthday isPrivate="false">1989/10/10</birthday>
+        <birthday isPrivate="false">1989/11/30</birthday>
         <address isPrivate="false">4th street</address>
         <profile isPrivate="false">www.facebook.com</profile>
     </persons>
@@ -62,7 +62,7 @@
         <name>Stefan Meier</name>
         <phone isPrivate="false">8482424</phone>
         <email isPrivate="false">stefan@example.com</email>
-        <birthday isPrivate="false">1991/11/01</birthday>
+        <birthday isPrivate="false">1991/11/20</birthday>
         <address isPrivate="false">little india</address>
         <profile isPrivate="false">www.facebook.com</profile>
     </persons>

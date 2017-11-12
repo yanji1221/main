@@ -11,7 +11,7 @@ import seedu.address.model.person.NameContainsPhonePredicate;
 /**
  * Parses input arguments and creates a new FindPhoneCommand object
  */
-public class FindPhoneCommandParser {
+public class FindPhoneCommandParser implements Parser<FindPhoneCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindPhoneCommand
      * and returns an FindPhoneCommand object for execution.
