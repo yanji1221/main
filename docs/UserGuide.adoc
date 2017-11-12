@@ -209,22 +209,6 @@ Deletes the 2nd person in the address book.
 Deletes the 1st person in the results of the `find` command.
 // end::delete[]
 
-=== Deleting all contacts added before a specific date: `deleteBefore` (coming in v2.0)
-
-Deletes all persons added before the date specified from the address book. +
-Format: `deleteBefore [DATE]/[MONTH]/[YEAR]`
-
-****
-* Deletes all persons added before date 'DATE', month 'MONTH' and year 'YEAR'
-* This command is undoable.
-* 'DATE', 'MONTH' and 'YEAR' must be respectively valid date, month and year.
-****
-
-Examples:
-
-* `deleteBefore 10/01/2014` +
-Deletes all persons add before 10/01/2014 from the address book.
-
 // tag::favorite[]
 
 === Favoriting a person : `fav`
@@ -269,7 +253,7 @@ Undo favorite the 2nd listed person in the address book.
 
 // tag:Listfavorite[]
 
-=== Listing all favorited persons : `list`
+=== Listing all favorited persons : `listfav`
 
 Shows a list of all favorited persons in the address book. +
 Format: `listfav`
@@ -439,7 +423,7 @@ Address book data are exported
 //end::export[]
 
 // tag::comingbirthdaylist[]
-=== Special feature
+=== Special features
 
 ==== Coming birthday list
 
