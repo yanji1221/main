@@ -398,6 +398,7 @@ image::ModelClassForBirthday.png[width="300"]
 To make sure that birthday can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.
 // end::addbirthday[]
 
+// tag::addprofile[]
 ==== Add Profile Page
 The profile page parameter is facilitated by the class `ProfilePage`. +
 In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.
@@ -457,6 +458,7 @@ The `required` parameter of `@XmlElement` element which stores profile page info
 @XmlElement(required = false)
     private String profile = "";
 ----
+// end::addprofile[]
 
 === Logging
 
@@ -473,6 +475,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
+// tag::delete[]
 === delete command
 
 `delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from `UndoableCommand`.
@@ -496,13 +499,16 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
 ----
 
 And finally, we add the `delete` command to the class 'AddressBookParser' so that `delete` command is recognized whenever invoked.
+// end::delete[]
 
+// tag::phone[]
 === phone command
 
 The `phone` command utilize the same implementation as the `Find` command for name. Instead of logic execute search via `Name` attribute of `Person`, the command search for the `phone` attribute.
 
 `Name` and `Phone` API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class `NameContainsPhonesPredicate implements Predicate<ReadOnlyPerson>`
 which allows the algorithm to use Java `Predicate` class method.
+// end::phone[]
 
 === FindTag Command
 
@@ -552,11 +558,13 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 
 // end::comingbirthdaylist[]
 
+// tag::export[]
 === export Command
 `export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
 The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
 `ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
+// end::export[]
 
 === Configuration
 
