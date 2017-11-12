@@ -1,7 +1,7 @@
 /*@@author erik0704*/
 .background {
     -fx-background-color: derive(#08dba6, 20%);
-    background-color: #98e2d0; /* Used in the default.html file */
+    background-color: #dcefea; /* Used in the default.html file */
 }
 
 .label {
