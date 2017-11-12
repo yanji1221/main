@@ -10,8 +10,8 @@ import seedu.address.model.person.NameContainsPhonePredicate;
 public class FindPhoneCommand extends Command {
     public static final String COMMAND_WORD = "phone";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the persons whose phone numbers "
-            + "appear partially in the list of specified numbers and displays those persons as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the persons whose phone numbers appear partially"
+            + " in the list of specified numbers and displays those persons as a list with index numbers.\n"
             + "Parameters: NUMBERS\n"
             + "Example: " + COMMAND_WORD + " 12345678";
 
