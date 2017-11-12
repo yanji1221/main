@@ -18,10 +18,10 @@ public class GroupCard extends UiPart<Region> {
     private static final String FXML = "GroupListCard.fxml";
 
 
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "black",
-        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
-        "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen" };
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
+            "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+            "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
+            "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue" };
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
