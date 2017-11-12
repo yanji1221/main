@@ -225,6 +225,59 @@ Examples:
 * `deleteBefore 10/01/2014` +
 Deletes all persons add before 10/01/2014 from the address book.
 
+// tag::favorite[]
+
+=== Favoriting a person : `fav`
+
+Favorites the person identified by the index number used in the last person listing. +
+Format: `fav INDEX`
+
+****
+* Favorites the person at the specified `INDEX`.
+* If the person has already been favorited, the system will give you a reminder.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* `1, 2, 3, ...`
+* A star will appear next to the person name if he is favorited.
+****
+
+Example:
+* `fav 2` +
+Favorite the 2nd listed person in the address book.
+
+// end::favorite[]
+
+// tag::Unfavorite[]
+
+=== Unfavoriting a person : `unfav`
+
+Favorites the person identified by the index number used in the last person listing. +
+Format: `Unfav INDEX`
+
+****
+* Unfavorites the person at the specified `INDEX`.
+* If the person is not favorited/already unfavorited, the system will give you a reminder.
+* The index refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* `1, 2, 3, ...`
+* The star next to the person name  will disappear if he is unfavorited.
+****
+
+Example:
+* `Unfav 2` +
+Undo favorite the 2nd listed person in the address book.
+
+// end:Unfavorite[]
+
+// tag:Listfavorite[]
+
+=== Listing all favorited persons : `list`
+
+Shows a list of all favorited persons in the address book. +
+Format: `listfav`
+
+// end:Listfavorite[]
+
+
+
 // tag::select[]
 === Selecting a person : `select`
 
@@ -397,7 +450,6 @@ Address book data are exported
 //end::export[]
 
 
-
 // tag::comingbirthdaylist[]
 === Special feature
 
@@ -441,18 +493,18 @@ Grouping several people into a group in addressbook. +
 Format: `group GROUP_NAME [INDEX_1] [INDEX_2] ...`
 
 ****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* Groups the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
+* The index must be a positive integer 1, 2, 3, …​
+* You can create an empty group. (i.e. just "group GROUP_NAME", with no INDEX after that.
+* If you happen to miss a GROUP_NAME, the system will remind you to enter one.
+* Group name can only be a word.
 ****
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
+* `group star 1 2`
+Group the first and second person into a group named "star".
+* `group CS2103T`
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 === Saving the data
 
