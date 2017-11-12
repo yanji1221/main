@@ -425,7 +425,7 @@ private void bindListeners(ReadOnlyPerson person) {
 }
 ----
 
-In order to make `select` command on a `Person` load that person's `ProfilePage` object if existent, we modify method `handlePersonPanelSelectionChangedEvent()` in `BrowserPanel` that is in charge of updating a person panel: +
+In order to make `select` command load a person's `ProfilePage` object if it exists, we modify method `handlePersonPanelSelectionChangedEvent()` in `BrowserPanel` that is in charge of updating a person panel: +
 [source, java]
 ----
  private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
