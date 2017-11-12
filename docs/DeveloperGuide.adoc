@@ -440,7 +440,7 @@ image::profilePage.png[width="300"]
 * `Storage Component:` +
 `xmlAdaptedPerson` file is used to save information of a person in xml format. +
 The `required` parameter of `@XmlElement` element which stores profile page information is set to false to make this property optional:
-[source, java]
+[source, xml]
 ----
 @XmlElement(required = false)
     private String profile = "";
@@ -463,9 +463,9 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 === delete: deletes a list of persons with specified indices
 
-`delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
+`delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from `UndoableCommand`.
 
-The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
+The implementation of `delete` contains 2 classes: `DeleteCommand` and `DeleteCommandParser` inside the logic component. +
 
 In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
 
