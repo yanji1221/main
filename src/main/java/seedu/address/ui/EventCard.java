@@ -53,7 +53,7 @@ public class EventCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EventCard)) {
             return false;
         }
 

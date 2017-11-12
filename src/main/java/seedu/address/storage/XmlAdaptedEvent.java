@@ -31,7 +31,7 @@ public class XmlAdaptedEvent {
     /**
      * Converts a given Event into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created XmlAdaptedPerson
+     * @param source future changes to this will not affect the created XmlAdaptedEvent
      */
     public XmlAdaptedEvent(Event source) {
         name = source.getName().fullName;
@@ -42,7 +42,7 @@ public class XmlAdaptedEvent {
     /**
      * Converts this jaxb-friendly adapted event object into the model's Event object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event
      */
     public Event toModelType() throws IllegalValueException {
         final Name name = new Name(this.name);

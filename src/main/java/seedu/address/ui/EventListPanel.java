@@ -16,7 +16,7 @@ import seedu.address.commons.events.ui.EventPanelSelectionChangedEvent;
 import seedu.address.model.event.Event;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of event.
  */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";
