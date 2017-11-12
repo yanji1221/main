@@ -413,7 +413,6 @@ In order to add this parameter profile page, we make modifications to UI, Logic,
 @FXML
     private Label profile;
 ----
-
 Then `PersonCard` binds the label with the value of `ProfilePage` object. If the input value for `ProfilePage` object is null, it make the label dissapear from UI by setting its visibility to FALSE: +
 [source, java]
 ----
@@ -429,7 +428,7 @@ private void bindListeners(ReadOnlyPerson person) {
     //... binding other labels ...
 }
 ----
-
+asd
 
 
 === Logging
