@@ -436,7 +436,7 @@ In order to make `select` command on a `Person` load that person's `ProfilePage`
          loadPersonPage(person);
      }
  }
- ----
+----
 
 * `Logic Component:` +
 The prefix for profile page `pr/` is added to `CliSyntax`. Then the following files `AddCommand`, `EditCommand`, `AddCommandParser` and `EditCommandParser` are modified so that `add` and `edit` commands accept the new parameter profile page. +
