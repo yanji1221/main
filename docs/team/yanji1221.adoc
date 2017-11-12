@@ -158,6 +158,3 @@ include::../DeveloperGuide.adoc[tag=intro]
 * When adding a new parameter: Birthday, a lot of the codes are just a small portion of the entire class(both main and test).
 Those codes are mostly not collated, however they can be a huge portion as a total.
 
-== Project: PowerPointLabs
-
-{Optionally (not graded), you may include other projects in your portfolio.}
