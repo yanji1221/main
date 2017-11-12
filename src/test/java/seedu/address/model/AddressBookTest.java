@@ -17,7 +17,6 @@ import org.junit.rules.ExpectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
@@ -54,8 +53,7 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(new Person(ALICE), new Person(ALICE));
         List<Tag> newTags = new ArrayList<>(ALICE.getTags());
         List<Event> newEvents = new ArrayList<>();
-        List<Group> newGroups = new ArrayList<>();
-        AddressBookStub newData = new AddressBookStub(newPersons, newTags, newEvents, newGroups);
+        AddressBookStub newData = new AddressBookStub(newPersons, newTags, newEvents);
 
         thrown.expect(AssertionError.class);
         addressBook.resetData(newData);
@@ -80,14 +78,12 @@ public class AddressBookTest {
         private final ObservableList<ReadOnlyPerson> persons = FXCollections.observableArrayList();
         private final ObservableList<Tag> tags = FXCollections.observableArrayList();
         private final ObservableList<Event> events = FXCollections.observableArrayList();
-        private final ObservableList<Group> groups = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<? extends ReadOnlyPerson> persons, Collection<? extends Tag> tags,
-                        Collection<? extends Event> events, Collection<? extends Group> groups) {
+                        Collection<? extends Event> events) {
             this.persons.setAll(persons);
             this.tags.setAll(tags);
             this.events.setAll(events);
-            this.groups.setAll(groups);
         }
 
         @Override
@@ -105,10 +101,6 @@ public class AddressBookTest {
             return events;
         }
 
-        @Override
-        public ObservableList<Group> getGroupList() {
-            return groups;
-        }
     }
 
 }

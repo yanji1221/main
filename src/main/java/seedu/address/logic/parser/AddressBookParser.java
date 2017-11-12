@@ -12,7 +12,6 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
-import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
@@ -20,7 +19,6 @@ import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.commands.FindTagCommand;
-import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -70,12 +68,6 @@ public class AddressBookParser {
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
-
-        case GroupCommand.COMMAND_WORD:
-            return new GroupCommandParser().parse(arguments);
-
-        case DeleteGroupCommand.COMMAND_WORD:
-            return new DeleteGroupCommandParser().parse(arguments);
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);

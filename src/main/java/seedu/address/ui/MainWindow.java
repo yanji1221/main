@@ -50,7 +50,6 @@ public class MainWindow extends UiPart<Region> {
     private ComingBirthdayListPanel comingBirthdayListPanel;
     private Config config;
     private UserPrefs prefs;
-    private GroupListPanel groupListPanel;
 
     @FXML
     private StackPane browserPlaceholder;
@@ -153,7 +152,6 @@ public class MainWindow extends UiPart<Region> {
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
-
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -235,10 +233,6 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     private void handleExit() {
         raise(new ExitAppRequestEvent());
-    }
-
-    public GroupListPanel getGroupListPanel() {
-        return this.groupListPanel;
     }
 
     public PersonListPanel getPersonListPanel() {

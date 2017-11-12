@@ -25,7 +25,8 @@ public class PersonCard extends UiPart<Region> {
     private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
         "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue",
+        "chocolate", "darksalmon"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
@@ -66,17 +67,12 @@ public class PersonCard extends UiPart<Region> {
     //@@author
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label ingroups;
-    @FXML
-    private FlowPane groups;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
-        initGroups(person);
         bindListeners(person);
     }
     //@@author yanji1221
@@ -113,12 +109,11 @@ public class PersonCard extends UiPart<Region> {
      * Binds the individual UI elements to observe their respective {@code Person} properties
      * so that they will be notified of any changes.
      */
+    //@@author quangtdn
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
-        //@@author yanji1221
         birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
-        //@@author
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
 
         if (!person.profilepageProperty().toString().equals("")) {
@@ -136,16 +131,10 @@ public class PersonCard extends UiPart<Region> {
         } else {
             favorite = null;
         }
-        ingroups.textProperty().setValue("In Groups:  ");
+
         person.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(person);
-        });
-        //@@author hxy0229
-
-        person.groupProperty().addListener((observable, oldValue, newValue) -> {
-            groups.getChildren().clear();
-            initGroups(person);
         });
     }
     //@@author
@@ -161,20 +150,7 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
-    //@@author hxy0229
-    /**
-     * Distribute colors for groups
-     */
-    private void initGroups(ReadOnlyPerson person) {
-        person.getGroups().forEach(group -> {
-            Label groupLabel = new Label(group.getName().fullName);
-            groupLabel.setStyle("-fx-background-color: " + colorGetterForTag(group.getName().fullName));
-            groups.getChildren().add(groupLabel);
-        });
-    }
-    //@@author
 
-    //@@author
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

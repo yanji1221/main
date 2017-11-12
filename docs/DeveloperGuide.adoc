@@ -528,6 +528,8 @@ private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<R
         }
         return FXCollections.observableArrayList(comingBirthdayList);
 }
+
+
 Main window should include the newly added ComingBirthdayListPanel class so that the panel will be shown in the main window.
 A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday list should be present to reserve a section
 for the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.
