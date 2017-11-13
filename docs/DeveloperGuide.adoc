@@ -485,12 +485,12 @@ The implementation of `delete` contains 2 classes: `DeleteCommand` and `DeleteCo
 
 [source, java]
 ----
-public class DeleteListCommandParser implements Parser<DeleteListCommand> {
-    public DeleteListCommand parse(String args) throws ParseException {
+public class DeleteCommandParser implements Parser<DeleteCommand> {
+    public DeleteCommand parse(String args) throws ParseException {
         try {
             List<Index> input= new ArrayList<Index>();
             // ... Parser logic ...
-            return new DeleteListCommand(input);
+            return new DeleteCommand(input);
         } catch (IllegalValueException ive) {
             // throw exception here
         }
