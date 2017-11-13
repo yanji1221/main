@@ -119,11 +119,11 @@ Current date are for users who auto-hiding their task bar to check date quickly 
 ---
 #Start of Description#
 
-Red colour text will show if command succeeds, +
+Blue colour text will show if command succeeds, +
 
 image::SuccessResult.png[width="300"]
 
-Blue colour text will show if command fails. +
+Red colour text will show if command fails. +
 
 image::FailResult.png[width="300"]
 
