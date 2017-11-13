@@ -10,7 +10,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103AUG2017-W10-B4/main
 
 By: `Team W10-B4`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -34,7 +34,7 @@ It also comes with a summary of commands for users are already familiarized with
 Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `addressbook.jar` link:https://github.com/CS2103AUG2017-W10-B4/main/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -225,6 +225,7 @@ Format: `fav INDEX`
 ****
 
 Example:
+
 * `fav 2` +
 Favorite the 2nd listed person in the address book.
 
@@ -246,6 +247,7 @@ Format: `Unfav INDEX`
 ****
 
 Example:
+
 * `Unfav 2` +
 Undo favorite the 2nd listed person in the address book.
 
@@ -253,7 +255,7 @@ Undo favorite the 2nd listed person in the address book.
 
 // tag:Listfavorite[]
 
-=== Listing all favorited persons : `list`
+=== Listing all favorited persons : `listfav`
 
 Shows a list of all favorited persons in the address book. +
 Format: `listfav`
@@ -328,7 +330,7 @@ The event date is `yyyy-mm-dd` format.
 
 Examples:
 
-* `addEvent n/Return 5$ d/2017-08-17 de/lunch money` +
+* `addEvent n/Return John 5 bucks d/2017-12-17 de/lunch money` +
 Add a new event with description.
 * `addEvent n/Project Meeting d/2017-11-25 de/` +
 Add a new event with empty description.
@@ -439,7 +441,7 @@ Exports the file "exportFile.txt" to the current directory of NeoXPro.
 //end::export[]
 
 // tag::comingbirthdaylist[]
-=== Special feature
+=== Special features
 
 ==== Coming birthday list
 

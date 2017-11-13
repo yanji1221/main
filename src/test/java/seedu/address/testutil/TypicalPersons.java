@@ -27,7 +27,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
-    //@@author yanji1221
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withBirthday("1988/08/18").withPhone("97235255").withProfilePage("www.facebook.com").withFavorite(false)
@@ -51,7 +50,6 @@ public class TypicalPersons {
     public static final ReadOnlyPerson GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withBirthday("2000/09/09").withFavorite(false)
             .withAddress("4th street").build();
-    //@@author
     // Manually added
     public static final ReadOnlyPerson HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withBirthday("1990/01/02")

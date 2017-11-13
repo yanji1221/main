@@ -80,7 +80,7 @@ include::../DeveloperGuide.adoc[tag=comingbirthdaylist]
 #Start of Description#
 
 Different colours will be distributed to different tags. The colours will not be repeated
-until all colours in the database of NeoxPro(around 33 types of colours) had been used up.
+until all colours in the database of NeoxPro(around 30 types of colours) had been used up.
 
 image::ColoredTags.png[width="300"]
 
@@ -123,7 +123,7 @@ Red colour text will show if command succeeds, +
 
 image::SuccessResult.png[width="300"]
 
-yellow colour text will show if command fails. +
+Blue colour text will show if command fails. +
 
 image::FailResult.png[width="300"]
 
@@ -158,6 +158,3 @@ include::../DeveloperGuide.adoc[tag=intro]
 * When adding a new parameter: Birthday, a lot of the codes are just a small portion of the entire class(both main and test).
 Those codes are mostly not collated, however they can be a huge portion as a total.
 
-== Project: PowerPointLabs
-
-{Optionally (not graded), you may include other projects in your portfolio.}

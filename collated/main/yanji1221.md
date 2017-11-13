@@ -14,9 +14,9 @@
             this.email = toCopy.email;
             this.birthday = toCopy.birthday;
             this.address = toCopy.address;
-            this.profile= toCopy.profile;
+            this.profile = toCopy.profile;
+            this.favorite = toCopy.favorite;
             this.tags = toCopy.tags;
-            this.groups=toCopy.groups;
         }
 ```
 ###### \java\seedu\address\logic\commands\EditCommand.java
@@ -31,7 +31,6 @@
 ```
 ###### \java\seedu\address\logic\parser\AddCommandParser.java
 ``` java
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -40,13 +39,13 @@
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_BIRTHDAY,
-                PREFIX_ADDRESS, PREFIX_PROFILEPAGE, PREFIX_TAG,PREFIX_GROUP);
+                PREFIX_ADDRESS, PREFIX_PROFILEPAGE, PREFIX_TAG, PREFIX_GROUP);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_PHONE))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_EMAIL))
-                &&(!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))) {
+                && (!arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
+                && (!arePrefixesPresent(argMultimap, PREFIX_PHONE))
+                && (!arePrefixesPresent(argMultimap, PREFIX_EMAIL))
+                && (!arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -58,37 +57,44 @@
             Birthday birthday;
             Address address;
             ProfilePage profile;
+            Favorite favorite;
             Set<Tag> tagList;
-            Set<Group> groupList;
 
-            if(arePrefixesPresent(argMultimap, PREFIX_NAME))
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
-            else {throw new IllegalValueException(MESSAGE_NO_NAME_FORMAT);}
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
+            } else {
+                throw new IllegalValueException(MESSAGE_NO_NAME_FORMAT);
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_PHONE))
+            if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
                 phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
-            else {phone=new Phone();}
+            } else {
+                phone = new Phone();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_EMAIL))
+            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
                 email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
-            else {email=new Email();}
+            } else {
+                email = new Email();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY))
+            if (arePrefixesPresent(argMultimap, PREFIX_BIRTHDAY)) {
                 birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)).get();
-            else {birthday=new Birthday();}
+            } else {
+                birthday = new Birthday();
+            }
 
-            if(arePrefixesPresent(argMultimap, PREFIX_ADDRESS))
+            if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
                 address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
-            else {address=new Address();}
+            } else {
+                address = new Address();
+            }
 
             profile = ParserUtil.parseProfilePage(argMultimap.getValue(PREFIX_PROFILEPAGE)).get();
-
-
+            favorite = new Favorite(false);
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            groupList = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
 
-            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, tagList,groupList);
-
+            ReadOnlyPerson person = new Person(name, phone, email, birthday, address, profile, favorite, tagList);
 
             return new AddCommand(person);
         } catch (IllegalValueException ive) {
@@ -123,9 +129,9 @@ public class Birthday {
 
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS =
             "Person birthday should be in the yyyy/mm/dd format";
-    public static final String BIRTHDAY_VALIDATION_REGEX = "[\\d{4}\\.]+/[\\d{2}\\.]+/[\\d{2]+";
+    public static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}" + "/" + "\\d{2}" + "/" + "\\d{2}";
 
-    public String value;
+    public final String value;
 
     /**
      * Validates given birthday.
@@ -142,8 +148,8 @@ public class Birthday {
     }
 
     public Birthday() throws IllegalValueException {
-       // requireNonNull(birthday);
-        String trimmedBirthday = "00/00/00";
+        // requireNonNull(birthday);
+        String trimmedBirthday = "0000/00/00";
         /*if (!isValidBirthday(trimmedBirthday)) {
             throw new IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
         }*/
@@ -183,8 +189,46 @@ public class Birthday {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getBirthday(), source.getAddress(),
-                source.getProfilePage(), source.getTags(), source.getGroups());
+                source.getProfilePage(), source.getFavorite(), source.getTags());
     }
+
+    public void setName(Name name) {
+        this.name.set(requireNonNull(name));
+    }
+
+    @Override
+    public ObjectProperty<Name> nameProperty() {
+        return name;
+    }
+
+    @Override
+    public Name getName() {
+        return name.get();
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone.set(requireNonNull(phone));
+    }
+
+    @Override
+    public ObjectProperty<Phone> phoneProperty() {
+        return phone;
+    }
+
+    @Override
+    public Phone getPhone() {
+        return phone.get();
+    }
+
+    public void setEmail(Email email) {
+        this.email.set(requireNonNull(email));
+    }
+
+    @Override
+    public ObjectProperty<Email> emailProperty() {
+        return email;
+    }
+
 ```
 ###### \java\seedu\address\model\person\Person.java
 ``` java
@@ -225,36 +269,49 @@ public class Birthday {
 ```
 ###### \java\seedu\address\model\util\SampleDataUtil.java
 ``` java
+    public static Person[] getSamplePersons() {
+        try {
+            return new Person[] {
                 new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Birthday("1993/11/12"), new Address("Blk 30 Geylang Street 29, #06-40"), new ProfilePage("www.facebook.com"),
-                    getTagSet("friends"),getGroupSet("Soccer","Band")),
+                    new Birthday("1993/11/12"), new Address("Blk 30 Geylang Street 29, #06-40"),
+                        new ProfilePage("www.facebook.com"), new Favorite(false),
+                    getTagSet("friends")),
                 new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Birthday("1988/12/22"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new ProfilePage("www.facebook.com"),
-                    getTagSet("colleagues", "friends"),getGroupSet("Band")),
+                    new Birthday("1988/12/22"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new ProfilePage("www.facebook.com"), new Favorite(false),
+                    getTagSet("colleagues", "friends")),
                 new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Birthday("1987/12/12"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new ProfilePage("www.facebook.com"),
-                    getTagSet("neighbours"),getGroupSet("Painting")),
-```
-###### \java\seedu\address\storage\XmlAdaptedPerson.java
-``` java
-        birthday = source.getBirthday().value;
+                    new Birthday("1987/12/12"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        new ProfilePage("www.facebook.com"), new Favorite(false),
+                    getTagSet("neighbours")),
+                new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new Birthday("1999/01/01"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        new ProfilePage("www.facebook.com"), new Favorite(true),
+                    getTagSet("family")),
+                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new Birthday("1985/03/04"), new Address("Blk 47 Tampines Street 20, #17-35"),
+                        new ProfilePage("www.facebook.com"), new Favorite(false),
+                    getTagSet("classmates")),
+                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Birthday("1983/05/08"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        new ProfilePage("www.facebook.com"), new Favorite(false),
+                    getTagSet("colleagues"))
+            };
+        } catch (IllegalValueException e) {
+            throw new AssertionError("sample data cannot be invalid", e);
+        }
+    }
 ```
 ###### \java\seedu\address\ui\ComingBirthdayListPanel.java
 ``` java
 package seedu.address.ui;
 
-import java.lang.String;
-
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.fxmisc.easybind.EasyBind;
-
-import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -265,8 +322,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ComingBirthdayPanelSelectionChangedEvent;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -286,17 +341,21 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
+    /**
+     * To get the list of person who are having their birthday soon
+     */
     private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
         boolean isRemoved = false;
         Calendar cal = Calendar.getInstance();
-        int month = cal.get(Calendar.MONTH)+1;
+        int month = cal.get(Calendar.MONTH) + 1;
         int date = cal.get(Calendar.DATE);
 
         if (((month == 1 || month == 3 || month == 5 || month == 7
                 || month == 8 || month == 10 || month == 12) && date == 31)
                 || ((month == 4 || month == 6 || month == 9
-                || month == 11) && date == 30)) {
+                || month == 11) && date == 30)
+                || (month == 2 && date == 29)) {
             month += 1;
             if (month == 13) {
                 month = 1;
@@ -308,15 +367,14 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
                     .substring(5, 7)) == month)) {
                 comingBirthdayList.remove(i);
                 isRemoved = true;
-            }
-            else if((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7)) == month) &&
-                    Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+            } else if ((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month)
+                    && Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
                     .substring(8)) < date) {
                 comingBirthdayList.remove(i);
                 isRemoved = true;
             }
-            if(isRemoved) {
+            if (isRemoved) {
                 i--;
                 isRemoved = false;
             }
@@ -351,12 +409,6 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
             comingBirthdayListView.scrollTo(index);
             comingBirthdayListView.getSelectionModel().clearAndSelect(index);
         });
-    }
-
-    @Subscribe
-    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        scrollTo(event.targetIndex);
     }
 
     /**
@@ -418,50 +470,6 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         styleClass.add(SUCCESS_STYLE_CLASS);
     }
 ```
-###### \java\seedu\address\ui\GroupCard.java
-``` java
-    /**
-     * Color getter for a tag
-     */
-    private static String colorGetterForPerson(String personValue) {
-        int colorCode;
-        boolean isUsedUpAllColors = true;
-        for (int i = 0; i < colors.length; i++) {
-            if (usedColors[i] == 0) {
-                isUsedUpAllColors = false;
-                break;
-            }
-        }
-        if (isUsedUpAllColors) {
-            for (int j = 0; j < colors.length; j++) {
-                usedColors[j] = 0;
-            }
-        }
-
-        if (!tagColors.containsKey(personValue)) {
-            do {
-                colorCode = random.nextInt(colors.length);
-            } while(usedColors[colorCode] == 1);
-            usedColors[colorCode] = 1;
-            tagColors.put(personValue, colors[colorCode]);
-        }
-
-        return tagColors.get(personValue);
-    }
-```
-###### \java\seedu\address\ui\GroupCard.java
-``` java
-    /**
-     * Distribute colors for tags
-     */
-    private void initPersons(Group group) {
-        group.getPersonList().forEach(person -> {
-            Label personLabel = new Label(person.getName().fullName);
-            personLabel.setStyle("-fx-background-color: " + colorGetterForPerson(person.getName().fullName));
-            persons.getChildren().add(personLabel);
-        });
-    }
-```
 ###### \java\seedu\address\ui\MainWindow.java
 ``` java
     public ComingBirthdayListPanel getComingBirthdayListPanel() {
@@ -480,11 +488,11 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
 ```
 ###### \java\seedu\address\ui\PersonCard.java
 ``` java
-    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink", "barnRed",
-        "grey", "purple" , "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
+    private static String[] colors = { "red", "blue", "orange", "brown", "green", "pink",
+        "grey", "purple", "gold", "crimson", "navy", "darkBlue", "mediumBlue", "darkGreen",
         "teal", "darkCyan", "deepSkyBlue", "lime", "springGreen", "midnightBlue", "forestGreen",
-        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "rebeccaPurple", "saddleBrown",
-        "slateBlue", "blackberry", "boysenberry", "cherry" };
+        "seaGreen", "royalBlue", "indigo", "darkOliveGreen", "maroon", "saddleBrown", "slateBlue",
+        "chocolate", "darksalmon"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static Random random = new Random();
     private static int[] usedColors = new int[colors.length];
@@ -527,10 +535,6 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
 ```
 ###### \java\seedu\address\ui\PersonCard.java
 ``` java
-        birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
-```
-###### \java\seedu\address\ui\PersonCard.java
-``` java
     /**
      * Distribute colors for tags
      */
@@ -541,15 +545,28 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
+```
+###### \java\seedu\address\ui\PersonCard.java
+``` java
 
-    private void initGroups(ReadOnlyPerson person) {
-        person.getGroups().forEach(group -> {
-            Label groupLabel = new Label(group.getName().fullName);
-            groupLabel.setStyle("-fx-background-color: " + colorGetterForTag(group.getName().fullName));
-            groups.getChildren().add(groupLabel);
-        });
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PersonCard)) {
+            return false;
+        }
+
+        // state check
+        PersonCard card = (PersonCard) other;
+        return id.getText().equals(card.id.getText())
+                && person.equals(card.person);
     }
-
+}
 ```
 ###### \java\seedu\address\ui\ResultDisplay.java
 ``` java
@@ -560,12 +577,34 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
 
         if (event.isError) {
             setStyleToIndicateCommandFailure();
-        }
-        else {
+        } else {
             setStyleToDefault();
         }
 
     }
+
+    /**
+     * Sets the {@code ResultDisplay} style to use the default style.
+     */
+    private void setStyleToDefault() {
+        resultDisplay.getStyleClass().remove(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Sets the {@code ResultDisplay} style to indicate a failed command.
+     */
+    private void setStyleToIndicateCommandFailure() {
+        ObservableList<String> styleClass = resultDisplay.getStyleClass();
+
+        if (styleClass.contains(ERROR_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(ERROR_STYLE_CLASS);
+
+    }
+
+}
 ```
 ###### \java\seedu\address\ui\StatusBarFooter.java
 ``` java
@@ -593,6 +632,15 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         Date date = new Date();
         this.currentDate.setText(" " + dateFormat.format(date) + "\n");
     }
+
+    @Subscribe
+    public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
+        long now = clock.millis();
+        String lastUpdated = new Date(now).toString();
+        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
+        setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+        setTotalPersons(abce.data.getPersonList().size());
+    }
 ```
 ###### \resources\view\ComingBirthdayListPanel.fxml
 ``` fxml
@@ -607,5 +655,6 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
 ```
 ###### \resources\view\StatusBarFooter.fxml
 ``` fxml
+  <StatusBar styleClass="anchor-pane" fx:id="totalPersons" GridPane.columnIndex="1" />
   <StatusBar styleClass="anchor-pane" fx:id="currentDate" GridPane.columnIndex="2" nodeOrientation="RIGHT_TO_LEFT" />
 ```

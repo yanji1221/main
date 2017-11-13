@@ -49,7 +49,7 @@ public class ExportCommand extends Command {
 
             for (int temp = 0; temp < personList.getLength(); temp++) {
                 Node nNode = personList.item(temp);
-                output.println("\nPerson :" + (temp+1));
+                output.println("\nPerson :" + (temp + 1));
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     output.println("Name : "

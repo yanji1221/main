@@ -4,7 +4,7 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Project: NeoXPro Manager
-NeoXPro 4 is a desktop address book application extends from an existing stock application which was used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 7 kLoC.
+NeoXPro 4 is a desktop address book application extends from an existing stock application which was used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 *Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/erik0704.md[Functional code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/erik0704.md[Test code]]
 
@@ -27,8 +27,14 @@ The address book had tags for each contact, however there was no way to search f
 
 ==== Implementation
 
-Tag component in model already had API method for searching, but unused. Implementation is similar to `find` command
-but instead of interacting with `Name` component and its predicate we interact with `Tag` and its predicate.
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=findtag]
+
+#End of Extract#
+
+---
 
 === Enhancement Added: Locate a person
 
@@ -72,9 +78,15 @@ The application is also meant to be a task manager. Thus there is a need to impl
 
 ==== Implementation
 
-Overall behavior is similar to Person class logic and model.
-Auto-reminder is done by filtering events whose date is same as the current date, and adding a GUI popup panel section
-to display it similar to the `HelpWindow`. These steps are automatically initialized at the application start.
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=taskevent]
+
+
+#End of Extract#
+
+---
 
 === Enhancement Added: Change application css theme
 
@@ -89,4 +101,7 @@ Original DarkTheme color looked dull and uninspired for a user end product.
 * Managed the team repository and progress as team lead.
 * Checked pull requests code quality. Resolved conflict and fix bugs from pull requests of other members.
 * Fixed all checkstyle errors of every team member.
+* Add tests to increase coverage by 5% (Pull requests https://github.com/CS2103AUG2017-W10-B4/main/pull/81[#81],
+ https://github.com/CS2103AUG2017-W10-B4/main/pull/82[#82], https://github.com/CS2103AUG2017-W10-B4/main/pull/84[#84],
+ https://github.com/CS2103AUG2017-W10-B4/main/pull/85[#85], https://github.com/CS2103AUG2017-W10-B4/main/pull/92[#92])
 

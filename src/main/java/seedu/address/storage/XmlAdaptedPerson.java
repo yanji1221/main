@@ -60,6 +60,7 @@ public class XmlAdaptedPerson {
         email = source.getEmail().value;
         birthday = source.getBirthday().value;
         address = source.getAddress().value;
+        favorite = source.getFavorite().value;
 
         if (!source.getProfilePage().value.equals("")) {
             profile = source.getProfilePage().value;
