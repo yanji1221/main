@@ -47,7 +47,7 @@ Responsibilities: Model
 
 === Yan Ji
 image::yanji1221.png[width="150", align="left"]
-{empty}[http://github.com/yanji1221[github]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/docs/team/yanji1221.adoc[portfolio]]
+{empty}[http://github.com/yanji1221[github]] [https://cs2103aug2017-w10-b4.github.io/main/team/yanji1221[portfolio]]
 
 Role: Developer +
 Responsibility: UI
