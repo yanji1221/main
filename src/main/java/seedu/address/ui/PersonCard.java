@@ -109,6 +109,7 @@ public class PersonCard extends UiPart<Region> {
      * Binds the individual UI elements to observe their respective {@code Person} properties
      * so that they will be notified of any changes.
      */
+    //@@author quangtdn
     private void bindListeners(ReadOnlyPerson person) {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
@@ -135,11 +136,8 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().clear();
             initTags(person);
         });
-
-
-
     }
-
+    //@@author
     //@@author yanji1221
     /**
      * Distribute colors for tags

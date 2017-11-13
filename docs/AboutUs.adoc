@@ -20,7 +20,7 @@ Role: Project Advisor
 
 === Dao Quoc Cuong (Erik)
 image::erik0704.png[width="150", align="left"]
-{empty}[http://github.com/erik0704[github]] [<<erik#, portfolio>>]
+{empty}[http://github.com/erik0704[github]] [https://cs2103aug2017-w10-b4.github.io/main/team/erik0704[portfolio]]
 
 Role: Team Lead +
 Responsibilities: Logic

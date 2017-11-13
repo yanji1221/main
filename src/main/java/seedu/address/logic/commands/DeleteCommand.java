@@ -20,7 +20,7 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the list of persons identified by the index numbers used in the last person listing.\n"
-            + "Parameters: INDICES (must be a positive integers)\n"
+            + "Parameters: [INDEX]... (must be a positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 2 4";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
