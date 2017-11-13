@@ -67,7 +67,7 @@ Moving the divider to change the size of middle panel however you see fit.
 . Type `fav 20`
 
 === List all favorite contacts
-. Type `listfav
+. Type `listfav`
 
 === List all contacts
 . Type `list`
@@ -102,6 +102,10 @@ Type take note of current date, i.e. the current date is 17th Nov 2017, then
 . Upon starting, events whose dates are on the current date will be shown as a popup, including the `Testhalon` event.
 
 === Keeping track of upcoming birthdays
+. Check that all people in the list are having their birthday in current month(November) and do not include people that are before current date(17th November).
+. Type `add n/Sharon Chiew b/1990/11/27`
+. Close the application and restart it.
+. Sharon Chiew will be shown in the list
 
 === Show typed-command history
 . Type `history`
