@@ -105,7 +105,6 @@ public class AddEventCommandTest {
             fail("This method should not be called.");
         }
 
-        //@@author erik0704
         @Override
         public void addEvent(Event event) throws DuplicateEventException {
             fail("This method should not be called.");
@@ -120,7 +119,6 @@ public class AddEventCommandTest {
         public void deleteEvent(Event target) throws EventNotFoundException {
             fail("This method should not be called.");
         }
-        //@@author
 
         @Override
         public void resetData(ReadOnlyAddressBook newData) {
@@ -155,7 +153,6 @@ public class AddEventCommandTest {
             fail("This method should not be called.");
         }
 
-        //@@author erik0704
         @Override
         public ObservableList<Event> getFilteredEventList() {
             fail("This method should not be called.");
@@ -171,7 +168,6 @@ public class AddEventCommandTest {
         public void updateFilteredEventList(Predicate<Event> predicate) {
             fail("This method should not be called.");
         }
-        //@@author
 
     }
 

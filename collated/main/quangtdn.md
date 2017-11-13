@@ -7,9 +7,12 @@
 ``` java
             + PREFIX_PROFILEPAGE + "www.facebook.com "
 ```
-###### \java\seedu\address\logic\commands\DeleteListCommand.java
+###### \java\seedu\address\logic\commands\DeleteCommand.java
 ``` java
 package seedu.address.logic.commands;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,27 +20,30 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Deletes a list of persons identified using their last displayed indices from the address book.
  */
-public class DeleteListCommand extends UndoableCommand {
+public class DeleteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the list of persons identified by the index numbers used in the last person listing.\n"
-            + "Parameters: INDICES (must be a positive integers)\n"
+            + "Parameters: INDEX [MORE_INDICES] (must be a positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 2 4";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
     private final List<Index> listTargetIndices;
 
-    public DeleteListCommand(List<Index> listTargetIndices) {
+    public DeleteCommand(List<Index> listTargetIndices) {
         this.listTargetIndices = listTargetIndices;
+    }
+
+    public DeleteCommand(Index targetIndex) {
+        this.listTargetIndices = new ArrayList<Index>();
+        this.listTargetIndices.add(targetIndex);
     }
 
 
@@ -72,8 +78,8 @@ public class DeleteListCommand extends UndoableCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && (this.listTargetIndices.containsAll(((DeleteListCommand) other).listTargetIndices)
-                    && ((DeleteListCommand)other).listTargetIndices
+                && (this.listTargetIndices.containsAll(((DeleteCommand) other).listTargetIndices)
+                    && ((DeleteCommand) other).listTargetIndices
                     .containsAll(this.listTargetIndices))); // state check
     }
 }
@@ -100,19 +106,17 @@ public class DeleteListCommand extends UndoableCommand {
 ``` java
 package seedu.address.logic.commands;
 
-import java.io.BufferedWriter;
-import java.io.*;
-import java.io.FileWriter;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
+import java.io.File;
+import java.io.PrintWriter;
 
-/**
- * Created by nguyenminhquang on 11/7/17.
- */
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 
 /**
  * Export the contact list into XML file and store it at the specified input path
@@ -121,10 +125,12 @@ import org.w3c.dom.Element;
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into XML file and store it at the specified input path \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export the contact list into text file "
+            + "and store it at the specified input path \n"
             + "Parameters: [FILE_PATH]...\n"
-            + "Example: " + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n" +
-            "\n";
+            + "Example: "
+            + COMMAND_WORD + " C:\\Users\\(username)\\Desktop\n"
+            + "\n";
 
     private final String savedFilePath;
 
@@ -135,16 +141,8 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            File file;
-            file = new File(savedFilePath);
-
-
             File fXmlFile = new File(System.getProperty("user.dir") + "/data/addressbook.xml");
-            System.out.println(System.getProperty("user.dir") + "/data/addressbook.xml");
-            //PrintWriter output = null;
-            //PrintWriter output = new PrintWriter(new FileWriter(file), "UTF-8");
             PrintWriter output = new PrintWriter(savedFilePath, "UTF-8");
-            //File fXmlFile = new File("/Users/mkyong/staff.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -156,14 +154,12 @@ public class ExportCommand extends Command {
 
             for (int temp = 0; temp < personList.getLength(); temp++) {
                 Node nNode = personList.item(temp);
-                output.println("\nPerson :" + nNode.getNodeName());
+                output.println("\nPerson :" + (temp + 1));
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     output.println("Name : "
                             + eElement.getElementsByTagName("name")
                             .item(0).getTextContent());
-                    //output.println("Name : "
-                    //      + eElement.getAttribute("name"));
                     output.println("Phone : "
                             + eElement.getElementsByTagName("phone")
                             .item(0).getTextContent());
@@ -187,9 +183,7 @@ public class ExportCommand extends Command {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return new CommandResult("File exported at " + savedFilePath +" .");
-        // export your data code here
+        return new CommandResult("File exported at " + savedFilePath);
     }
 
 
@@ -215,9 +209,9 @@ import seedu.address.model.person.NameContainsPhonePredicate;
 public class FindPhoneCommand extends Command {
     public static final String COMMAND_WORD = "phone";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the persons whose phone numbers "
-            + "appear in the list of specified numbers and displays those persons as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the persons whose phone numbers appear partially"
+            + " in the list of specified numbers and displays those persons as a list with index numbers.\n"
+            + "Parameters: NUMBERS\n"
             + "Example: " + COMMAND_WORD + " 12345678";
 
     private final NameContainsPhonePredicate predicate;
@@ -235,7 +229,7 @@ public class FindPhoneCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
+                || (other instanceof FindPhoneCommand // instanceof handles nulls
                 && this.predicate.equals(((FindPhoneCommand) other).predicate)); // state check
     }
 }
@@ -244,37 +238,37 @@ public class FindPhoneCommand extends Command {
 ``` java
     public static final Prefix PREFIX_PROFILEPAGE = new Prefix("pr/");
 ```
-###### \java\seedu\address\logic\parser\DeleteListCommandParser.java
+###### \java\seedu\address\logic\parser\DeleteCommandParser.java
 ``` java
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.DeleteListCommand;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteListCommand object
+ * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteListCommandParser implements Parser<DeleteListCommand> {
+public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteListCommand
-     * and returns an DeleteListCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * and returns an DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteListCommand parse(String args) throws ParseException {
+    public DeleteCommand parse(String args) throws ParseException {
         try {
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteListCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
             String[] indices = trimmedArgs.split("\\s+");
             List<String> inputInString = Arrays.asList(indices);
@@ -286,10 +280,10 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
                 input.add(index);
             }
 
-            return new DeleteListCommand(input);
+            return new DeleteCommand(input);
         } catch (IllegalValueException ive) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteListCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
     }
 }
@@ -304,10 +298,6 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
 ###### \java\seedu\address\logic\parser\ExportCommandParser.java
 ``` java
 package seedu.address.logic.parser;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
 
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -330,7 +320,7 @@ public class ExportCommandParser {
 
     public ExportCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if(args.equals("") || args.isEmpty()){
+        if (args.equals("") || args.isEmpty()) {
             return new ExportCommand("exportFile.txt");
         } else {
             return new ExportCommand(args);
@@ -352,7 +342,7 @@ import seedu.address.model.person.NameContainsPhonePredicate;
 /**
  * Parses input arguments and creates a new FindPhoneCommand object
  */
-public class FindPhoneCommandParser {
+public class FindPhoneCommandParser implements Parser<FindPhoneCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindPhoneCommand
      * and returns an FindPhoneCommand object for execution.
@@ -387,10 +377,11 @@ public class FindPhoneCommandParser {
 ``` java
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
+
 
 /**
  * Tests that a {@code ReadOnlyPerson}'s {@code Phone} matches any of the phones given.
@@ -405,32 +396,36 @@ public class NameContainsPhonePredicate implements Predicate<ReadOnlyPerson> {
 
     @Override
     public boolean test(ReadOnlyPerson person) {
-        return numbers.stream()
-                .anyMatch(number -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number));
+        return numbers.stream().anyMatch(number
+            -> StringUtil.containsWordIgnoreCase(person.getPhone().toString(), number)) || numbers.stream()
+            .anyMatch(number -> person.getPhone().toString().contains(number));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsPhonePredicate // instanceof handles nulls
-                && this.numbers.equals(((NameContainsPhonePredicate) other).numbers)); // state check
+                && this.numbers.containsAll((((NameContainsPhonePredicate) other).numbers))
+                && ((NameContainsPhonePredicate) other).numbers.containsAll(this.numbers)); // state check
     }
 
 }
 ```
 ###### \java\seedu\address\model\person\Person.java
 ``` java
-    private ObjectProperty<ProfilePage> profile;
-```
-###### \java\seedu\address\model\person\Person.java
-``` java
-    public void setProfilePage(ProfilePage profile) { this.profile.set(requireNonNull(profile));}
+    public void setProfilePage(ProfilePage profile) {
+        this.profile.set(requireNonNull(profile));
+    }
 
     @Override
-    public ObjectProperty<ProfilePage> profilepageProperty() { return profile; }
+    public ObjectProperty<ProfilePage> profilepageProperty() {
+        return profile;
+    }
 
     @Override
-    public ProfilePage getProfilePage() {return profile.get(); }
+    public ProfilePage getProfilePage() {
+        return profile.get();
+    }
 ```
 ###### \java\seedu\address\model\person\ProfilePage.java
 ``` java
@@ -438,6 +433,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 //import org.apache.commons.validator.routines.UrlValidator;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -448,19 +444,15 @@ public class ProfilePage {
 
     public static final String MESSAGE_PROFILEPAGE_CONSTRAINTS =
             "Person Profile page should be a valid URL pointing to that person's profile";
-    public static final String PROFILEPAGE_VALIDATION_REGEX= "^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]+.[a-z]{3}.([a-z]+)((/)?[a-zA-Z0-9.]?)*?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX = "^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX = "^(https?:\\/\\/)?(www\\.)?([\\w]+\\.)+[‌​\\w]{2,63}\\/?$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX = "^(http://|https://)?(www.).(facebook.com/){1}[\\w/]{0,63}$";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX ="^http(s{0,1})://[a-zA-Z0-9_/\\-\\.]+\\.([A-Za-z/]{2,5})[a-zA-Z0-9_/\\&\\?\\=\\-\\.\\~\\%]*";
-    //public static final String PROFILEPAGE_VALIDATION_REGEX = "(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?";
+    public static final String PROFILEPAGE_VALIDATION_REGEX =
+            "^(http://|https://)?(www.)?([a-zA-Z0-9_]+).[a-zA-Z0-9_]+.[a-z_]{3}.([a-z_]+)((/)?[a-zA-Z0-9._]?)*?$";
 
     public final String value;
 
     /**
-     * Validates given birthday.
+     * Validates given profile page.
      *
-     * @throws IllegalValueException if given birthday address string is invalid.
+     * @throws IllegalValueException if given profile page string is invalid.
      */
     public ProfilePage(String profile) throws IllegalValueException {
         requireNonNull(profile);
@@ -468,8 +460,8 @@ public class ProfilePage {
             throw new IllegalValueException(MESSAGE_PROFILEPAGE_CONSTRAINTS);
         }
         String profileLink = profile.replace("https://", "");
-        if(!profileLink.equals("") && !profileLink.endsWith("/")) {
-            this.value = profileLink +"/";
+        if (!profileLink.equals("") && !profileLink.endsWith("/")) {
+            this.value = profileLink + "/";
         } else {
             this.value = profileLink;
         }
@@ -480,22 +472,17 @@ public class ProfilePage {
      * Returns if a given string is a valid person profile page.
      */
     public static boolean isValidProfilePage(String test) {
-        if(test.equals("")) {
+        if (test.equals("")) {
             return true;
         }
-        /*
-        String[] schemes = {"http","https"}; // DEFAULT schemes = "http", "https", "ftp"
-        UrlValidator urlValidator = new UrlValidator(schemes);
-        return urlValidator.isValid(test);
-        */
         return test.matches(PROFILEPAGE_VALIDATION_REGEX);
     }
 
     /**
      * Returns true if this person has a profile page.
      */
-    public boolean hasProfilePage(){
-        return (this.value.equals("") || this.value == null) ? false: true;
+    public boolean hasProfilePage() {
+        return (this.value.equals("") || this.value == null) ? false : true;
     }
 
     @Override
@@ -522,11 +509,6 @@ public class ProfilePage {
     ObjectProperty<ProfilePage> profilepageProperty();
     ProfilePage getProfilePage();
 ```
-###### \java\seedu\address\storage\XmlAdaptedPerson.java
-``` java
-    @XmlElement(required = false)
-    private String profile="";
-```
 ###### \java\seedu\address\ui\BrowserPanel.java
 ``` java
     private void loadProfilePage(ReadOnlyPerson person) {
@@ -539,19 +521,47 @@ public class ProfilePage {
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         ReadOnlyPerson person = event.getNewSelection().person;
-        if(person.getProfilePage().hasProfilePage()) {
+        if (person.getProfilePage().hasProfilePage()) {
             loadProfilePage(person);
         } else {
             loadPersonPage(person);
         }
-
-
     }
 ```
 ###### \java\seedu\address\ui\PersonCard.java
 ``` java
     @FXML
     private Label profile;
+```
+###### \java\seedu\address\ui\PersonCard.java
+``` java
+    private void bindListeners(ReadOnlyPerson person) {
+        name.textProperty().bind(Bindings.convert(person.nameProperty()));
+        phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
+        birthday.textProperty().bind(Bindings.convert(person.birthdayProperty()));
+        address.textProperty().bind(Bindings.convert(person.addressProperty()));
+
+        if (!person.profilepageProperty().toString().equals("")) {
+            profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+            profile.setVisible(true);
+        } else {
+            profile.setVisible(false);
+        }
+
+
+        email.textProperty().bind(Bindings.convert(person.emailProperty()));
+        if (person.getFavorite().value == true) {
+            Image image = new Image("/images/star.png");
+            favorite.setImage(image);
+        } else {
+            favorite = null;
+        }
+
+        person.tagProperty().addListener((observable, oldValue, newValue) -> {
+            tags.getChildren().clear();
+            initTags(person);
+        });
+    }
 ```
 ###### \resources\view\PersonListCard.fxml
 ``` fxml

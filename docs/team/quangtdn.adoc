@@ -3,10 +3,10 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== Project: AddressBook - Level 4
-AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+== Project: NeoXPro Manager
+NeoXPro is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
-*Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/yanji1221.md[Functional code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/quangtdn.md[Test code]] [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/quangtdn.md[Unused code]] {give links to collated code files}
 
 === Enhancement Added: `phone`
 
@@ -18,13 +18,13 @@ Locating persons by phone number.
 
 include::../UserGuide.adoc[tag=phone]
 
-Finds person whose phone numbers match with at least a phone number in the specified list
+Finds person whose phone numbers partially match with at least a phone number in the specified list
 Format: `phone NUMBER [MORE_NUMBERS]`
 
 ****
-* The order of phone numbers being queried does not matter.
+* The order of numbers being queried does not matter.
 * Only the phone number is searched.
-* Only full numbers will be matched e.b. '12345' will not match '123456' // can be modifed latter to match a chain of partial number
+* Partial numbers will be matched e.b. '12345' will match '123456'
 ****
 
 #End of Extract#
@@ -33,7 +33,7 @@ Format: `phone NUMBER [MORE_NUMBERS]`
 
 ==== Justification
 
-Searching a contact by phone number is extremely convenient for searching a person in NeoXPRO when searching a contact by name is inefficient in a large contact list.
+Searching a contact by phone number is extremely convenient for searching a person in NeoXPro when searching a contact by name is inefficient in a large contact list.
 
 ==== Implementation
 
@@ -71,7 +71,7 @@ With the profile page stored for each person, NeoXPRO enhances the user's experi
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=addpara]
+include::../DeveloperGuide.adoc[tag=addprofile]
 
 #End of Extract#
 
@@ -93,7 +93,7 @@ include::../UserGuide.adoc[tag=delete]
 
 ==== Justification
 
-{Justify the need for, and the current design (i.e. external behavior) of, the feature}
+Users now don't have to manually delete each contact at a time.
 
 ==== Implementation
 
@@ -151,22 +151,22 @@ include::../UserGuide.adoc[tag=select]
 
 ==== Justification
 
-{Justify the need for, and the current design (i.e. external behavior) of, the feature}
+Let users easily access social media and improve experience. Employers can also make use of this feature to quickly access candidates' CVs or profile pages.
 
 ==== Implementation
 
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=select]
+include::../DeveloperGuide.adoc[tag=addprofile]
 
 #End of Extract#
 
 ---
 === Other contributions
 
-* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+* Fix bugs due to merge conflicts for team (Pull requests https://github.com/CS2103AUG2017-W10-B4/main/pull/70[#70], https://github.com/CS2103AUG2017-W10-B4/main/pull/45[#45])
+* Write additional tests to increase coverage by 1.4% (Pull requests https://github.com/CS2103AUG2017-W10-B4/main/pull/89[#89], https://github.com/CS2103AUG2017-W10-B4/main/pull/99[#99])
 
 == Project: PowerPointLabs
 

@@ -4,7 +4,7 @@
 
 == Run the application with sample data
 . Download all necessary files (i.e. jar file, user guide, developer guide, sample data, test script,
- project portfolio pages) into an empty.
+ project portfolio pages) into an empty folder.
 . Change the sample data file name to addressbook.xml
 . Run the jar file for the first time. If there is any popup close it before proceed.
 . Type `add n/John Doe p/98765432 e/johnd@example.com b/1995/11/03 a/311, Clementi Ave 2, #02-25 pr/www.facebook.com t/friends t/owesMoney` (or type `add` and copy the example)
@@ -102,10 +102,11 @@ Type take note of current date, i.e. the current date is 17th Nov 2017, then
 . Upon starting, events whose dates are on the current date will be shown as a popup, including the `Testhalon` event.
 
 === Keeping track of upcoming birthdays
-. Check that all people in the list are having their birthday in current month(November) and do not include people that are before current date(17th November).
+. Check that all people in the list are having their birthday in current month(November) and do not include people that are before current date.
 . Type `add n/Sharon Chiew b/1990/11/27`
 . Close the application and restart it.
-. Sharon Chiew will be shown in the list
+. Sharon Chiew will be shown in the bottom right list along with others who were there previously.
+. (Current version has limitation in which the birthday panel list is only update at the application start/restart).
 
 === Show typed-command history
 . Type `history`

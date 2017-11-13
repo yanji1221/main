@@ -98,6 +98,50 @@ public class ComingBirthdayCard extends UiPart<Region> {
     </GridPane>
 </HBox>
 ```
+###### \GroupCard.java
+``` java
+    /**
+     * Color getter for a tag
+     */
+    private static String colorGetterForPerson(String personValue) {
+        int colorCode;
+        boolean isUsedUpAllColors = true;
+        for (int i = 0; i < colors.length; i++) {
+            if (usedColors[i] == 0) {
+                isUsedUpAllColors = false;
+                break;
+            }
+        }
+        if (isUsedUpAllColors) {
+            for (int j = 0; j < colors.length; j++) {
+                usedColors[j] = 0;
+            }
+        }
+
+        if (!tagColors.containsKey(personValue)) {
+            do {
+                colorCode = random.nextInt(colors.length);
+            } while(usedColors[colorCode] == 1);
+            usedColors[colorCode] = 1;
+            tagColors.put(personValue, colors[colorCode]);
+        }
+
+        return tagColors.get(personValue);
+    }
+```
+###### \GroupCard.java
+``` java
+    /**
+     * Distribute colors for tags
+     */
+    private void initPersons(Group group) {
+        group.getPersonList().forEach(person -> {
+            Label personLabel = new Label(person.getName().fullName);
+            personLabel.setStyle("-fx-background-color: " + colorGetterForPerson(person.getName().fullName));
+            persons.getChildren().add(personLabel);
+        });
+    }
+```
 ###### \SetShortcutNumberCommand.java
 ``` java
 package seedu.address.logic.commands;
