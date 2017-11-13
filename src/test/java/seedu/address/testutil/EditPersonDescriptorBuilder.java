@@ -31,9 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        //@@author yanji1221
         descriptor.setBirthday(person.getBirthday());
-        //@@author
         descriptor.setAddress(person.getAddress());
         descriptor.setProfilePage(person.getProfilePage());
         descriptor.setTags(person.getTags());

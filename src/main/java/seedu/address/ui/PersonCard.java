@@ -149,7 +149,7 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
-
+    //@@author yanji1221
 
     @Override
     public boolean equals(Object other) {
