@@ -288,7 +288,7 @@ Examples:
 * `list` +
 `select 2` +
 Selects the 2nd person in the address book. +
-The 2nd person in the list has the profile page "www.facebook.com" +
+The 2nd person in the list has the profile page "twitter.com/davidlee" +
 
 image::select1.png[width="690"]
 
