@@ -330,7 +330,7 @@ The event date is `yyyy-mm-dd` format.
 
 Examples:
 
-* `addEvent n/Return 5$ d/2017-08-17 de/lunch money` +
+* `addEvent n/Return John 5 bucks d/2017-12-17 de/lunch money` +
 Add a new event with description.
 * `addEvent n/Project Meeting d/2017-11-25 de/` +
 Add a new event with empty description.
