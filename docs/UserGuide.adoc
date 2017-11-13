@@ -225,6 +225,7 @@ Format: `fav INDEX`
 ****
 
 Example:
+
 * `fav 2` +
 Favorite the 2nd listed person in the address book.
 
@@ -246,6 +247,7 @@ Format: `Unfav INDEX`
 ****
 
 Example:
+
 * `Unfav 2` +
 Undo favorite the 2nd listed person in the address book.
 

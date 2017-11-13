@@ -502,7 +502,7 @@ And finally, we add the `delete` command to the class 'AddressBookParser' so tha
 // end::delete[]
 
 // tag::phone[]
-=== phone command
+=== Phone command
 
 The `phone` command utilize the same implementation as the `Find` command for name. Instead of logic execute search via `Name` attribute of `Person`, the command search for the `phone` attribute.
 
@@ -510,12 +510,31 @@ The `phone` command utilize the same implementation as the `Find` command for na
 which allows the algorithm to use Java `Predicate` class method.
 // end::phone[]
 
+// tag::findtag[]
 === FindTag Command
 
-The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.
+The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via `Name` attribute of Person, the command search in the `TagList` attribute.
 
-Name and Tag API structure is roughly similar that they allow to extract value of the object. The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>`
-which allows the algorithm to use Java `Predicate` class method.
+Tag component in model already had API methods for searching, which is similar to `Name` which allows extracting value of the object.
+The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>` which allows the algorithm to use Java `Predicate` class method.
+
+// end::findtag[]
+
+// tag::taskevent[]
+=== (Task) event management
+
+The model for task event is implemented similar to `person` class.
+
+image::EventModelClassDiagram.png[width="300"]
+
+The `EventList` is then linked up to the `AddressBook` which is monitored by `ModelManager` to reflect any change to the `Addressbook` model.
+The Ui components `EventCard` and `EventListPanel` are also hooked up to the model and reflect any changes made to `filterEvents`.
+
+=== Event auto-reminder
+
+When the `UiManager` component got initialized at the start of the application, a new `ShowReminderRequestEvent` gets posted.
+This is then handle by the `MainWindow` which initialized one or more `ReminderWindow` from the `upcomingEvents` in the model.
+// end::taskevent[]
 
 // tag::comingbirthdaylist[]
 === Coming Birthday List
@@ -560,7 +579,7 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 // end::comingbirthdaylist[]
 
 // tag::export[]
-=== export Command
+=== Export Command
 `export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
 The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +

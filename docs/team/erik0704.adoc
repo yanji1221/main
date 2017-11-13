@@ -27,8 +27,14 @@ The address book had tags for each contact, however there was no way to search f
 
 ==== Implementation
 
-Tag component in model already had API method for searching, but unused. Implementation is similar to `find` command
-but instead of interacting with `Name` component and its predicate we interact with `Tag` and its predicate.
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=findtag]
+
+#End of Extract#
+
+---
 
 === Enhancement Added: Locate a person
 
@@ -72,9 +78,15 @@ The application is also meant to be a task manager. Thus there is a need to impl
 
 ==== Implementation
 
-Overall behavior is similar to Person class logic and model.
-Auto-reminder is done by filtering events whose date is same as the current date, and adding a GUI popup panel section
-to display it similar to the `HelpWindow`. These steps are automatically initialized at the application start.
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=taskevent]
+
+
+#End of Extract#
+
+---
 
 === Enhancement Added: Change application css theme
 
