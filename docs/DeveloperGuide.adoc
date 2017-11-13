@@ -549,6 +549,55 @@ public class AddressBookParser {
 Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution.
 
 
+=== FindTag Command
+
+The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.
+
+Name and Tag API structure is roughly similar that they allow to extract value of the object. The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>`
+which allows the algorithm to use Java `Predicate` class method.
+
+// tag::comingbirthdaylist[]
+=== Coming Birthday List
+Basically, adding a list of upcoming birthday is only related to UI component. A new class should be implemented to hold the list.
+In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel should process all contacts in the person list
+and decide which persons to include in the coming birthday list. +
+To get the list of upcoming birthdays, the ComingBirthdayListPanel should have a method comingBirthdayListGetter
+which is implemented in this way:
+[source, java]
+---
+private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
+        List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
+        boolean isRemoved = false;
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH)+1;
+        int date = cal.get(Calendar.DATE);
+        //...
+        for (int i = 0; i < comingBirthdayList.size(); i++) {
+            if (!(Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month)) {
+                comingBirthdayList.remove(i);
+                isRemoved = true;
+            }
+            else if((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(5, 7)) == month) &&
+                    Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
+                    .substring(8)) < date) {
+                comingBirthdayList.remove(i);
+                isRemoved = true;
+            }
+            //...
+        }
+        return FXCollections.observableArrayList(comingBirthdayList);
+}
+
+
+Main window should include the newly added ComingBirthdayListPanel class so that the panel will be shown in the main window.
+A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday list should be present to reserve a section
+for the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.
+
+// end::comingbirthdaylist[]
+
+
 // tag::Favorite[]
 === Favoriting a person using FavoriteCommand.
 === Unfavoriting a person using UnfavoriteCommand.
@@ -609,54 +658,6 @@ to check whether a person is favorited or not, UI component then decide which pe
 // end::Listfavorite[]
 
 
-
-=== FindTag Command
-
-The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.
-
-Name and Tag API structure is roughly similar that they allow to extract value of the object. The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>`
-which allows the algorithm to use Java `Predicate` class method.
-
-// tag::comingbirthdaylist[]
-=== Coming Birthday List
-Basically, adding a list of upcoming birthday is only related to UI component. A new class should be implemented to hold the list.
-In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel should process all contacts in the person list
-and decide which persons to include in the coming birthday list. +
-To get the list of upcoming birthdays, the ComingBirthdayListPanel should have a method comingBirthdayListGetter
-which is implemented in this way:
-[source, java]
----
-private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
-        List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
-        boolean isRemoved = false;
-        Calendar cal = Calendar.getInstance();
-        int month = cal.get(Calendar.MONTH)+1;
-        int date = cal.get(Calendar.DATE);
-        //...
-        for (int i = 0; i < comingBirthdayList.size(); i++) {
-            if (!(Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7)) == month)) {
-                comingBirthdayList.remove(i);
-                isRemoved = true;
-            }
-            else if((Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(5, 7)) == month) &&
-                    Integer.parseInt(comingBirthdayList.get(i).getBirthday().toString()
-                    .substring(8)) < date) {
-                comingBirthdayList.remove(i);
-                isRemoved = true;
-            }
-            //...
-        }
-        return FXCollections.observableArrayList(comingBirthdayList);
-}
-
-
-Main window should include the newly added ComingBirthdayListPanel class so that the panel will be shown in the main window.
-A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday list should be present to reserve a section
-for the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.
-
-// end::comingbirthdaylist[]
 
 === Configuration
 
