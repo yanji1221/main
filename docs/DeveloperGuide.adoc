@@ -639,7 +639,7 @@ Person Class is to collect and set all information about a particular person. If
 a person with collected information will be created. +
 The following diagram shows the relationship of different classes in model component:
 
-image::ModelClassForFavorite.png[width="300"]
+image::ModelClassForFavorite1.png[width="300"]
 
 * `Storage Component:` +
 To make sure that favorite value can be stored in the xml format for future usage, xmlAdaptedPerson is used to save
