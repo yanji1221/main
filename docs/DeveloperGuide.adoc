@@ -577,8 +577,6 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 
 // end::comingbirthdaylist[]
 
-<<<<<<< HEAD
-
 // tag::Favorite[]
 === Favoriting a person using FavoriteCommand.
 === Unfavoriting a person using UnfavoriteCommand.
@@ -631,7 +629,7 @@ information of a person in xml format.
 // tag::Listfavorite[]
 List all your favorite persons using ListFavoriteCommand.
 
-==== ListFavorteCommand
+==== ListFavoriteCommand
 To list all your favorite persons in AddressBook, UI, Model, and Logic Components are involved.
 Logic Component includes `ListFavoriteCommand` and `ListFavoriteCommandParser`, and they call `FavoritePredicate` in Model Component
 to check whether a person is favorited or not, UI component then decide which persons to include in the PersonListPanel.
@@ -639,15 +637,16 @@ to check whether a person is favorited or not, UI component then decide which pe
 // end::Listfavorite[]
 
 
-=======
+
 // tag::export[]
 === Export Command
+
 `export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
 Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
 The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
 `ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
 // end::export[]
->>>>>>> upstream/master
+
 
 === Configuration
 
@@ -1053,7 +1052,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-{More to be added}
 
 [appendix]
 == Use Cases
@@ -1200,8 +1198,6 @@ Use case ends.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-{More to be added}
 
 [appendix]
 == Glossary
