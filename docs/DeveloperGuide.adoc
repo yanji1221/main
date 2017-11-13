@@ -37,7 +37,7 @@ processes. Read this document now to understand the best address book, NeoXPro.
 
 // end::intro[]
 
-== Setting up
+== Setting Up
 
 === Prerequisites
 
@@ -55,7 +55,7 @@ IntelliJ by default has Gradle and JavaFx plugins installed. +
 Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
 
-=== Setting up the project in your computer
+=== Setting Up the Project in Your Computer
 
 . Fork this repo, and clone the fork to your computer
 . Open IntelliJ (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
@@ -69,14 +69,14 @@ Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plu
 . Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
 This will generate all resources required by the application and tests.
 
-=== Verifying the setup
+=== Verifying the Setup
 
 . Run the `seedu.address.MainApp` and try a few commands
 . link:#testing[Run the tests] to ensure they all pass.
 
-=== Configurations to do before writing code
+=== Configurations to do Before Writing Code
 
-==== Configuring the coding style
+==== Configuring the Coding Style
 
 This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order from ours. To rectify,
 
@@ -89,11 +89,11 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 
 Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
 
-==== Updating documentation to match your fork
+==== Updating Documentation to Match Your Fork
 
 After forking the repo, links in the documentation will still point to the `se-edu/addressbook-level4` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `se-edu/addressbook-level4`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
 
-==== Setting up CI
+==== Setting Up CI
 
 Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingTravis#, UsingTravis.adoc>> to learn how to set it up.
 
@@ -102,7 +102,7 @@ Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingA
 [NOTE]
 Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
 
-==== Getting started with coding
+==== Getting Started with Coding
 
 When you are ready to start coding,
 
@@ -149,7 +149,7 @@ image::LogicClassDiagram.png[width="800"]
 _Figure 2.1.2 : Class Diagram of the Logic Component_
 
 [discrete]
-==== Events-Driven nature of the design
+==== Events-Driven Nature of the Design
 
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
 
@@ -169,7 +169,7 @@ Note how the event is propagated through the `EventsCenter` to the `Storage` and
 
 The sections below give more details of each component.
 
-=== UI component
+=== UI Component
 
 image::UiClassDiagram.png[width="800"]
 _Figure 2.2.1 : Structure of the UI Component_
@@ -186,7 +186,7 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-=== Logic component
+=== Logic Component
 
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -207,7 +207,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 image::DeletePersonSdForLogic.png[width="800"]
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
-=== Model component
+=== Model Component
 
 image::ModelClassDiagram.png[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
@@ -221,7 +221,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-=== Storage component
+=== Storage Component
 
 image::StorageClassDiagram.png[width="800"]
 _Figure 2.5.1 : Structure of the Storage Component_
@@ -233,7 +233,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in xml format and read it back.
 
-=== Common classes
+=== Common Classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -242,7 +242,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
-=== Undo/Redo mechanism
+=== Undo/Redo Mechanism
 
 The undo/redo mechanism is facilitated by an `UndoRedoStack`, which resides inside `LogicManager`. It supports undoing and redoing of commands that modifies the state of the address book (e.g. `add`, `edit`). Such commands will inherit from `UndoableCommand`.
 
@@ -475,43 +475,14 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-=== deleteList: deletes a list of persons with specified indices
+// tag::delete[]
+=== Delete command
 
-'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
+`delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from `UndoableCommand`.
+The implementation of `delete` contains 2 classes: `DeleteCommand` and `DeleteCommandParser` inside the logic component. +
+`DeleteCommandParser`, the parser of `delete`, parses user's input into the variable `input: List<Index>` that store a list of `Index`.
+`DeleteCommand`, which handles the logic of `delete` command, then iteratively remove any `Person` object with `Index` specified in `input`.
 
-The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
-
-In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
-
-This 'DeleteListCommand' is implemented this way:
-[source, java]
-----
-public class DeleteListCommand extends UndoableCommand {
-
-   // ...
-
-    private final List<Index> listTargetIndices;
-
-    public DeleteListCommand(List<Index> listTargetIndices) {
-        this.listTargetIndices = listTargetIndices;
-    }
-
-    @Override
-    public CommandResult executeUndoableCommand() throws CommandException {
-        // ...
-        List<ReadOnlyPerson> listPersonsToDelete= new ArrayList<ReadOnlyPerson>();
-        for(Index targetIndex: listTargetIndices) {
-            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            listPersonsToDelete.add(personToDelete);
-        }
-        // ... deleteList logic ...
-     }
-}
-----
-
-Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
-
-The parser is implemented  this way:
 [source, java]
 ----
 public class DeleteListCommandParser implements Parser<DeleteListCommand> {
@@ -527,34 +498,42 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
 }
 ----
 
-And finally, we teach the 'AddressBookParser' to read this new command:
+And finally, we add the `delete` command to the class 'AddressBookParser' so that `delete` command is recognized whenever invoked.
+// end::delete[]
 
-[source, java]
-----
-public class AddressBookParser {
-    // ...
-    public Command parseCommand(String userInput) throws ParseException {
-        // ... AddressBookParser logic ...
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-        // ... other commands ...
-        case DeleteListCommand.COMMAND_WORD:
-            return new DeleteListCommandParser().parse(arguments);
-        // ... other commands ...
-    }
-}
-----
+// tag::phone[]
+=== Phone command
+The `phone` command utilize the same implementation as the `Find` command for name. Instead of logic execute search via `Name` attribute of `Person`, the command search for the `phone` attribute.
 
-Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution.
+`Name` and `Phone` API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class `NameContainsPhonesPredicate implements Predicate<ReadOnlyPerson>`
+which allows the algorithm to use Java `Predicate` class method.
+// end::phone[]
 
-
+// tag::findtag[]
 === FindTag Command
 
-The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via Name attribute of Person, the command search for the TagList attribute.
+The findTag command utilize the same implementation as the Find command for name. Instead of logic execute search via `Name` attribute of Person, the command search in the `TagList` attribute.
 
-Name and Tag API structure is roughly similar that they allow to extract value of the object. The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>`
-which allows the algorithm to use Java `Predicate` class method.
+Tag component in model already had API methods for searching, which is similar to `Name` which allows extracting value of the object.
+The search algorithm utilize a class `TagContainsKeywordsPredicate implements Predicate<ReadOnlyPerson>` which allows the algorithm to use Java `Predicate` class method.
+
+// end::findtag[]
+
+// tag::taskevent[]
+=== (Task) event management
+
+The model for task event is implemented similar to `person` class.
+
+image::EventModelClassDiagram.png[width="300"]
+
+The `EventList` is then linked up to the `AddressBook` which is monitored by `ModelManager` to reflect any change to the `Addressbook` model.
+The Ui components `EventCard` and `EventListPanel` are also hooked up to the model and reflect any changes made to `filterEvents`.
+
+=== Event auto-reminder
+
+When the `UiManager` component got initialized at the start of the application, a new `ShowReminderRequestEvent` gets posted.
+This is then handle by the `MainWindow` which initialized one or more `ReminderWindow` from the `upcomingEvents` in the model.
+// end::taskevent[]
 
 // tag::comingbirthdaylist[]
 === Coming Birthday List
@@ -563,8 +542,9 @@ In this case, ComingBirthdayListPanel is implemented. ComingBirthdayListPanel sh
 and decide which persons to include in the coming birthday list. +
 To get the list of upcoming birthdays, the ComingBirthdayListPanel should have a method comingBirthdayListGetter
 which is implemented in this way:
+
 [source, java]
----
+----
 private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> comingBirthdayList = personList.stream().collect(Collectors.toList());
         boolean isRemoved = false;
@@ -589,7 +569,7 @@ private ObservableList<ReadOnlyPerson> comingBirthdayListGetter(ObservableList<R
         }
         return FXCollections.observableArrayList(comingBirthdayList);
 }
-
+----
 
 Main window should include the newly added ComingBirthdayListPanel class so that the panel will be shown in the main window.
 A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday list should be present to reserve a section
@@ -597,6 +577,7 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 
 // end::comingbirthdaylist[]
 
+<<<<<<< HEAD
 
 // tag::Favorite[]
 === Favoriting a person using FavoriteCommand.
@@ -658,6 +639,15 @@ to check whether a person is favorited or not, UI component then decide which pe
 // end::Listfavorite[]
 
 
+=======
+// tag::export[]
+=== Export Command
+`export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
+Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
+The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
+`ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
+// end::export[]
+>>>>>>> upstream/master
 
 === Configuration
 
@@ -679,7 +669,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 
 See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to deploy GitHub Pages using Travis.
 
-=== Converting Documentation to PDF format
+=== Converting Documentation to PDF Format
 
 We use https://www.google.com/chrome/browser/desktop/[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
 
@@ -720,7 +710,7 @@ Thanks to the https://github.com/TestFX/TestFX[TestFX] library we use, our GUI t
 
 To run tests in headless mode, open a console and run the command `gradlew clean headless allTests` (Mac/Linux: `./gradlew clean headless allTests`)
 
-=== Types of tests
+=== Types of Tests
 
 We have two types of tests:
 
@@ -776,12 +766,12 @@ Suggested path for new programmers:
 
 2. Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. The section link:#creating-a-new-command-code-remark-code[Creating a new command: `remark`] explains how to go about adding such a feature.
 
-=== Improving each component
+=== Improving Each Component
 
 Each individual exercise in this section is component-based (i.e. you would not need to modify the other components to get it to work).
 
 [discrete]
-==== `Logic` component
+==== `Logic` Component
 
 [TIP]
 Do take a look at the link:#logic-component[Design: Logic Component] section before attempting to modify the `Logic` component.
@@ -798,7 +788,7 @@ Do take a look at the link:#logic-component[Design: Logic Component] section bef
 ****
 
 [discrete]
-==== `Model` component
+==== `Model` Component
 
 [TIP]
 Do take a look at the link:#model-component[Design: Model Component] section before attempting to modify the `Model` component.
@@ -815,7 +805,7 @@ Do take a look at the link:#model-component[Design: Model Component] section bef
 ****
 
 [discrete]
-==== `Ui` component
+==== `Ui` Component
 
 [TIP]
 Do take a look at the link:#ui-component[Design: UI Component] section before attempting to modify the `UI` component.
@@ -879,7 +869,7 @@ image::getting-started-ui-status-after.png[width="500"]
 ****
 
 [discrete]
-==== `Storage` component
+==== `Storage` Component
 
 [TIP]
 Do take a look at the link:#storage-component[Design: Storage Component] section before attempting to modify the `Storage` component.
@@ -894,7 +884,7 @@ Do take a look at the link:#storage-component[Design: Storage Component] section
 ** See this https://github.com/se-edu/addressbook-level4/pull/594/files[PR] for the full solution.
 ****
 
-=== Creating a new command: `remark`
+=== Creating a New Command: `remark`
 
 By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.
 
@@ -911,7 +901,7 @@ Removes the remark for the first person.
 
 ==== Step-by-step Instructions
 
-===== [Step 1] Logic: Teach the app to accept 'remark' which does nothing
+===== [Step 1] Logic: Teach the App to Accept 'remark' which Does Nothing
 Let's start by teaching the application how to parse a `remark` command. We will add the logic of `remark` later.
 
 **Main:**
@@ -924,7 +914,7 @@ Let's start by teaching the application how to parse a `remark` command. We will
 . Add `RemarkCommandTest` that tests that `executeUndoableCommand()` throws an Exception.
 . Add new test method to link:{repoURL}/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java[`AddressBookParserTest`], which tests that typing "remark" returns an instance of `RemarkCommand`.
 
-===== [Step 2] Logic: Teach the app to accept 'remark' arguments
+===== [Step 2] Logic: Teach the App to Accept 'remark' Arguments
 Let's teach the application to parse arguments that our `remark` command will accept. E.g. `1 r/Likes to drink coffee.`
 
 **Main:**
@@ -940,7 +930,7 @@ Let's teach the application to parse arguments that our `remark` command will ac
 for `RemarkCommandParser`.
 . Modify link:{repoURL}/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java[`AddressBookParserTest`] to test that the correct command is generated according to the user input.
 
-===== [Step 3] Ui: Add a placeholder for remark in `PersonCard`
+===== [Step 3] Ui: Add a Placeholder for Remark in `PersonCard`
 Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/address/ui/PersonCard.java[`PersonCard`] s to display a remark for each person later.
 
 **Main:**
@@ -952,7 +942,7 @@ Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/address/ui
 
 . Modify link:{repoURL}/src/test/java/guitests/guihandles/PersonCardHandle.java[`PersonCardHandle`] so that future tests can read the contents of the remark label.
 
-===== [Step 4] Model: Add `Remark` class
+===== [Step 4] Model: Add `Remark` Class
 We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java[`ReadOnlyPerson`] class. Instead of just using a `String`, let's follow the conventional class structure that the codebase already uses by adding a `Remark` class.
 
 **Main:**
@@ -964,7 +954,7 @@ We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/s
 
 . Add test for `Remark`, to test the `Remark#equals()` method.
 
-===== [Step 5] Model: Modify `ReadOnlyPerson` to support a `Remark` field
+===== [Step 5] Model: Modify `ReadOnlyPerson` to Support a `Remark` Field
 Now we have the `Remark` class, we need to actually use it inside link:{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java[`ReadOnlyPerson`].
 
 **Main:**
@@ -973,7 +963,7 @@ Now we have the `Remark` class, we need to actually use it inside link:{repoURL}
 . You may assume that the user will not be able to use the `add` and `edit` commands to modify the remarks field (i.e. the person will be created without a remark).
 . Modify link:{repoURL}/src/main/java/seedu/address/model/util/SampleDataUtil.java/[`SampleDataUtil`] to add remarks for the sample data (delete your `addressBook.xml` so that the application will load the sample data when you launch it.)
 
-===== [Step 6] Storage: Add `Remark` field to `XmlAdaptedPerson` class
+===== [Step 6] Storage: Add `Remark` Field to `XmlAdaptedPerson` Class
 We now have `Remark` s for `Person` s, but they will be gone when we exit the application. Let's modify link:{repoURL}/src/main/java/seedu/address/storage/XmlAdaptedPerson.java[`XmlAdaptedPerson`] to include a `Remark` field so that it will be saved.
 
 **Main:**
@@ -985,7 +975,7 @@ We now have `Remark` s for `Person` s, but they will be gone when we exit the ap
 
 . Fix `validAddressBook.xml` such that the XML tests will not fail due to a missing `<remark>` element.
 
-===== [Step 7] Ui: Connect `Remark` field to `PersonCard`
+===== [Step 7] Ui: Connect `Remark` Field to `PersonCard`
 Our remark label in link:{repoURL}/src/main/java/seedu/address/ui/PersonCard.java[`PersonCard`] is still a placeholder. Let's bring it to life by binding it with the actual `remark` field.
 
 **Main:**
@@ -997,7 +987,7 @@ Our remark label in link:{repoURL}/src/main/java/seedu/address/ui/PersonCard.jav
 . Modify link:{repoURL}/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java[`GuiTestAssert#assertCardDisplaysPerson(...)`] so that it will compare the remark label.
 . In link:{repoURL}/src/test/java/seedu/address/ui/PersonCardTest.java[`PersonCardTest`], call `personWithTags.setRemark(ALICE.getRemark())` to test that changes in the link:{repoURL}/src/main/java/seedu/address/model/person/ReadOnlyPerson.java[`Person`] 's remark correctly updates the corresponding link:{repoURL}/src/main/java/seedu/address/ui/PersonCard.java[`PersonCard`].
 
-===== [Step 8] Logic: Implement `RemarkCommand#execute()` logic
+===== [Step 8] Logic: Implement `RemarkCommand#execute()` Logic
 We now have everything set up... but we still can't modify the remarks. Let's finish it up by adding in actual logic for our `remark` command.
 
 **Main:**
@@ -1071,7 +1061,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use Case: Delete Person
 
 *MSS*
 
@@ -1097,7 +1087,7 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
-=== Use case: Edit person
+=== Use Case: Edit Person
 
 *MSS*
 
@@ -1122,7 +1112,7 @@ Use case ends.
 Use case resumes at step 1.
 
 [discrete]
-=== Use case: List all persons
+=== Use Case: List All Persons
 
 *MSS*
 
@@ -1137,7 +1127,7 @@ Use case resumes at step 1.
 Use case ends.
 
 [discrete]
-=== Use case: Find persons by tags
+=== Use Case: Find Persons by Tags
 
 *MSS*
 
@@ -1152,7 +1142,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Find persons by name string
+=== Use Case: Find Persons by Name String
 
 *MSS*
 
@@ -1169,7 +1159,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Find persons by phone number
+=== Use Case: Find Persons by Phone Number
 
 *MSS*
 
@@ -1186,7 +1176,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Add an event reminder
+=== Use Case: Add an Event Reminder
 
 *MSS*
 

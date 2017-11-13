@@ -90,7 +90,7 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [b/BIRTHDAY] [a/ADDRESS] [pr/PROFILE] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index must be a positive integer 1, 2, 3, …​
@@ -147,21 +147,21 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 // tag::phone[]
 === Locating persons by phone number: `phone` (since v1.1)
 
-Finds person whose phone numbers match with at least a phone number in the specified list // Note that we plan to add multiple phone numbers to a person +
+Finds person whose phone numbers partially match with a number in the specified list +
 Format: `phone NUMBER [MORE_NUMBERS]`
 
 ****
-* The order of phone numbers being queried does not matter.
+* The order of numbers being queried does not matter.
 * Only the phone number is searched.
-* Only full numbers will be matched e.g. `12345` will not match `123456` // can be modifed latter to match a chain of partial number
+* Partial string number will be matched with phones  e.g. `12345` will match `123456`
 ****
 
 Examples:
 
-* `phone 123456` +
-Returns person with phone number 123456
-* `phone 123456 654321` +
-Returns persons with phone numbers matching with `123456` or `654321`.
+* `phone 123` +
+Returns persons with phone numbers containing 123
+* `phone 123 65` +
+Returns persons with phone numbers containing `123` or `65`.
 // end::phone[]
 
 // tag::findtag[]
@@ -190,11 +190,11 @@ Returns all persons with both `friend` and `CS2103T` tag.
 // tag::delete[]
 === Deleting a person : `delete`
 
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
+Deletes a list of specified persons from the address book. +
+Format: `delete INDEX [MORE_INDICES]`
 
 ****
-* Deletes the person at the specified `INDEX`.
+* Deletes the persons at the specified `INDEX`'s.
 * The index refers to the index number shown in the most recent listing.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
@@ -202,28 +202,12 @@ Format: `delete INDEX`
 Examples:
 
 * `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
+`delete 2 1` +
+Deletes the 1st and 2nd person in the address book.
 * `find Betsy` +
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 // end::delete[]
-
-=== Deleting all contacts added before a specific date: `deleteBefore` (coming in v2.0)
-
-Deletes all persons added before the date specified from the address book. +
-Format: `deleteBefore [DATE]/[MONTH]/[YEAR]`
-
-****
-* Deletes all persons added before date 'DATE', month 'MONTH' and year 'YEAR'
-* This command is undoable.
-* 'DATE', 'MONTH' and 'YEAR' must be respectively valid date, month and year.
-****
-
-Examples:
-
-* `deleteBefore 10/01/2014` +
-Deletes all persons add before 10/01/2014 from the address book.
 
 // tag::favorite[]
 
@@ -241,6 +225,7 @@ Format: `fav INDEX`
 ****
 
 Example:
+
 * `fav 2` +
 Favorite the 2nd listed person in the address book.
 
@@ -262,6 +247,7 @@ Format: `Unfav INDEX`
 ****
 
 Example:
+
 * `Unfav 2` +
 Undo favorite the 2nd listed person in the address book.
 
@@ -269,7 +255,7 @@ Undo favorite the 2nd listed person in the address book.
 
 // tag:Listfavorite[]
 
-=== Listing all favorited persons : `list`
+=== Listing all favorited persons : `listfav`
 
 Shows a list of all favorited persons in the address book. +
 Format: `listfav`
@@ -344,7 +330,7 @@ The event date is `yyyy-mm-dd` format.
 
 Examples:
 
-* `addEvent n/Return 5$ d/2017-08-17 de/lunch money` +
+* `addEvent n/Return John 5 bucks d/2017-12-17 de/lunch money` +
 Add a new event with description.
 * `addEvent n/Project Meeting d/2017-11-25 de/` +
 Add a new event with empty description.
@@ -433,13 +419,29 @@ Format: `clear`
 
 // tag::export[]
 === Exporting the data: `export`
+Address book data is exported in text form to the input file path.
+Format: `export [File_Path]`
+****
+* The [File_Path] must contain the file name of the exported file. E.g. `export c:\documents and settings\all users\desktop\exportedData`
+* The [File_Path] can be just the file name of the exported file instead of the file path. In this case, `export` command will export the file [File_Path] to the current directory.
+* The [File_Path] can be blank. In this case, `export` command will export the file with default name "exportFile.txt" to the current directory.
+****
 
-Format: `export`
-Address book data are exported
+Examples:
+
+* `export c:\documents and settings\all users\desktop\exportedData` +
+Exports the file "exportedData" to the specified path.
+
+* `export exportedData` +
+Exports the file "exportedData" to the current directory of NeoXPro.
+
+* `export` +
+Exports the file "exportFile.txt" to the current directory of NeoXPro.
+
 //end::export[]
 
 // tag::comingbirthdaylist[]
-=== Special feature
+=== Special features
 
 ==== Coming birthday list
 
