@@ -9,9 +9,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 6 kLoC.NeoXPro not only allows users to keep track of the personal information of their friends and acquaintances,
 it helps users to manage their everyday tasks too.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/hxy0229.md [Functional code]]
-[https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/hxy0229.md[Test code]]
-[https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/hxy0229.md[Unused code]] {give links to collated code files}
+*Code contributed*: [https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/main/hxy0229.md [Functional code]][https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/test/hxy0229.md[Test code]][https://github.com/CS2103AUG2017-W10-B4/main/blob/master/collated/unused/hxy0229.md[Unused code]] {give links to collated code files}
 
 
 === Enhancement Added: Make most `add` fields optional

@@ -144,20 +144,6 @@ public class ComingBirthdayListPanelHandle extends NodeHandle<ListView<PersonCar
 ```
 ###### \java\seedu\address\logic\commands\CommandTestUtil.java
 ``` java
-    public static final String VALID_BIRTHDAY_AMY = "1988/08/18";
-    public static final String VALID_BIRTHDAY_BOB = "1992/01/01";
-```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
-``` java
-    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
-    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
-```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
-``` java
-    public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY + "12/12"; // year is missing
-```
-###### \java\seedu\address\logic\commands\CommandTestUtil.java
-``` java
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withBirthday(VALID_BIRTHDAY_AMY)
@@ -203,11 +189,6 @@ public class ComingBirthdayListPanelHandle extends NodeHandle<ListView<PersonCar
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + BIRTHDAY_DESC_BOB + INVALID_ADDRESS_DESC + PROFILE_DESC_BOB + TAG_DESC_HUSBAND
                         + TAG_DESC_FRIEND, Address.MESSAGE_ADDRESS_CONSTRAINTS);
-        /*
-        // invalid profile page
-        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + BIRTHDAY_DESC_BOB + ADDRESS_DESC_BOB + INVALID_PROFILE_DESC + TAG_DESC_HUSBAND
-                         + TAG_DESC_FRIEND, ProfilePage.MESSAGE_PROFILEPAGE_CONSTRAINTS); */
 
         // invalid tag
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -245,14 +226,6 @@ public class ComingBirthdayListPanelHandle extends NodeHandle<ListView<PersonCar
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-```
-###### \java\seedu\address\logic\parser\ParserUtilTest.java
-``` java
-    private static final String INVALID_BIRTHDAY = "adsd";
-```
-###### \java\seedu\address\logic\parser\ParserUtilTest.java
-``` java
-    private static final String VALID_BIRTHDAY = "1989/12/11";
 ```
 ###### \java\seedu\address\logic\parser\ParserUtilTest.java
 ``` java
@@ -314,10 +287,6 @@ public class BirthdayTest {
 ```
 ###### \java\seedu\address\testutil\EditPersonDescriptorBuilder.java
 ``` java
-        descriptor.setBirthday(person.getBirthday());
-```
-###### \java\seedu\address\testutil\EditPersonDescriptorBuilder.java
-``` java
     /**
      * Sets the {@code Birthday} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -332,10 +301,6 @@ public class BirthdayTest {
 ```
 ###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
-    public static final String DEFAULT_BIRTHDAY = "1988/08/18";
-```
-###### \java\seedu\address\testutil\PersonBuilder.java
-``` java
     /**
      * Sets the {@code Birthday} of the {@code Person} that we are building.
      */
@@ -347,43 +312,6 @@ public class BirthdayTest {
         }
         return this;
     }
-    /**
-     * Sets the {@code Favorite} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withFavorite(boolean favorite) {
-        this.person.setFavorite(new Favorite(favorite));
-        return this;
-    }
-
-    public Person build() {
-        return this.person;
-    }
-```
-###### \java\seedu\address\testutil\TypicalPersons.java
-``` java
-    public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withBirthday("1988/08/18").withPhone("97235255").withProfilePage("www.facebook.com").withFavorite(false)
-            .withTags("friends").build();
-    public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withBirthday("1980/03/12").withPhone("85357654").withFavorite(false)
-            .withTags("owesMoney", "friends").build();
-    public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withBirthday("1999/12/11").withFavorite(false)
-            .withAddress("wall street").build();
-    public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("85352533")
-            .withEmail("cornelia@example.com").withBirthday("1980/03/01").withFavorite(false)
-            .withAddress("10th street").build();
-    public static final ReadOnlyPerson ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withBirthday("1990/01/01").withFavorite(false)
-            .withAddress("michegan ave").build();
-    public static final ReadOnlyPerson FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withBirthday("1982/06/05").withFavorite(false)
-            .withAddress("little tokyo").build();
-    public static final ReadOnlyPerson GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withBirthday("2000/09/09").withFavorite(false)
-            .withAddress("4th street").build();
 ```
 ###### \java\seedu\address\ui\ComingBirthdayListPanelTest.java
 ``` java
@@ -503,164 +431,14 @@ public class ComingBirthdayListPanelTest extends GuiUnitTest {
 ``` java
     private static final int numberOfPerson = EVENT_STUB.data.getPersonList().size();
 ```
-###### \java\systemtests\AddCommandSystemTest.java
+###### \java\seedu\address\ui\StatusBarFooterTest.java
 ``` java
-    @Test
-    public void add() throws Exception {
-        Model model = getModel();
-        /* Case: add a person without tags to a non-empty address book, command with leading spaces and trailing spaces
-         * -> added
-         */
-        ReadOnlyPerson toAdd = AMY;
-        String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
-                + EMAIL_DESC_AMY + "   " + BIRTHDAY_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + PROFILE_DESC_AMY
-                + "   " + TAG_DESC_FRIEND;
+    @Before
+    public void setUp() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(numberOfPerson);
+        uiPartRule.setUiPart(statusBarFooter);
 
-        assertCommandSuccess(command, toAdd);
-
-        /* Case: undo adding Amy to the list -> Amy deleted */
-        command = UndoCommand.COMMAND_WORD;
-        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(command, model, expectedResultMessage);
-
-        /* Case: redo adding Amy to the list -> Amy added again */
-        command = RedoCommand.COMMAND_WORD;
-        model.addPerson(toAdd);
-        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(command, model, expectedResultMessage);
-
-        /* Case: add a duplicate person -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
-        /* Case: add a duplicate person except with different tags -> rejected */
-        // "friends" is an existing tag used in the default model, see TypicalPersons#ALICE
-        // This test will fail is a new tag that is not in the model is used, see the bug documented in
-        // AddressBook#addPerson(ReadOnlyPerson)
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + " " + PREFIX_TAG.getPrefix() + "friends";
-        assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
-        /* Case: add a person with all fields same as another person in the address book except name -> acccepted */
-        toAdd = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-                .withFavorite(false).withProfilePage(VALID_PROFILE_AMY).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
-        /* Case: add a person with all fields same as another person in the address book except phone -> accepted */
-        toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withFavorite(false)
-                .withProfilePage(VALID_PROFILE_AMY).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY +  PROFILE_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
-        /* Case: add a person with all fields same as another person in the address book except email -> accepted */
-        toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_AMY)
-                .withTags(VALID_TAG_FRIEND).withFavorite(false).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_BOB + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
-        /* Case: add a person with all fields same as another person in the address book except birthday -> accepted */
-        toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withBirthday(VALID_BIRTHDAY_BOB).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_AMY)
-                .withFavorite(false).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_BOB
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY  + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
-        /* Case: add a person with all fields same as another person in the address book except address -> accepted */
-        toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_BOB).withProfilePage(VALID_PROFILE_AMY)
-                .withFavorite(false).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_BOB + PROFILE_DESC_AMY  + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
-        /* Case: add a person with all fields same as another person in the address book except profile -> rejected */
-        toAdd = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withBirthday(VALID_BIRTHDAY_AMY).withAddress(VALID_ADDRESS_AMY).withProfilePage(VALID_PROFILE_BOB)
-                .withFavorite(false).withTags(VALID_TAG_FRIEND).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
-
-
-        /* Case: filters the person list before adding -> added */
-        executeCommand(FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER);
-        assert getModel().getFilteredPersonList().size()
-                < getModel().getAddressBook().getPersonList().size();
-        assertCommandSuccess(IDA);
-
-
-        /* Case: add to empty address book -> added */
-        executeCommand(ClearCommand.COMMAND_WORD);
-        assert getModel().getAddressBook().getPersonList().size() == 0;
-        assertCommandSuccess(ALICE);
-
-
-        /* Case: add a person with tags, command with parameters in random order -> added */
-        toAdd = BOB;
-        command = AddCommand.COMMAND_WORD + TAG_DESC_FRIEND + PROFILE_DESC_BOB
-                + BIRTHDAY_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + NAME_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_BOB;
-        assertCommandSuccess(command, toAdd);
-
-        /* Case: selects first card in the person list, add a person -> added, card selection remains unchanged */
-        executeCommand(SelectCommand.COMMAND_WORD + " 1");
-        assert getPersonListPanel().isAnyCardSelected();
-        assertCommandSuccess(CARL);
-
-        /* Case: add a person, missing tags -> added */
-        assertCommandSuccess(HOON);
-
-        /* Case: missing name -> rejected */
-        command = AddCommand.COMMAND_WORD + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
-        assertCommandFailure(command, String.format(MESSAGE_NO_NAME_FORMAT, AddCommand.MESSAGE_USAGE));
-
-
-        /* Case: invalid keyword -> rejected */
-        command = "adds " + PersonUtil.getPersonDetails(toAdd);
-        assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
-
-        /* Case: invalid name -> rejected */
-        command = AddCommand.COMMAND_WORD + INVALID_NAME_DESC
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
-        assertCommandFailure(command, Name.MESSAGE_NAME_CONSTRAINTS);
-
-        /* Case: invalid phone -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_PHONE_DESC
-                + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
-        assertCommandFailure(command, Phone.MESSAGE_PHONE_CONSTRAINTS);
-
-        /* Case: invalid email -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + INVALID_EMAIL_DESC + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
-        assertCommandFailure(command, Email.MESSAGE_EMAIL_CONSTRAINTS);
-        /* Case: invalid birthday -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + INVALID_BIRTHDAY_DESC + ADDRESS_DESC_AMY + PROFILE_DESC_AMY;
-        assertCommandFailure(command, Birthday.MESSAGE_BIRTHDAY_CONSTRAINTS);
-        /* Case: invalid address -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + INVALID_ADDRESS_DESC + PROFILE_DESC_AMY;
-        assertCommandFailure(command, Address.MESSAGE_ADDRESS_CONSTRAINTS);
-
-        /* Case: invalid profile -> rejected
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + BIRTHDAY_DESC_AMY + ADDRESS_DESC_AMY + INVALID_PROFILE_DESC;
-        assertCommandFailure(command, ProfilePage.MESSAGE_PROFILEPAGE_CONSTRAINTS); */
-
-        /* Case: invalid tag -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_DESC_AMY
-                + ADDRESS_DESC_AMY + PROFILE_DESC_AMY + INVALID_TAG_DESC;
-        assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
-
+        statusBarFooterHandle = new StatusBarFooterHandle(statusBarFooter.getRoot());
     }
 ```
 ###### \java\systemtests\EditCommandSystemTest.java

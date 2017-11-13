@@ -545,7 +545,9 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
-
+```
+###### \java\seedu\address\ui\PersonCard.java
+``` java
 
     @Override
     public boolean equals(Object other) {
@@ -580,6 +582,29 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         }
 
     }
+
+    /**
+     * Sets the {@code ResultDisplay} style to use the default style.
+     */
+    private void setStyleToDefault() {
+        resultDisplay.getStyleClass().remove(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Sets the {@code ResultDisplay} style to indicate a failed command.
+     */
+    private void setStyleToIndicateCommandFailure() {
+        ObservableList<String> styleClass = resultDisplay.getStyleClass();
+
+        if (styleClass.contains(ERROR_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(ERROR_STYLE_CLASS);
+
+    }
+
+}
 ```
 ###### \java\seedu\address\ui\StatusBarFooter.java
 ``` java
@@ -607,6 +632,15 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
         Date date = new Date();
         this.currentDate.setText(" " + dateFormat.format(date) + "\n");
     }
+
+    @Subscribe
+    public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
+        long now = clock.millis();
+        String lastUpdated = new Date(now).toString();
+        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
+        setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+        setTotalPersons(abce.data.getPersonList().size());
+    }
 ```
 ###### \resources\view\ComingBirthdayListPanel.fxml
 ``` fxml
@@ -621,5 +655,6 @@ public class ComingBirthdayListPanel extends UiPart<Region> {
 ```
 ###### \resources\view\StatusBarFooter.fxml
 ``` fxml
+  <StatusBar styleClass="anchor-pane" fx:id="totalPersons" GridPane.columnIndex="1" />
   <StatusBar styleClass="anchor-pane" fx:id="currentDate" GridPane.columnIndex="2" nodeOrientation="RIGHT_TO_LEFT" />
 ```

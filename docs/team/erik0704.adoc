@@ -103,5 +103,5 @@ Original DarkTheme color looked dull and uninspired for a user end product.
 * Fixed all checkstyle errors of every team member.
 * Add tests to increase coverage by 5% (Pull requests https://github.com/CS2103AUG2017-W10-B4/main/pull/81[#81],
  https://github.com/CS2103AUG2017-W10-B4/main/pull/82[#82], https://github.com/CS2103AUG2017-W10-B4/main/pull/84[#84],
- https://github.com/CS2103AUG2017-W10-B4/main/pull/85[#85], https://github.com/CS2103AUG2017-W10-B4/main/pull/92[#92]}
+ https://github.com/CS2103AUG2017-W10-B4/main/pull/85[#85], https://github.com/CS2103AUG2017-W10-B4/main/pull/92[#92])
 
