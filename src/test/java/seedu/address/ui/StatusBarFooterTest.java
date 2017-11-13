@@ -41,7 +41,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
         // restore original clock
         StatusBarFooter.setClock(originalClock);
     }
-
+    //@@author yanji1221
     @Before
     public void setUp() {
         StatusBarFooter statusBarFooter = new StatusBarFooter(numberOfPerson);
@@ -49,7 +49,7 @@ public class StatusBarFooterTest extends GuiUnitTest {
 
         statusBarFooterHandle = new StatusBarFooterHandle(statusBarFooter.getRoot());
     }
-
+    //@@author
     @Test
     public void display() {
         // initial state
