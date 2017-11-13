@@ -485,12 +485,12 @@ The implementation of `delete` contains 2 classes: `DeleteCommand` and `DeleteCo
 
 [source, java]
 ----
-public class DeleteListCommandParser implements Parser<DeleteListCommand> {
-    public DeleteListCommand parse(String args) throws ParseException {
+public class DeleteCommandParser implements Parser<DeleteCommand> {
+    public DeleteCommand parse(String args) throws ParseException {
         try {
             List<Index> input= new ArrayList<Index>();
             // ... Parser logic ...
-            return new DeleteListCommand(input);
+            return new DeleteCommand(input);
         } catch (IllegalValueException ive) {
             // throw exception here
         }
@@ -577,6 +577,7 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 
 // end::comingbirthdaylist[]
 
+
 // tag::Favorite[]
 === Favorite/Unfavorite a person using FavoriteCommand.
 
@@ -628,12 +629,13 @@ information of a person in xml format.
 // tag::Listfavorite[]
 List all your favorite persons using ListFavoriteCommand.
 
-==== ListFavorteCommand
+==== ListFavoriteCommand
 To list all your favorite persons in AddressBook, UI, Model, and Logic Components are involved.
 Logic Component includes `ListFavoriteCommand` and `ListFavoriteCommandParser`, and they call `FavoritePredicate` in Model Component
 to check whether a person is favorited or not, UI component then decide which persons to include in the PersonListPanel.
 
 // end::Listfavorite[]
+
 
 
 // tag::export[]
@@ -1052,7 +1054,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-{More to be added}
 
 [appendix]
 == Use Cases
@@ -1199,8 +1200,6 @@ Use case ends.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-{More to be added}
 
 [appendix]
 == Glossary
