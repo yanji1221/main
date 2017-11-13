@@ -80,7 +80,7 @@ public class StatusBarFooter extends UiPart<Region> {
         Date date = new Date();
         this.currentDate.setText(" " + dateFormat.format(date) + "\n");
     }
-    //@@author
+
     @Subscribe
     public void handleAddressBookChangedEvent(AddressBookChangedEvent abce) {
         long now = clock.millis();
@@ -89,4 +89,5 @@ public class StatusBarFooter extends UiPart<Region> {
         setSyncStatus(String.format(SYNC_STATUS_UPDATED, lastUpdated));
         setTotalPersons(abce.data.getPersonList().size());
     }
+    //@@author
 }
