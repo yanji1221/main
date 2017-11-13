@@ -398,6 +398,68 @@ image::ModelClassForBirthday.png[width="300"]
 To make sure that birthday can be stored in the xml format for future usage, xmlAdaptedPerson is used to save information of a person in xml format.
 // end::addbirthday[]
 
+// tag::addprofile[]
+==== Add Profile Page
+The profile page parameter is facilitated by the class `ProfilePage`. +
+In order to add this parameter profile page, we make modifications to UI, Logic, Model and Storage components.
+
+* `UI Component:` +
+`PersonCard`, which resides in UI component, frist creates a label for profile page parameter: +
+[source, java]
+----
+@FXML
+    private Label profile;
+----
+Then `PersonCard` binds the label with the value of `ProfilePage` object. If the input value for `ProfilePage` object is null, it make the label dissapear from UI by setting its visibility to FALSE: +
+[source, java]
+----
+private void bindListeners(ReadOnlyPerson person) {
+    //... binding other labels ...
+
+    if (!person.profilepageProperty().toString().equals("")) {
+        profile.textProperty().bind(Bindings.convert(person.profilepageProperty()));
+        profile.setVisible(true);
+    } else {
+        profile.setVisible(false);
+    }
+    //... binding other labels ...
+}
+----
+
+In order to make `select` command load a person's `ProfilePage` object if it exists, we modify method `handlePersonPanelSelectionChangedEvent()` in `BrowserPanel` that is in charge of updating a person panel: +
+[source, java]
+----
+ private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+     //...
+     if (person.getProfilePage().hasProfilePage()) {
+         loadProfilePage(person);
+     } else {
+         loadPersonPage(person);
+     }
+ }
+----
+
+* `Logic Component:` +
+The prefix for profile page `pr/` is added to `CliSyntax`. Then the following files `AddCommand`, `EditCommand`, `AddCommandParser` and `EditCommandParser` are modified so that `add` and `edit` commands accept the new parameter profile page. +
+`AddCommandParser` does not check for profile page prefix `pr/` as this is an optional parameter.
+
+* `Model Component:` +
+Class `ProfilePage` is used to store profile page property of class `Person`. Class `Person`, which resides in model component and implements `ReadOnlyPerson` interface, form a composition association with `ProfilePage` . +
+As profile page is an optional parameter, a `Person` can be linked to 0 or 1 `ProfilePage` object. +
+The relationship is illustrated in the following diagram:
+
+image::profilePage.png[width="300"]
+
+* `Storage Component:` +
+`xmlAdaptedPerson` file is used to save information of a person in xml format. +
+The `required` parameter of `@XmlElement` element which stores profile page information is set to false to make this property optional: +
+[source, fxml]
+----
+@XmlElement(required = false)
+    private String profile = "";
+----
+// end::addprofile[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -413,43 +475,14 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-=== DeleteList: Deletes a List of Persons with Specified Indices
+// tag::delete[]
+=== Delete command
 
-'deleteList' command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from 'UndoableCommand'.
+`delete` command supports modifying the state of address book by deleting all persons whose indices are specified in the input. It inherits from `UndoableCommand`.
+The implementation of `delete` contains 2 classes: `DeleteCommand` and `DeleteCommandParser` inside the logic component. +
+`DeleteCommandParser`, the parser of `delete`, parses user's input into the variable `input: List<Index>` that store a list of `Index`.
+`DeleteCommand`, which handles the logic of `delete` command, then iteratively remove any `Person` object with `Index` specified in `input`.
 
-The implementation of 'deleteList' contains the logical part 'DeleteListCommand' and the parser 'DeleteListCommandParser'. They reside inside the package 'seedu.address.logic'.
-
-In 'DeleteListCommand', it stores the list of input indices in a list of 'Index' type: 'listTargetIndices'. 'listTargetIndices' is used later to retrieve all persons with specified indices and store them in 'listPersonsToDelete' (a list of 'ReadOnlyPerson' type). On execution, 'executeUndoableCommand()' will iterate through every person in 'listPersonsToDelete' and remove that person from address book.
-
-This 'DeleteListCommand' is implemented this way:
-[source, java]
-----
-public class DeleteListCommand extends UndoableCommand {
-
-   // ...
-
-    private final List<Index> listTargetIndices;
-
-    public DeleteListCommand(List<Index> listTargetIndices) {
-        this.listTargetIndices = listTargetIndices;
-    }
-
-    @Override
-    public CommandResult executeUndoableCommand() throws CommandException {
-        // ...
-        List<ReadOnlyPerson> listPersonsToDelete= new ArrayList<ReadOnlyPerson>();
-        for(Index targetIndex: listTargetIndices) {
-            ReadOnlyPerson personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            listPersonsToDelete.add(personToDelete);
-        }
-        // ... deleteList logic ...
-     }
-}
-----
-
-Then its parser 'DeleteListCommandParser' is implemented to parse the input string from user into the input type 'List<Index> listTargetIndices' for 'DeleteListCommand' to read and execute.
-
-The parser is implemented  this way:
 [source, java]
 ----
 public class DeleteListCommandParser implements Parser<DeleteListCommand> {
@@ -465,26 +498,17 @@ public class DeleteListCommandParser implements Parser<DeleteListCommand> {
 }
 ----
 
-And finally, we teach the 'AddressBookParser' to read this new command:
+And finally, we add the `delete` command to the class 'AddressBookParser' so that `delete` command is recognized whenever invoked.
+// end::delete[]
 
-[source, java]
-----
-public class AddressBookParser {
-    // ...
-    public Command parseCommand(String userInput) throws ParseException {
-        // ... AddressBookParser logic ...
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-        // ... other commands ...
-        case DeleteListCommand.COMMAND_WORD:
-            return new DeleteListCommandParser().parse(arguments);
-        // ... other commands ...
-    }
-}
-----
+// tag::phone[]
+=== phone command
 
-Whenever 'deleteList INDEX[MORE_INDICES]' is invoked, the input data 'INDEX[MORE_INDICES]' is stored in 'arguments', which is then passed to 'DeleteListCommandParser'. The parser will then parse 'arguments' into appropriate input data for 'DeleteListCommand' to execute the logic. The final state of address book is updated at the end of this execution.
+The `phone` command utilize the same implementation as the `Find` command for name. Instead of logic execute search via `Name` attribute of `Person`, the command search for the `phone` attribute.
+
+`Name` and `Phone` API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class `NameContainsPhonesPredicate implements Predicate<ReadOnlyPerson>`
+which allows the algorithm to use Java `Predicate` class method.
+// end::phone[]
 
 === FindTag Command
 
@@ -534,6 +558,14 @@ A fxml file, in this case is ComingBirthdayListPanel.fxml for coming birthday li
 for the list in the main window UI. MainWindow.fxml should modified accordingly to include the ComingBirthdayListPanel.fxml.
 
 // end::comingbirthdaylist[]
+
+// tag::export[]
+=== export Command
+`export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
+Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`. +
+The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
+`ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
+// end::export[]
 
 === Configuration
 
