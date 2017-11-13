@@ -377,7 +377,7 @@ Be aware of the inheritance between each component when implementing.
 Refer to Section 3 to observe the relationship between those components.
 
 * `UI Component:` +
-PersonCard uses ReadOnlyPerson to create labels of each parameter. New parameter: Birthday, should be added to be included
+PersonCard uses ReadOnlyPerson to create labels of most parameters. New parameter: Birthday, should be added to be included
 so that it can be shown in the information of person when showing person card in UI.
 
 * `Logic Component:` +
@@ -503,7 +503,6 @@ And finally, we add the `delete` command to the class 'AddressBookParser' so tha
 
 // tag::phone[]
 === Phone command
-
 The `phone` command utilize the same implementation as the `Find` command for name. Instead of logic execute search via `Name` attribute of `Person`, the command search for the `phone` attribute.
 
 `Name` and `Phone` API structure is roughly similar that they allow to extract value of the object. The search algorithm utilizes a class `NameContainsPhonesPredicate implements Predicate<ReadOnlyPerson>`
@@ -578,6 +577,69 @@ for the list in the main window UI. MainWindow.fxml should modified accordingly 
 
 // end::comingbirthdaylist[]
 
+<<<<<<< HEAD
+
+// tag::Favorite[]
+=== Favoriting a person using FavoriteCommand.
+=== Unfavoriting a person using UnfavoriteCommand.
+
+==== FavoriteCommand/Unfavorite Command
+To Favorite/Unfavorite a person, UI, Logic, Model and Storage components are to be modified
+accordingly. +
+Be aware of the inheritance between each component when implementing.
+Refer to Section 3 to observe the relationship between those components.
+
+* `UI Component:` +
+PersonCard uses ReadOnlyPerson to create labels of most parameters, and it uses an imageView to record the "Favorite" parameter. +
+When a person is favorited, a star would appear next to the person name, and it would disappear if he/she is unfavorited. +
+Different from other parameters, since 'favorite' is based on a boolean value, instead of using bindListener,
+A new 'star' image is set inside the ImageView if it is meant to appear and it is set to null when it is
+meant to disappear.
+
+This uniqueness is demonstrated as below:
+
+[source,java]
+----
+        if (person.getFavorite().value == true) {
+            Image image = new Image("/images/star.png");
+            favorite.setImage(image);
+        } else {
+            favorite = null;
+        }
+----
+
+* `Logic Component:` +
+To include the Favorite parameter, several files in logic components should be modified accordingly.
+E.g. AddCommand, EditCommand, AddCommandParser, etc.
+Parser is to parse the new parameter information, making sure that information is present before the real add command
+is created. Information being added should be parse to model to create persons if command format is correct.
+
+* `Model Component:` +
+Create a new class for Favorite so that it can be used under Person class. Person class uses ReadOnlyPerson interface.
+Person Class is to collect and set all information about a particular person. If all parameters is parsed correctly,
+a person with collected information will be created. +
+The following diagram shows the relationship of different classes in model component:
+
+image::ModelClassForFavorite1.png[width="300"]
+
+* `Storage Component:` +
+To make sure that favorite value can be stored in the xml format for future usage, xmlAdaptedPerson is used to save
+information of a person in xml format.
+// end::Favorite[]
+
+
+// tag::Listfavorite[]
+List all your favorite persons using ListFavoriteCommand.
+
+==== ListFavorteCommand
+To list all your favorite persons in AddressBook, UI, Model, and Logic Components are involved.
+Logic Component includes `ListFavoriteCommand` and `ListFavoriteCommandParser`, and they call `FavoritePredicate` in Model Component
+to check whether a person is favorited or not, UI component then decide which persons to include in the PersonListPanel.
+
+// end::Listfavorite[]
+
+
+=======
 // tag::export[]
 === Export Command
 `export` access the file `addressbook.xml` to retrieve each person and his/her properties and write it on the file at the specified input.
@@ -585,6 +647,7 @@ Its implementation contains 2 classes: `ExportCommand` and `ExportCommandParser`
 The parser `ExportCommandParser` of `export` parses the file path input as a `String` to `ExportCommand`. +
 `ExportCommand`, which handles the logic of `export` command, then writes the exported file on the specified input file path.
 // end::export[]
+>>>>>>> upstream/master
 
 === Configuration
 
@@ -963,6 +1026,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |user |edit contact information |make changes if needed
 
 |`* * *` |user |add birthday information |remember and keep track of my family members/friends birthday
+
+|`* * *` |user |favorite a person |keep track of the person I'm interested in recently.
 
 |`* * *` |user |find persons whose names contain a partial string |locate person whose name I forgot how to spell
 
